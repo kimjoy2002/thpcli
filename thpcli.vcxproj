@@ -43,11 +43,15 @@
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental />
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <LinkKeyFile>$(SolutionDir)thpcli.snk</LinkKeyFile>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -93,9 +97,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\common\CMainStage.cpp" />
-    <ClCompile Include="..\common\common.cpp" />
-    <ClCompile Include="..\common\CPacketQueue.cpp" />
+    <ClCompile Include="..\thpcommon\CMainStage.cpp" />
+    <ClCompile Include="..\thpcommon\common.cpp" />
+    <ClCompile Include="..\thpcommon\CPacketQueue.cpp" />
     <ClCompile Include="CDXUTButtonList.cpp" />
     <ClCompile Include="cli.cpp" />
     <ClCompile Include="CRoomCharacter.cpp" />
@@ -133,12 +137,12 @@
     <ClCompile Include="uzip.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\common\CCriticalSection.h" />
-    <ClInclude Include="..\common\CMainStage.h" />
-    <ClInclude Include="..\common\common.h" />
-    <ClInclude Include="..\common\CPacketQueue.h" />
-    <ClInclude Include="..\common\hash.h" />
-    <ClInclude Include="..\common\itemcost.h" />
+    <ClInclude Include="..\thpcommon\CCriticalSection.h" />
+    <ClInclude Include="..\thpcommon\CMainStage.h" />
+    <ClInclude Include="..\thpcommon\common.h" />
+    <ClInclude Include="..\thpcommon\CPacketQueue.h" />
+    <ClInclude Include="..\thpcommon\hash.h" />
+    <ClInclude Include="..\thpcommon\itemcost.h" />
     <ClInclude Include="..\include\define.h" />
     <ClInclude Include="..\include\types.h" />
     <ClInclude Include="CDXUTButtonList.h" />
