@@ -93,9 +93,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\thplib\bitlib\lbitlib.c" />
-    <ClCompile Include="..\thplib\zlib\contrib\minizip\ioapi.c" />
-    <ClCompile Include="..\thplib\zlib\contrib\minizip\unzip.c" />
     <ClCompile Include="..\common\CMainStage.cpp" />
     <ClCompile Include="..\common\common.cpp" />
     <ClCompile Include="..\common\CPacketQueue.cpp" />
