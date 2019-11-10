@@ -2,7 +2,7 @@
 #define H_TEAM_SEPARATER_CLASS___
 // ===================================================================
 // CTeamSeparater.h
-//	チームわけの線を出すクラス・ヘッダー
+//	???わけの線を出すクラス・ヘッ??
 // ===================================================================
 
 #include <windows.h>
@@ -13,7 +13,7 @@
 #include <math.h>
 #include <d3d9.h>
 #include <d3dx9.h>
-#include <dxerr9.h>
+#include <dxerr.h>
 #include <map>
 #include <iostream>
 #include <vector>
@@ -22,8 +22,8 @@
 #include "../lib/DXUT/dxstdafx.h"
 #include "../lib/DXUT/DXUT.h"
 
-// チーム番号（①②③…）の位置取り
-// チームの区切り線の表示
+// ???番号（?②③…）の位置取り
+// ???の区切り線の?示
 
 #define ROOM_SEPARATER_OFFSET_X	0
 #define ROOM_SEPARATER_OFFSET_Y	(ROOM_CHARA_BASE_OFFSET_Y+32)
@@ -40,7 +40,7 @@
 
 #define ROOM_SEPARATER_LINE_COLOR	0xFF000000
 
-// チームわけクラス
+// ???わけクラス
 class CTeamSeparater
 {
 public:
@@ -62,28 +62,28 @@ public:
 	};
 
 	// 生成
-	// nGUIResourceIndex	: リソース番号
-	// pDialog						: スタティック
+	// nGUIResourceIndex	: リ??ス番号
+	// pDialog						: ス?ティック
 	// nSeparate					: オブジェクト情報
 	HRESULT Create(int nGUIResourceIndex, CDXUTDialog* pDialog, int nSeparate);
 
 	// 更新
-	// nSeparate	:	チーム数
+	// nSeparate	:	???数
 	void Update()
 	{	Update(m_nSeparate);	};
-	// nSeparate	:	チーム数
+	// nSeparate	:	???数
 	void Update(int nSeparate);
 		
 	void Destroy();
 	
 	BOOL IsCreated()	{ return m_bCreated;	};
 
-	// 座標からチーム番号を取得
+	// 座標から???番号を取得
 	int GetTeamNoFromPos(int x, int y);
 	WCHAR* GetTeamWchar(int num);
 	D3DCOLOR GetTeamColor(int num);
 
-	// 描画
+	// ?画
 	void Render();
 	
 	void SetVisible(bool bVisible);
@@ -92,15 +92,15 @@ public:
 
 protected:
 
-	// チーム番号表示用コントロール
+	// ???番号?示用コントロ?ル
 	CDXUTButton*	m_pArrayTeamNum[MAX_TEAM_COUNT+1];
 	CDXUTDialog*	p_pDialog;
 //	CDXUTButton*	m_pBGImage;
 	
 	BOOL	m_bCreated;								// 生成済み
-	RECT		m_recTeam;								// １チームの描画範囲
-	bool		m_bVisible;								// 表示状態
-	int			m_nGUIResourceIndex;				// リソース番号
+	RECT		m_recTeam;								// １???の?画範囲
+	bool		m_bVisible;								// ?示状態
+	int			m_nGUIResourceIndex;				// リ??ス番号
 	int			m_nSeparate;							// 分割数
 
 	POINT	m_pntLine[MAX_TEAM_COUNT][2];	// 分割線

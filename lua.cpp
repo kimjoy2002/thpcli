@@ -227,7 +227,7 @@ bool C_UpdateObjectType(int obj_no, int type)
 	return res;
 }
 
-// キャラタイプ、ステージステージXY、テクスチャXYWH
+// キャラ?イプ、ステ?ジステ?ジXY、テクス?ャXYWH
 void C_PasteTextureOnStage(int scr_id, int sx,int sy, int tx,int ty,int tw,int th)
 {
 //	g_pGame->PasteTextureOnStage(scr_id, sx,sy,tx,ty,tw,th);
@@ -612,13 +612,13 @@ void C_ShowStage()
 }
 
 // sound
-// リソースの登録
+// リ??スの登?
 void C_RegistSoundSE(char* rc_name)
 {
 	g_pGame->RegistSoundSE(rc_name);
 }
 
-// リソースの再生
+// リ??スの再生
 void C_PlaySoundSE(char* rc_name, int loop, double fade)
 {
 	if (rc_name)
