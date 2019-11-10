@@ -52,7 +52,7 @@ BOOL CShotAngle::Create(CDXUTDialog* pDialog, int nResourceIndex, int x, int y, 
 		0, 0,
 		x,y,w,h,
 		false, &m_pBaseLineFront);
-//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// •`‰æ”ÍˆÍ
+//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// ?‰æ”ÍˆÍ
 	m_pBaseLineFront->GetElement(0)->TextureColor.Init( 0,0,0 );
 	m_pBaseLineFront->SetLineColor(SHOT_ANGLE_BASE_COLOR);
 
@@ -60,7 +60,7 @@ BOOL CShotAngle::Create(CDXUTDialog* pDialog, int nResourceIndex, int x, int y, 
 		0, 0,
 		x,y,w,h,
 		false, &m_pBaseLineBack);
-//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// •`‰æ”ÍˆÍ
+//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// ?‰æ”ÍˆÍ
 	m_pBaseLineBack->GetElement(0)->TextureColor.Init( 0,0,0 );
 	m_pBaseLineBack->SetLineColor(SHOT_ANGLE_BASE_COLOR);
 
@@ -68,7 +68,7 @@ BOOL CShotAngle::Create(CDXUTDialog* pDialog, int nResourceIndex, int x, int y, 
 		0, 0,
 		x,y,w,h,
 		false, &m_pShotRangeMin);
-//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// •`‰æ”ÍˆÍ
+//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// ?‰æ”ÍˆÍ
 	m_pShotRangeMin->GetElement(0)->TextureColor.Init( 0,0,0 );
 	m_pShotRangeMin->SetLineColor(SHOT_ANGLE_RANGE_COLOR);
 
@@ -76,7 +76,7 @@ BOOL CShotAngle::Create(CDXUTDialog* pDialog, int nResourceIndex, int x, int y, 
 		0, 0,
 		x,y,w,h,
 		false, &m_pShotRangeMax);
-//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// •`‰æ”ÍˆÍ
+//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// ?‰æ”ÍˆÍ
 	m_pShotRangeMax->GetElement(0)->TextureColor.Init( 0,0,0 );
 	m_pShotRangeMax->SetLineColor(SHOT_ANGLE_RANGE_COLOR);
 
@@ -84,7 +84,7 @@ BOOL CShotAngle::Create(CDXUTDialog* pDialog, int nResourceIndex, int x, int y, 
 		0, 0,
 		x,y,w,h,
 		false, &m_pShotAngle);
-//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// •`‰æ”ÍˆÍ
+//	SetRect( &rcTexture, ROOM_BTN_STAGE_R_RECT);	// ?‰æ”ÍˆÍ
 	m_pShotAngle->GetElement(0)->TextureColor.Init( 0,0,0 );
 	m_pShotAngle->SetLineColor(SHOT_ANGLE_COLOR);
 

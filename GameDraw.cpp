@@ -63,7 +63,7 @@ void CGame::RenderRoom(float fElapsedTime )
 	g_pCriticalSection->LeaveCriticalSection_StageTexture();
 		V( p_pUI->OnRender( fElapsedTime ) );
 
-	// config表示中はキャラ表示しない
+	// config?示中はキャラ?示しない
 	if (p_pConfig->GetVisible())
 	{
 		V( p_pConfig->OnRender( fElapsedTime ) );
@@ -192,12 +192,12 @@ void CGame::RenderMain(float fElapsedTime )
 		if (!m_SessionArray[m_nUserIndex].chara_state[CHARA_STATE_BLIND_INDEX])
 		{
 			DWORD dwStageColor = GetStageColor();
-			// ステージ描画
+			// ステ?ジ?画
 			// 背景
 			g_pSprite->Draw(m_pStageBGTexture, &m_rcDrawBGStage, &D3DXVECTOR3(0,0,0), &D3DXVECTOR3(0,0,0), dwStageColor);
 
 			g_pCriticalSection->EnterCriticalSection_Effect(L'2');
-			// 背景エフェクト描画
+			// 背景エフェクト?画
 			for ( std::map< int, CStageEffect* >::iterator it = m_mapBGEffects.begin();
 				it != m_mapBGEffects.end();
 				it++)
@@ -207,16 +207,16 @@ void CGame::RenderMain(float fElapsedTime )
 			g_pCriticalSection->LeaveCriticalSection_Effect();
 
 			g_pSprite->SetTransform(&matRev);
-			// ステージ
+			// ステ?ジ
 			g_pCriticalSection->EnterCriticalSection_StageTexture(L'0');
 			g_pSprite->Draw(m_pStageTexture, &m_rcDrawStage, &D3DXVECTOR3(0,0,0), &D3DXVECTOR3(0,0,0), dwStageColor);
 			g_pCriticalSection->LeaveCriticalSection_StageTexture();
-			// キャラ描画
+			// キャラ?画
 			p_pUI->GetManager()->m_pSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
 
 //			m_nTest = m_SessionArray[0].frame_count;
 			int nTeamNo = m_SessionArray[m_nUserIndex].team_no;
-			// 死体を先に描画
+			// ?体を先に?画
 			for (int i=0;i<GetMaxLoginNum();i++)
 			{
 				if (m_SessionArray[i].entity)
@@ -226,19 +226,19 @@ void CGame::RenderMain(float fElapsedTime )
 				}
 			}
 			int nActiveIndex = GetSessionIndex(m_nActiveObjectNo);
-			// 生きてるキャラを後から描画
+			// 生きてるキャラを後から?画
 			for (int i=0;i<GetMaxLoginNum();i++)
 			{
 				if (m_SessionArray[i].entity)
 				{
 					if (m_SessionArray[i].obj_state & OBJ_STATE_MAIN_NOLIVE_FLG)	continue;
 #if (E0401 == 0)
-					if (i == nActiveIndex) continue;	// アクティブキャラは描画を後にする
+					if (i == nActiveIndex) continue;	// アクティブキャラは?画を後にする
 #endif
 					// ステルス状態
 					if (m_SessionArray[i].chara_state[CHARA_STATE_STEALTH_INDEX] > 0)
 					{
-						// 同チームか観戦なら半透明描画
+						// 同???か観戦なら半透明?画
 						if (nTeamNo == GALLERY_TEAM_NO || m_SessionArray[i].team_no == nTeamNo)
 							m_pStageCharacters[i]->Render(m_pDev, fElapsedTime, &matWorld, &matWorld, 0x7FFFFFFF);
 					}
@@ -251,7 +251,7 @@ void CGame::RenderMain(float fElapsedTime )
 			{
 				if (act_sess->chara_state[CHARA_STATE_STEALTH_INDEX] > 0)
 				{
-					// 同チームなら半透明描画
+					// 同???なら半透明?画
 					if (nTeamNo == GALLERY_TEAM_NO || act_sess->team_no == nTeamNo)
 						m_pStageCharacters[nActiveIndex]->Render(m_pDev, fElapsedTime, &matWorld, &matWorld, 0x7FFFFFFF);
 				}
@@ -263,11 +263,11 @@ void CGame::RenderMain(float fElapsedTime )
 		}
 		else
 		{
-			// 周りが暗い時の描画
+			// 周りが暗い時の?画
 			RenderMainBlindState(fElapsedTime, &matWorld);
 		}
 
-		// 自分がアクティブなら発射角度表示させる
+		// 自分がアクティブなら発射角度?示させる
 		if (GetMySessionInfo()->obj_state & OBJ_STATE_ACT_FLG)
 		{
 			ptype_session mysess = &m_SessionArray[m_nUserIndex];
@@ -497,7 +497,7 @@ void CGame::RenderMain(float fElapsedTime )
 #endif
 		g_pCriticalSection->LeaveCriticalSection_Session();
 
-		// エフェクト描画
+		// エフェクト?画
 		g_pCriticalSection->EnterCriticalSection_Effect(L'3');
 		for ( std::map< int, CStageEffect* >::iterator it = m_mapStageEffects.begin();
 			it != m_mapStageEffects.end();
@@ -507,7 +507,7 @@ void CGame::RenderMain(float fElapsedTime )
 		}
 		g_pCriticalSection->LeaveCriticalSection_Effect();
 
-		// オブジェクト(弾とか)描画
+		// オブジェクト(弾とか)?画
 		g_pCriticalSection->EnterCriticalSection_Object(L'1');
 		std::vector< int > vecFrame;
 		vecFrame.assign(m_vecObjectNo.begin(), m_vecObjectNo.end());
@@ -543,9 +543,9 @@ void CGame::GetReverseStateMatrix(D3DXMATRIX* matRev, RECT* rcWindow)
 		// 傾きD3DXMATRIX matR, matT, matT2;
 		// 変換行列初期化
 		::D3DXMatrixIdentity(&mat);
-		// 1. 一度スプライトの中心点をウィンドウの原点(0,0)にあわせる
+		// 1. 一度スプライトの中心?をウィンドウの原?(0,0)にあわせる
 		::D3DXMatrixTranslation(&matT, -(rcWindow->right-rcWindow->left)/2.0f, -(rcWindow->bottom-rcWindow->top)/2.0f, 0.0f);
-		// 2. スプライトを回転させる
+		// 2. スプライトを回?させる
 		::D3DXMatrixRotationZ(&matR, D3DXToRadian(180));
 		// 3. 1でずらした分を元に戻す
 		::D3DXMatrixTranslation(&matT2, (rcWindow->right-rcWindow->left)/2.0f, (rcWindow->bottom-rcWindow->top)/2.0f/*-MAIN_CONTROLPANEL_CNT_HIDE*/, 0.0f);
@@ -573,12 +573,12 @@ void CGame::RenderMainBlindState(float fElapsedTime, D3DXMATRIX* matWorld)
 	rcWindow.top = m_SessionArray[m_nUserIndex].ay-GAME_BLIND_VISIBLE_RANGE_HALF;
 	rcWindow.right = rcWindow.left+GAME_BLIND_VISIBLE_RANGE;
 	rcWindow.bottom = rcWindow.top+GAME_BLIND_VISIBLE_RANGE;
-	// ステージ描画
+	// ステ?ジ?画
 	DWORD dwStageColor = GetStageColor();
 	// 背景
 	g_pSprite->Draw(m_pBGTexture, &rcWindow, &D3DXVECTOR3(GAME_BLIND_VISIBLE_RANGE_HALF,GAME_BLIND_VISIBLE_RANGE_HALF,0), &pos, dwStageColor);
 
-	// ステージ
+	// ステ?ジ
 	g_pCriticalSection->EnterCriticalSection_StageTexture(L'-');
 	g_pSprite->Draw(m_pStageTexture, &rcWindow, &D3DXVECTOR3(GAME_BLIND_VISIBLE_RANGE_HALF,GAME_BLIND_VISIBLE_RANGE_HALF,0), &pos, dwStageColor);
 	g_pCriticalSection->LeaveCriticalSection_StageTexture();
@@ -603,7 +603,7 @@ void CGame::RenderMainBlindState(float fElapsedTime, D3DXMATRIX* matWorld)
 	}
 	// 黒いやつ
 	g_pSprite->Draw(m_pDefaultGUIResourceTexture, &rcTexture, &D3DXVECTOR3(GAME_BLIND_VISIBLE_RANGE_HALF,GAME_BLIND_VISIBLE_RANGE_HALF,0),&pos, 0xFFFFFFFF);
-	// オブジェクトはキャラと同じマトリックスを使用
+	// オブジェクトはキャラと同じ?トリックスを使用
 	*matWorld = matChara;
 }
 
@@ -616,12 +616,12 @@ void CGame::RenderResult(float fElapsedTime )
 	D3DXMATRIX	matWorld;
 	D3DXMatrixIdentity(&matWorld);
 	g_pSprite->SetTransform(&matWorld);
-	// ステージ描画
+	// ステ?ジ?画
 	// 背景
 	if (SUCCEEDED(g_pSprite->Begin(D3DXSPRITE_ALPHABLEND ) ))
 	{
 		g_pSprite->Draw(m_pStageBGTexture, &m_rcDrawBGStage, &D3DXVECTOR3(0,0,0), &D3DXVECTOR3(0,0,0), 0xFFAAAAAA);
-		// ステージ
+		// ステ?ジ
 		g_pCriticalSection->EnterCriticalSection_StageTexture(L'^');
 		g_pSprite->Draw(m_pStageTexture, &m_rcDrawStage, &D3DXVECTOR3(0,0,0), &D3DXVECTOR3(0,0,0), 0xFFAAAAAA);
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();

@@ -25,7 +25,7 @@
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "Dsound.lib")
 #pragma comment(lib, "comctl32.lib")
-//#if USE_DEBUG_FILER		// CFilerは個々のファイルなのでクローズが必要
+//#if USE_DEBUG_FILER		// CFilerは個々のフ?イルなのでクロ?ズが必要
 
 
 #if defined(DEBUG) || defined(_DEBUG)
@@ -75,7 +75,7 @@ using namespace std;
 #endif
 
 /* =================================== */
-/* =====      グローバル変数     ===== */
+/* =====      グロ?バル変数     ===== */
 /* =================================== */
 HWND			g_hWnd = NULL;
 HINSTANCE	g_hInst = NULL;
@@ -113,7 +113,7 @@ lua_State*	g_L = NULL;
 LuaHelper*	g_pLuah = NULL;
 #endif
 /*===================================
-	=====        プログラム       =====
+	=====        プログラ?       =====
 	===================================*/
 void png_memread_func(png_structp png_ptr, png_bytep buf, png_size_t size);
 void png_data_read(png_structp png_ptr, my_png_buffer *png_buff);
@@ -153,11 +153,11 @@ INT APIENTRY _tWinMain(HINSTANCE hInst, HINSTANCE, LPTSTR, INT)
 #if USE_LUA
 	// LuaのVMを生成する
 	g_L = lua_open();
-	// Luaの標準ライブラリを開く
+	// Luaの標?ライブラリを開く
 	luaL_openlibs(g_L);
 	// bit演算ライブラリ
 	luaopen_bit(g_L);
-	// グルーコードを実行
+	// グル?コ?ドを実行
 	tolua_thg_open(g_L);
 
 	g_pLuah = new LuaHelper();
@@ -230,13 +230,13 @@ INT APIENTRY _tWinMain(HINSTANCE hInst, HINSTANCE, LPTSTR, INT)
 	return 0;
 }
 
-// メインループ
+// メインル?プ
 DWORD __stdcall Thread_MainLoop(LPVOID param)
 {
 	MSG msg;
 	while( 1 )
 	{ 
-		if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))// メッセージの確認
+		if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))// メッセ?ジの確認
 		{
 			if (msg.message == WM_QUIT) {					// WM_QUIT なら
 				AddMessageLog(L"Thread_MainLoop:WM_QUIT");	
@@ -246,7 +246,7 @@ DWORD __stdcall Thread_MainLoop(LPVOID param)
 //				DestroyWindow(msg.hwnd);
 //< 20110301
 //				DXUTShutdown(0);
-				break;										// ループを抜ける
+				break;										// ル?プを抜ける
 			}
 		}
 
@@ -340,7 +340,7 @@ BOOL InitSystem()
 			g_pLogFile = new CTextFile(logfile, L"a+");
 			if (!g_pLogFile->IsOpened())
 			{
-				MessageBox(NULL, L"ログファイルのオープンに失敗しました。",L"error", MB_OK);
+				MessageBox(NULL, L"ログフ?イルのオ?プンに失敗しました。",L"error", MB_OK);
 				EndProgram();
 				return FALSE;
 			}
@@ -466,7 +466,7 @@ int EndProgram()
 //	return ret;
 }
 
-// フレーム処理
+// フレ??処理
 void CALLBACK OnFrameMove( IDirect3DDevice9* pd3dDevice, double fTime, float fElapsedTime, void* pUserContext )
 {
 #if ON_CLOSE_SOCKET_EXIT
@@ -502,14 +502,14 @@ void CALLBACK OnFrameMove( IDirect3DDevice9* pd3dDevice, double fTime, float fEl
 #endif
 }
 
-// 描画処理
+// ?画処理
 void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float fElapsedTime, void* pUserContext )
 {
     HRESULT hr;
 	if (!g_pGame) return;
 	if (!g_pGame->IsCreated()) return;
 	if (g_bCloseSocket)	return;
-	if (!g_bDeviceReady) return;	// デバイスは描画しない
+	if (!g_bDeviceReady) return;	// デバイスは?画しない
 
 //	WCHAR wcfps[16];
 //	SafePrintf(wcfps, 16, L"%f/%d", DXUTGetFPS(), timeGetTime() );
@@ -553,7 +553,7 @@ bool CALLBACK ModifyDeviceSettings( DXUTDeviceSettings* pDeviceSettings, const D
     {
         pDeviceSettings->BehaviorFlags = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
     }
-	// バックバッファフォーマットを固定
+	// バックバッフ?フォ??ットを固定
 	D3DDISPLAYMODE Mode;
 	DXUTGetD3DObject()->GetAdapterDisplayMode(0, &Mode);
 	if (Mode.Format != D3DDEFAULT_FORMAT)
@@ -573,7 +573,7 @@ bool CALLBACK ModifyDeviceSettings( DXUTDeviceSettings* pDeviceSettings, const D
 /*
 	if (pDeviceSettings->pp.BackBufferWidth < WIN_WIDTH || pDeviceSettings->pp.BackBufferHeight < WIN_HEIGHT)
 	{
-		MessageBox(NULL, L"ゲームの解像度が800x600以下に設定されたため終了します。", L"reset", MB_OK);
+		MessageBox(NULL, L"ゲ??の解像度が800x600以下に設定されたため終了します。", L"reset", MB_OK);
 		g_bCloseSocket = TRUE;
 		DestroyWindow(g_hWnd);
 		return false;
@@ -601,7 +601,7 @@ HRESULT CALLBACK OnCreateDevice( IDirect3DDevice9* pd3dDevice, const D3DSURFACE_
 		|| pCaps->MaxTextureWidth < NEED_MAX_TEXTURE_WIDTH)
 	{
 		MessageBox(g_hWnd,
-			L"お使いのパソコンはスペックが不足しております。\n誠に恐縮ですがゲームを終了してください。",
+			L"お使いのパ?コンはスペックが不足しております。\n誠に恐縮ですがゲ??を終了してください。",
 			L"error",
 			MB_OK);
 	}
@@ -644,7 +644,7 @@ HRESULT CALLBACK OnResetDevice( IDirect3DDevice9* pd3dDevice,
 	DXUTDeviceSettings setting = DXUTGetDeviceSettings();
 	if (setting.pp.BackBufferWidth < WIN_WIDTH || setting.pp.BackBufferHeight < WIN_HEIGHT)
 	{
-		MessageBox(NULL, L"ゲームの解像度が800x600以下に設定されたため終了します。", L"reset", MB_OK);
+		MessageBox(NULL, L"ゲ??の解像度が800x600以下に設定されたため終了します。", L"reset", MB_OK);
 		g_bCloseSocket = TRUE;
 		DestroyWindow(g_hWnd);
 		return E_FAIL;
@@ -759,7 +759,7 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, bo
     if( *pbNoFurtherProcessing )
         return 0;
 
-	// コンフィグ表示中はメインUIのメッセージ処理しない
+	// コンフィグ?示中はメインUIのメッセ?ジ処理しない
 	if (!g_SysConfig.GetVisible())
 	{
 	    *pbNoFurtherProcessing = g_SysUI.MsgProc( hWnd, uMsg, wParam, lParam );
@@ -854,7 +854,7 @@ void png_data_read(png_structp png_ptr, my_png_buffer *png_buff)
                     (png_rw_ptr)png_memread_func);
 }
 
-// コマンドラインから起動
+// コ?ンドラインから起動
 BOOL ParseCmd()
 {
 	int nIndex = 0;
@@ -870,12 +870,12 @@ BOOL ParseCmd()
 	{
 		if (!AddData(wsCmdline))
 		{
-			MessageBox(NULL, L"データの解凍に失敗しました", L"データ追加エラー", MB_OK);
+			MessageBox(NULL, L"デ??の解?に失敗しました", L"デ??追加エラ?", MB_OK);
 			return FALSE;
 		}
 		else
 		{
-			MessageBox(NULL, L"データの解凍に成功しました", L"データ追加", MB_OK);
+			MessageBox(NULL, L"デ??の解?に成功しました", L"デ??追加", MB_OK);
 			return FALSE;
 		}
 	}
@@ -956,14 +956,14 @@ BOOL ParseCmd()
 	return TRUE;
 }
 
-// 追加データ
+// 追加デ??
 BOOL AddData(WCHAR* path)
 {
 	WCHAR wsStartPath[_MAX_PATH*2+1];
 	WCHAR wsDataPath[_MAX_PATH*2+1];
 	SafePrintf(wsStartPath, _MAX_PATH*2, L"%s", __wargv[0]);
 
-	// ファイルパス確認
+	// フ?イルパス確認
 
 	int nLen = _tcslen(wsStartPath)-1;
 	if (nLen<=0)	return FALSE;
@@ -972,7 +972,7 @@ BOOL AddData(WCHAR* path)
 		if (nLen)	nLen--;
 		else			return FALSE;
 	}
-	// exeのフォルダパスを取得
+	// exeのフォル?パスを取得
 	if (wsStartPath[nLen])		wsStartPath[nLen+1] = NULL;
 	else									return FALSE;
 	

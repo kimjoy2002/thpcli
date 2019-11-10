@@ -1,5 +1,5 @@
 #include "ext.h"
-#include "../common/itemcost.h"
+#include "../thpcommon/itemcost.h"
 
 const TITEM_RESOURCE_INFO c_tItemResouceInfoTable[GAME_ITEM_COUNT+1] =
 {

@@ -2,19 +2,17 @@
 #define H_GAME___
 // ===================================================================
 // Game.h
-//	ゲーム管理クラス・ヘッダー
+//	ゲ??管理クラス・ヘッ??
 // ===================================================================
 
 #include <windows.h>
 #include <TCHAR.h>
 #include <io.h>
-#include "../include/types.h"
-#include "../include/define.h"
 #include "util.h"
 #include <math.h>
 #include <d3d9.h>
 #include <d3dx9.h>
-#include <dxerr9.h>
+#include <dxerr.h>
 #include <winsock.h>
 #include <map>
 #include <string>
@@ -22,11 +20,11 @@
 #include <list>
 #include <lua.hpp>
 
-#include "../common/CPacketQueue.h"
-#include "../common/common.h"
+#include "../thpcommon/CPacketQueue.h"
+#include "../thpcommon/common.h"
 #include "Input.h"
-#include "../lib/DXUT/dxstdafx.h"
-#include "../lib/DXUT/DXUT.h"
+#include "../thplib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/DXUT.h"
 
 #include "CIniFile.h"
 #include "CDXUTButtonList.h"
@@ -50,14 +48,14 @@
 #include "Input.h"
 #include "TextureLoader.h"
 #include "PngLoader.h"
-#include "../common/CMainStage.h"
+#include "../thpcommon/CMainStage.h"
 
 #include "CSoundPlayer.h"
 #include "CSoundLibraries.h"
 
 #include "resource.h"
 
-// ゲーム全体の状態
+// ゲ??全体の状態
 enum ESystemState {
 //=========================可変部分==========================//
 	eSysInit,
@@ -109,7 +107,7 @@ enum EGameAllState: DWORD {
 	eGameRenderResult,
 };
 
-// ゲーム内部の状態
+// ゲ??内部の状態
 enum EGameState {
 //=========================可変部分==========================//
 	eGameTitleInit			= GAME_STATE_TITLE|GAME_STATE_INIT,
@@ -140,7 +138,7 @@ enum EGameState {
 //===========================================================//
 };
 
-// 入力ログ構造体
+// 入力ログ?造体
 struct TContLog {
 	WORD	Times;
 	BYTE	Cont;
@@ -159,7 +157,7 @@ public:
 	BOOL Game();				// Main
 
 	void Render(float fElapsedTime){ Render(fElapsedTime, m_pDev, m_eGameState);	};
-	void Render(float fElapsedTime, LPDIRECT3DDEVICE9 pdev, EGameState eGameState);// 描画の処理
+	void Render(float fElapsedTime, LPDIRECT3DDEVICE9 pdev, EGameState eGameState);// ?画の処理
 
 	// Input
 #if USE_DINPUT
@@ -189,7 +187,7 @@ public:
 	void OnMouseMButton(BOOL bDown, int x, int y);
 	void OnMouseMove(int x,int y);
 
-	// フォーカス
+	// フォ?カス
 	void	OnInactive();
 	void	OnActive();
 
@@ -218,7 +216,7 @@ public:
 	E_TYPE_OBJ_STATE	GetUserState()	{	return m_eUserState;	};
 
 	void CALLBACK OnKeyEvent(UINT nChar, bool bKeyDown, bool bAltDown);
-	// ソケット切断
+	// ?ケット切断
 	void Disconnect();
 
 	BOOL IsCreated() { return m_bCreated;	};
@@ -228,7 +226,7 @@ public:
 	void SetConnState(E_TYPE_CONN_STATE value) { m_eConnState = value; };
 
 	//> util
-	// ユーザ情報を取得
+	// ユ?ザ情報を取得
 	inline type_session* GetAuthedSessionInfo(int nIndex)
 	{
 		if (nIndex >= GetMaxLoginNum() || nIndex < 0 )
@@ -256,7 +254,7 @@ public:
 		}
 		return NULL;
 	};
-	// ユーザ情報を取得(認証チェックなし)
+	// ユ?ザ情報を取得(認証?ェックなし)
 	inline type_session* GetSessionInfo(int nIndex)
 	{
 		if (nIndex >= GetMaxLoginNum() || nIndex < 0 )
@@ -295,7 +293,7 @@ public:
 		}
 		return NULL;
 	};
-	// 自身のユーザ情報を取得
+	// 自身のユ?ザ情報を取得
 	inline type_session* GetMySessionInfo()
 	{
 		if (m_nUserIndex >= GetMaxLoginNum() || m_nUserIndex < 0)
@@ -364,7 +362,7 @@ public:
 	void UpdateTeamRuleProperty();
 	void UpdateGameRuleState();
 	void SetGameMaster(int nIndex, BOOL bMaster);
-	void UpdateGameMasterPropertyControlsEnabled();		// マスターが設定できるコントロール状態更新
+	void UpdateGameMasterPropertyControlsEnabled();		// ?ス??が設定できるコントロ?ル状態更新
 	void UpdatePropertyControlsEnabled();
 	void SetGameReady(int nIndex, BOOL bReady);
 	void UpdateReadyButtonState();
@@ -380,7 +378,7 @@ public:
 
 	//> Main
 	void MainStart();
-	void UpdateStageCharaDisplay(int nCharaIndex);	// ステージ上のキャラの表示更新
+	void UpdateStageCharaDisplay(int nCharaIndex);	// ステ?ジ上のキャラの?示更新
 	void ActivateCharacter(int nObjNo, WORD wTurnCount);		// アクティブキャラ設定
 	void UpdateCharaState(int nObjNo, int nStateIndex, int nState);
 	void UpdatePrevWindValue();
@@ -399,7 +397,7 @@ public:
 	type_obj* GetScrProcObject()	{	return m_pScrProcObject;	};
 	BOOL AddObject(type_obj* obj);
 	
-	// オブジェクトを一時停止して、サーバからの情報を待たせる
+	// オブジェクトを一時停?して、サ?バからの情報を待たせる
 	void PauseSetObjectWaitForServerEvent(int obj_no, BOOL bPause, WORD wFrame=0);
 	void PauseSetObjectWaitForServerEvent(type_obj* obj, BOOL bPause, WORD wFrame=0, BOOL bCriticalSectionEntered=TRUE);
 	void UpdateObjectVector(int nObjNo, short ax, short ay, short vx, short vy);
@@ -489,7 +487,7 @@ public:
 	//< Main
 	int m_nTest;
 	// public変数
-	BYTE	m_bytBGMVolume;			// BGMボリューム
+	BYTE	m_bytBGMVolume;			// BGM?リュ??
 	BYTE	m_bytSEVolume;
 	BOOL m_bEffectEnable;			// EFFECT ON/OFF
 	bool m_bSavePass;
@@ -615,14 +613,14 @@ private:
 	void CheckCharacterSelectRadioBtnFromID(int nObjType);
 #if RTRIAL
 #else
-	void OnCharacterSelectRadioBtnDown(CDXUTRadioButton* pBtn);	// キャラ選択ラジオボタン押下イベント
+	void OnCharacterSelectRadioBtnDown(CDXUTRadioButton* pBtn);	// キャラ選択ラジオ??ン押下イベント
 #endif
 	void UpdateMyCharaInfo();		// 自キャラ情報更新
 	void UpdateStageSelectButton();
 	void OnAddItemButtonDown();
-	void CheckEnableItemAddButton();				// アイテム追加ボタンの有効状態確認
-	BOOL OnMyItemButtonDown(int nControlID);	// 使用アイテムボタン押下
-	void OnTeamRuleButtonDown(int nNum);		// チーム数変更
+	void CheckEnableItemAddButton();				// アイテ?追加??ンの有効状態確認
+	BOOL OnMyItemButtonDown(int nControlID);	// 使用アイテ???ン押下
+	void OnTeamRuleButtonDown(int nNum);		// ???数変更
 	void OnReadyButtonDown();
 	void OnActTimeLimitButtonDown(int nNum);
 	BOOL CheckChangeReadyStateOfMaster();
@@ -650,7 +648,7 @@ private:
 	void SetVisibleBulletSelectButtons(bool value);
 	CStageEffect* FindEffectFromEffectNo(int nEffectNo, BOOL bStageEffect);
 	void SetVisibleStageCharacterInfo(bool bVisible);
-	int	GetStockItemBullet();	// 使用アイテム弾を取得ないなら -1を返す
+	int	GetStockItemBullet();	// 使用アイテ?弾を取得ないなら -1を返す
 	void SetMyIteamsEnabled(bool bEnabled);
 	void SetMyBulletsEnabled(bool bEnabled);
 	void OnCharaDisconnect(int nCharaIndex);
@@ -683,7 +681,7 @@ private:
 //========================//
 //	TVecLog			m_tVecLog[CONT_LOGS];
 	// D3D
-	LPDIRECT3D9	m_pD3D;						// D3Dﾊﾝﾄﾞﾗ
+	LPDIRECT3D9	m_pD3D;						// D3Dﾊﾝﾄﾞ?
 	LPDIRECT3DDEVICE9 m_pDev;				// D3Dデバイス
 	LPD3DXFONT		m_pDXFont;					// D3DXフォント
 //	CGraphic*			m_pGraph;
@@ -691,11 +689,11 @@ private:
 	CGameControl*	m_pInput;
 #endif
 	BOOL				m_bCreated;			// Create()を通って成功したか。
-	BOOL				m_bActive;					// フォーカスがあるか
-	HWND				m_hWnd;						// Windowsﾊﾝﾄﾞﾗ
+	BOOL				m_bActive;					// フォ?カスがあるか
+	HWND				m_hWnd;						// Windowsﾊﾝﾄﾞ?
 	HINSTANCE		m_hInst;					// ｲﾝｽﾀﾝｽ
-	ESystemState	m_eSysState;				// システムの状態
-	EGameState		m_eGameState;				// ゲーム
+	ESystemState	m_eSysState;				// システ?の状態
+	EGameState		m_eGameState;				// ゲ??
 
 //=========================可変部分==========================//
 // 変数
@@ -713,16 +711,16 @@ private:
 	int						m_nAuthedCount;
 	BYTE					m_bytRuleFlg;
 	BOOL				m_bMouseLButtonDown;
-	int						m_nChatSendInterval;		// チャット送信間隔を空けるためのカウンタ
+	int						m_nChatSendInterval;		// ?ャット送信間隔を空けるためのカウン?
 	int						m_nWindValue;
 	TInputState		m_tKeyState;
-	int						m_nLimitTurn;					// 制限ターン数
+	int						m_nLimitTurn;					// 制限??ン数
 	int						m_nMaxLoginNum;					// MAXLOGINNUM
 
 	CIniFile*	m_pIniConfig;
 
-	CSoundLibraries*	m_pSysSoundLibs;			// システム用の音声バッファ
-	CSoundLibraries*	m_pScrSoundLibs;			// スクリプト用の音声バッファ
+	CSoundLibraries*	m_pSysSoundLibs;			// システ?用の音声バッフ?
+	CSoundLibraries*	m_pScrSoundLibs;			// スクリプト用の音声バッフ?
 	CSoundPlayer*		m_pSoundPlayer;			// 音声の再生
 	
 	int m_nSavedInputX;
@@ -733,7 +731,7 @@ private:
 	int m_nMousePosY;
 
 	E_TYPE_CONN_STATE	m_eConnState;				// 接続状態
-	E_TYPE_OBJ_STATE		m_eUserState;				// ユーザ状態
+	E_TYPE_OBJ_STATE		m_eUserState;				// ユ?ザ状態
 
 	int m_nDefaultGUIResourceIndex;
 	LPDIRECT3DTEXTURE9 m_pDefaultGUIResourceTexture;
@@ -744,9 +742,9 @@ private:
 	RECT	m_rcDrawBGStage;
 
 	// sound
-	std::map<std::wstring, int>	m_mapSysSoundIDHash;			// システムのリソース名とIDの連想配列
-	std::map<std::string, int>		m_mapScrSoundIDHash;			// スクリプトのリソース名とIDの連想配列
-	int		m_nBGMSoundID;			// BGMリソースID
+	std::map<std::wstring, int>	m_mapSysSoundIDHash;			// システ?のリ??ス名とIDの連想配列
+	std::map<std::string, int>		m_mapScrSoundIDHash;			// スクリプトのリ??ス名とIDの連想配列
+	int		m_nBGMSoundID;			// BGMリ??スID
 	int		m_nBGMPlayingID;		// 再生中BGMID
 
 	// scr_id, scr_info
@@ -823,7 +821,7 @@ private:
 	CShotAngle*					m_pShotAngle;
 	CDXUTAnimationSprite*	m_pASpriteTimer;
 	CDXUTAnimationSprite*	m_pASpriteTimerBG;
-	CDXUTRadioButton*	m_pBulletSelectButtons[MAX_CHARA_BULLET_TYPE];	// 発射する弾選択用ボタン
+	CDXUTRadioButton*	m_pBulletSelectButtons[MAX_CHARA_BULLET_TYPE];	// 発射する弾選択用??ン
 	int									m_nActiveObjectNo;					// アクティブオブジェクトNo
 	E_STATE_GAME_MAIN_PHASE	m_eMainPhase;				// 
 	int									m_nTriggerType;						//	
@@ -839,16 +837,16 @@ private:
 	std::map < int, type_obj* > m_mapObjects;					// オブジェクトのリスト
 	std::vector< int >			m_vecObjectNo;
 	E_TYPE_USER_DIRECTION m_eSavedDir;						// 自キャラの方向保存
-	CDXUTButtonList* m_pSelBulletBtnList;							// 弾選択ボタンリスト
-	int							m_nActiveCharaFocusCounter;			// アクティブになったキャラにフォーカスを移す時間
-	D3DXVECTOR3		m_vecActiveCharaFocusStartPos;		// アクティブになったキャラにフォーカス前のカメラ位置
-	int							m_nMyCharaFocusCounter;				// 自キャラフォーカスを移す時間
-	D3DXVECTOR3		m_vecMyCharaFocusStartPos;		// アクティブになったキャラにフォーカス前のカメラ位置
+	CDXUTButtonList* m_pSelBulletBtnList;							// 弾選択??ンリスト
+	int							m_nActiveCharaFocusCounter;			// アクティブになったキャラにフォ?カスを移す時間
+	D3DXVECTOR3		m_vecActiveCharaFocusStartPos;		// アクティブになったキャラにフォ?カス前のカメラ位置
+	int							m_nMyCharaFocusCounter;				// 自キャラフォ?カスを移す時間
+	D3DXVECTOR3		m_vecMyCharaFocusStartPos;		// アクティブになったキャラにフォ?カス前のカメラ位置
 
 	BOOL					m_bTriggerEnd;
 	ptype_obj				m_pFocusObject;
 	BOOL					m_bPauseBulletFocus;
-	BOOL					m_bScrFocus;			// スクリプトによるフォーカス命令、自動フォーカスを制限する
+	BOOL					m_bScrFocus;			// スクリプトによるフォ?カス命令、自動フォ?カスを制限する
 	int							m_nNotifyMyTurn;
 	int							m_nTurnCounter;
 	int							m_nActTimeLimit;								// アクティブ制限時間

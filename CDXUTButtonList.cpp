@@ -92,14 +92,14 @@ void CDXUTButtonList::OnLeftButtonDown()
 void CDXUTButtonList::CalcViewIndex()
 {
 	if (!m_bCreated) return;
-	// 矢印ボタン不必要な場合
+	// 矢印??ン不必要な場合
 	if (!IsVisibleArrowButton())
 	{
 		m_nViewIndex = 0;
 		return;
 	}
 
-	// 矢印ボタンが必要
+	// 矢印??ンが必要
 	int nArrowRange = 0;
 	int nDrawRange = 0;
 
@@ -134,7 +134,7 @@ void CDXUTButtonList::CalcViewIndex()
 			case BUTTON_LIST_VERTICAL:
 				nDrawRange += (*itr)->m_height + nSpace;	break;
 			}
-			// ボタンが表示範囲を超えたら、矢印ボタンを必要にしてループ終了
+			// ??ンが?示範囲を超えたら、矢印??ンを必要にしてル?プ終了
 			if (nDrawRange > m_nDrawRange)
 			{
 				bVisArrowButton = TRUE;
@@ -186,10 +186,10 @@ void CDXUTButtonList::UpdateDrawRange()
 		nArrowRange = m_pBtnArrowL->m_width + m_pBtnArrowR->m_width+(+m_nLRPadding*2);	break;
 	}
 
-	// 矢印ボタンが必要か確認
+	// 矢印??ンが必要か確認
 	int nTotalRange = 0;
 
-	// 矢印表示設定
+	// 矢印?示設定
 	if (IsVisibleArrowButton())
 	{
 		m_pBtnArrowL->SetVisible(true);
@@ -278,7 +278,7 @@ void CDXUTButtonList::SetVisible(bool b)
 	if (m_pBtnArrowR)
 		m_pBtnArrowR->SetVisible(b);
 
-	// 登録済みボタンの表示状態を変える
+	// 登?済み??ンの?示状態を変える
 	if (!b)
 	{
 		for (std::vector< CDXUTControl* >::iterator itr = m_vecButtons.begin();
@@ -301,7 +301,7 @@ void CDXUTButtonList::SetEnable(bool b)
 	if (m_pBtnArrowR)
 		m_pBtnArrowR->SetEnabled(b);
 
-	// 登録済みボタンの表示状態を変える
+	// 登?済み??ンの?示状態を変える
 	for (std::vector< CDXUTControl* >::iterator itr = m_vecButtons.begin();
 		itr!=m_vecButtons.end();
 		itr++)

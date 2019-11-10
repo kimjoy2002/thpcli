@@ -13,8 +13,8 @@ BOOL CGame::TitleInit()
 	// frame
 	CDXUTSprite* pSprite;
 	p_pUI->AddSprite( IDC_DLG_FRAME, 280, 300, 240, 120, false, &pSprite );
-	SetRect( &rcTexture, TITLE_RRAME_RECT_RECT	);	// 描画範囲
-	pSprite->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, TITLE_RRAME_RECT_RECT	);	// ?画範囲
+	pSprite->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 
 	// Edit box
     CDXUTEditBox *pEdit;
@@ -43,8 +43,8 @@ BOOL CGame::TitleInit()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 0, 0);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 
-	SetRect( &rcTexture, BTN_W48_RECT	);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, BTN_W48_RECT	);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 
 	// exit
 	p_pUI->AddButton( IDC_TITLE_BTN_EXIT, L"exit", 460, 375, 48, 32, L'I', false, &pBtn );
@@ -53,8 +53,8 @@ BOOL CGame::TitleInit()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 0, 0);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 
-	SetRect( &rcTexture, BTN_W48_RECT	);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, BTN_W48_RECT	);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 
 	// config
 	p_pUI->AddButton( IDC_TITLE_BTN_CONFIG, L"config", 300, 375, 48, 32, L'I', false, &pBtn );
@@ -63,8 +63,8 @@ BOOL CGame::TitleInit()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 0, 0);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 
-	SetRect( &rcTexture, BTN_W48_RECT	);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, BTN_W48_RECT	);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 
 	// IP static
 	CDXUTStatic* pStatic; 
@@ -83,7 +83,7 @@ BOOL CGame::TitleInit()
 		if (TextureLoader::LoadTextureFromFileInMemory(&m_pBGTexture, m_pDev, pBuf, nBufSize, NULL, NULL, 0, 1))
 			SafeDeleteArray(pBuf);
 		else
-			MessageBox(g_hWnd, L"背景ロードエラー", L"error", MB_OK);
+			MessageBox(g_hWnd, L"背景ロ?ドエラ?", L"error", MB_OK);
 	}
 	g_pCriticalSection->LeaveCriticalSection_StageTexture();
 
@@ -144,7 +144,7 @@ BOOL CGame::LoginInit()
 	if (!StartClient(m_nTcpSock))
 		return FALSE;
 
-	// ユーザーIndexを無効化
+	// ユ?ザ?Indexを無効化
 	g_pGame->SetUserIndex(-1);
 
 	// IME Edit box
@@ -157,7 +157,7 @@ BOOL CGame::LoginInit()
 	m_pIniConfig->ReadString(L"LOGIN", L"PASS", L"", wsPass, MAX_SRV_PASS);
 	wsPass[MAX_SRV_PASS] = NULL;
 
-	// パスワード
+	// パスワ?ド
     CDXUTEditBox *pEdit;
     if( SUCCEEDED( p_pUI->AddEditBox(
 			IDC_LOGIN_EDT_PASSWORD,
@@ -185,15 +185,15 @@ BOOL CGame::LoginInit()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 0, 0);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 
-	SetRect( &rcTexture, BTN_W48_RECT	);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, BTN_W48_RECT	);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetEnabled(false);
 
 	CDXUTCheckBox* pChkBox=NULL;
 	p_pUI->AddCheckBox( IDC_LOGIN_CHK_SAVE_PASS, L"", LOGIN_CHK_SAVE_PASS_CNT_RECT, m_bSavePass, 0, false, &pChkBox);
-	SetRect( &rcTexture, LOGIN_CHK_SAVE_PASS_IMG_BOX_RECT	);	// 描画範囲
+	SetRect( &rcTexture, LOGIN_CHK_SAVE_PASS_IMG_BOX_RECT	);	// ?画範囲
 	pChkBox->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, LOGIN_CHK_SAVE_PASS_IMG_CHK_RECT	);	// 描画範囲
+	SetRect( &rcTexture, LOGIN_CHK_SAVE_PASS_IMG_CHK_RECT	);	// ?画範囲
 	pChkBox->GetElement(1)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 
 	// Name static
@@ -256,7 +256,7 @@ BOOL CGame::LoginRelease()
 	p_pUI->GetIMEEditBox(IDC_SHARE_EDIT)->GetElement(0)->TextureColor.States[DXUT_STATE_NORMAL] = 0xFFAAAAAA;
 	p_pUI->ClearFocus();
 
-	// タイトル・ログインBGM停止
+	// ?イトル・ログインBGM停?
 	StopBGM(TRUE);
 
 //===========================================================//
@@ -277,7 +277,7 @@ BOOL CGame::RoomInit()
 	p_pUI->GetControl(IDC_ROOM_BTN_VIEW_CHARA)->SetVisible(true);
 	p_pUI->GetControl(IDC_ROOM_BTN_VIEW_ITEM)->SetVisible(true);
 	p_pUI->GetControl(IDC_ROOM_BTN_VIEW_RULE)->SetVisible(true);
-	// 使用アイテム情報
+	// 使用アイテ?情報
 	UpdateMyItems();
 
 	CDXUTIMEEditBox* pIMEEdit = (CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT);
@@ -318,7 +318,7 @@ BOOL CGame::RoomInit()
 	p_pUI->GetControl(IDC_ROOM_STATIC_SC_NAME)->SetVisible(true);
 	p_pUI->GetControl(IDC_ROOM_STATIC_ITEM_REST_COST)->SetVisible(true);
 
-	// 選択アイテムの位置,データをリセット
+	// 選択アイテ?の位置,デ??をリセット
 //	for (int i=0;i<GAME_ITEM_STOCK_MAX_COUNT;i++)
 //	{
 //		p_pUI->GetControl(IDC_ROOM_BTN_MY_ITEM_BASE+i)->SetLocation(
@@ -389,17 +389,17 @@ BOOL CGame::Room()
 	WORD	packetSize = 0;
 	BYTE		packetData[MAX_PACKET_SIZE];
 
-	// チャット間隔
+	// ?ャット間隔
 	if (m_nChatSendInterval)
 		m_nChatSendInterval--;
 
-	// フォーカス確認
+	// フォ?カス確認
 	if (m_bActive
 	&& !m_SessionArray[m_nUserIndex].game_ready
 	&& !p_pUI->GetControl(IDC_SHARE_EDIT)->m_bHasFocus
 	&& !p_pConfig->GetVisible())
 	{
-		// 方向キー変化
+		// 方向キ?変化
 		if (	(m_tKeyState.lX != m_nSavedInputX )
 			||	(m_tKeyState.lY != m_nSavedInputY ) 
 			)
@@ -422,7 +422,7 @@ BOOL CGame::Room()
 		// 入力更新
 		m_nSavedInputX = m_tKeyState.lX;
 		m_nSavedInputY = m_tKeyState.lY;
-	}	// フォーカス無しの場合、移動をしない
+	}	// フォ?カス無しの場合、移動をしない
 	else if ( m_SessionArray[m_nUserIndex].vx != 0
 			|| m_SessionArray[m_nUserIndex].vy != 0)
 	{
@@ -454,7 +454,7 @@ BOOL CGame::Room()
 BOOL CGame::RoomRelease()
 {
 //===========================可変============================//
-	// UI非表示
+	// UI非?示
 	p_pUI->GetControl(IDC_SHARE_EDIT)->SetVisible(false);
 	SaveIMEText();
 	p_pUI->GetControl(IDC_ROOM_CHK_RULE_1)->SetVisible(false);
@@ -514,7 +514,7 @@ BOOL CGame::RoomRelease()
 	m_pTeamSeparater->SetVisible(false);
 
 	p_pUI->GetButton(IDC_ROOM_BTN_STAGE_BASE)->SetVisible(false);
-	// 各キャラ非表示
+	// 各キャラ非?示
 	for (int i=0;i<GetMaxLoginNum();i++)
 	{
 		if (m_pRoomCharacters[i] && m_pRoomCharacters[i]->IsCreated())
@@ -525,11 +525,11 @@ BOOL CGame::RoomRelease()
 	SafeRelease(m_pBGTexture);
 	g_pCriticalSection->LeaveCriticalSection_StageTexture();
 
-	// 退室ボタンが押されたらタイトルへ戻る
+	// 退室??ンが押されたら?イトルへ戻る
 	if (g_bCloseSocket)
 		return FALSE;
 
-	// ロビーBGM停止
+	// ロビ?BGM停?
 	StopBGM(FALSE, FRAMES);
 //===========================================================//
 	return TRUE;
@@ -609,8 +609,8 @@ BOOL CGame::Load()
 		// スレッド開始済み確認
 		if (!m_hThreadLoading)
 		{
-			// ロードスレッド開始
-			// ステージロード
+			// ロ?ドスレッド開始
+			// ステ?ジロ?ド
 			SafeRelease(m_pStageBGTexture);
 			SafeRelease(m_pStageTexture);
 			
@@ -647,7 +647,7 @@ BOOL CGame::Load()
 		}
 		else
 		{
-			// ロードスレッドの終了確認
+			// ロ?ドスレッドの終了確認
 			if (GetExitCodeThread(m_hThreadLoading, &dwThreadExitCode))
 			{
 				if (dwThreadExitCode != STILL_ACTIVE)
@@ -721,7 +721,7 @@ BOOL CGame::MainInit()
 		m_vecMyCharaFocusStartPos = D3DXVECTOR3(0,0,0);
 	}
 
-	// 表示
+	// ?示
 	CDXUTIMEEditBox* pIMEEdit = (CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT);
 	pIMEEdit->SetLocation(MAIN_CHAT_EDIT_X, MAIN_CHAT_EDIT_Y);
 	pIMEEdit->SetSize(MAIN_CHAT_EDIT_W, MAIN_CHAT_EDIT_H);
@@ -754,7 +754,7 @@ BOOL CGame::MainInit()
 	m_pShotAngle->SetVisible(true);
 	m_pShotAngleIndicator->SetVisible(true);
 
-	// スペルの上限をメーターに設定
+	// スペルの上限をメ???に設定
 	m_pMeterSCExp->SetMaxValue( ((TCHARA_SCR_INFO*)GetMySessionInfo()->scrinfo)->sc_info.max_exp );
 
 	CDXUTScrollBar *pScrollBar = p_pUI->GetColorListBox(IDC_ROOM_LB_CHATLOG)->GetScrollBar();
@@ -772,7 +772,7 @@ BOOL CGame::MainInit()
 	p_pUI->GetControl(IDC_MAIN_ASPRITE_TIMER)->SetVisible(true);
 	p_pUI->GetControl(IDC_MAIN_ASPRITE_TIMER_BG)->SetVisible(true);
 
-	// 選択アイテム位置設定
+	// 選択アイテ?位置設定
 	/*
 	for (int i=0;i<GAME_ITEM_STOCK_MAX_COUNT;i++)
 	{
@@ -795,13 +795,13 @@ BOOL CGame::MainInit()
 	p_pUI->GetControl(IDC_MAIN_BTN_CONFIG)->SetLocation(MAIN_BTN_CONFIG_CNT_RECT_X,MAIN_BTN_CONFIG_CNT_RECT_Y);
 	p_pUI->GetControl(IDC_MAIN_BTN_CONFIG)->SetVisible(true);
 
-	// ショットパワーの線
+	// ショットパワ?の線
 	m_pShotPowerIndicator->SetVisible(true);
 
-	// フォーカス弾をクリア
+	// フォ?カス弾をクリア
 	m_pFocusObject = NULL;
 
-	// 自ターンパス有効表示テクスチャ設定
+	// 自??ンパス有効?示テクス?ャ設定
 	SetRect(&p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->GetElement(1)->rcTexture, MAIN_BTN_TURN_PASS_IMG_DISABLE_RECT);
 	p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetUserData((void*)FALSE);
 	p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetVisible(true);
@@ -812,10 +812,10 @@ BOOL CGame::MainInit()
 		p_pUI->GetStatic(IDC_MAIN_STATIC_TURN)->GetElement(0)->iFont = MAIN_STATIC_TURN_CNT_FONT;
 
 	m_nTurnCounter = 0;
-	// 前ターン風向き表示
+	// 前??ン風向き?示
 	p_pUI->GetControl(IDC_MAIN_SPRITE_PREV_WIND_INDICATOR)->SetVisible(true);
 
-	// マウス入力初期化
+	// ?ウス入力初期化
 	m_vecStageViewTrans = D3DXVECTOR3(0,0,0);
 	m_nSavedInputX = 0;
 	m_nSavedInputY = 0;
@@ -829,10 +829,10 @@ BOOL CGame::MainInit()
 	ClearStageObjects();
 	SetVisibleBulletSelectButtons(true);
 
-	// チャット間隔
+	// ?ャット間隔
 	m_nChatSendInterval = 0;
 
-	// ステージテクスチャ
+	// ステ?ジテクス?ャ
 	m_pSelectedStageScrInfo->pTexture = m_pStageTexture;
 
 	m_bMainInitFlg = TRUE;
@@ -840,14 +840,14 @@ BOOL CGame::MainInit()
 	// 発射角度を初期化
 	m_pShotAngle->SetAngle((m_pShotAngle->GetRangeAngleMax()-m_pShotAngle->GetRangeAngleMin())/2+m_pShotAngle->GetRangeAngleMin());
 	SetMyBulletsEnabled(true);
-	// ステージBGM再生
+	// ステ?ジBGM再生
 	if (m_nBGMSoundID != -1 && m_bytBGMVolume > 0)
 	{
 		CSoundBuffer* pSoundBuffer = m_pScrSoundLibs->GetDuplicatedFromID(m_nBGMSoundID);
 		if (pSoundBuffer)
 			m_nBGMPlayingID = m_pSoundPlayer->PlaySoundBuffer(pSoundBuffer, m_bytBGMVolume, SOUNDLIB_ENDLESSLOOP);
 		if (m_nBGMPlayingID == -1)
-			AddMessageLog(L"ステージBGM再生失敗");
+			AddMessageLog(L"ステ?ジBGM再生失敗");
 	}
 //	PlayBGM(m_pSelectedStageScrInfo->bgm);
 
@@ -862,13 +862,13 @@ BOOL CGame::Main()
 {
 	BOOL ret = FALSE;
 //===========================可変============================//
-	// チャット間隔
+	// ?ャット間隔
 	if (m_nChatSendInterval)
 		m_nChatSendInterval--;
 
 	if ( !p_pConfig->GetVisible() )
 	{
-		// Y方向キー変化
+		// Y方向キ?変化
 		if ( !p_pUI->GetControl(IDC_SHARE_EDIT)->m_bHasFocus
 		&& ((m_tKeyState.lY != m_nSavedInputY)
 		&& (!m_SessionArray[m_nUserIndex].chara_state[CHARA_STATE_NOANGLE_INDEX])
@@ -913,7 +913,7 @@ BOOL CGame::Main()
 	// オブジェクトの処理
 	FrameObjects();
 
-	// 自ターン知らせるコントロール更新
+	// 自??ン知らせるコントロ?ル更新
 	UpdateNotifyMyTurn();
 
 	// エフェクト処理
@@ -973,7 +973,7 @@ BOOL CGame::RunMainActive()
 	switch (m_eMainPhase)
 	{
 	case GAME_MAIN_PHASE_ACT:
-		// X方向キー変化
+		// X方向キ?変化
 		if ( m_bActive	// ウィンドウがアクティブ
 			&& !p_pUI->GetControl(IDC_SHARE_EDIT)->m_bHasFocus
 			&& (m_tKeyState.lX != m_nSavedInputX)
@@ -999,7 +999,7 @@ BOOL CGame::RunMainActive()
 			}
 			if (packetSize)
 				AddPacket(packetData, packetSize);
-		}// ショットパワーメータ開始ボタン押下
+		}// ショットパワ?メ??開始??ン押下
 		else if ( m_bActive	// ウィンドウがアクティブ
 			&& !p_pUI->GetControl(IDC_SHARE_EDIT)->m_bHasFocus
 			&& m_tKeyState.bytButtons[0] == (KEY_BTN_CHANGE|KEY_BTN_ON)
@@ -1007,12 +1007,12 @@ BOOL CGame::RunMainActive()
 			&& (GetMySessionInfo()->vy == 0)
 			)
 		{
-			// ショットパワーメータ初期化
+			// ショットパワ?メ??初期化
 			m_pShotMeter->SetValue(0);
 			ptype_session sess = GetMySessionInfo();
 			if (!sess)	break;
 
-			// 範囲チェック
+			// 範囲?ェック
 			BOOL bRejTrigger = FALSE;
 			if (m_nTriggerType == MAX_CHARA_BULLET_TYPE && sess->EXP_c < ((TCHARA_SCR_INFO*)sess->scrinfo)->sc_info.max_exp)
 				bRejTrigger = TRUE;
@@ -1026,20 +1026,20 @@ BOOL CGame::RunMainActive()
 				break;
 			}
 
-			// コンフィグ設定ボタン無効
+			// コンフィグ設定??ン無効
 			p_pUI->GetControl(IDC_MAIN_BTN_CONFIG)->SetEnabled(false);
-			// 自ターンパス無効表示テクスチャ設定
+			// 自??ンパス無効?示テクス?ャ設定
 			SetRect( &p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->GetElement(1)->rcTexture, MAIN_BTN_TURN_PASS_IMG_DISABLE_RECT);
 			p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetUserData((void*)FALSE);
-			// アイテム使用を無効化
+			// アイテ?使用を無効化
 ///			SetMyIteamsEnabled(false);
 
-			// ショットパワーメータ開始のパケット
+			// ショットパワ?メ??開始のパケット
 			SetSelectBulletInfo();
 			packetSize = PacketMaker::MakePacketData_MainInfoShotPowerStart( sess, m_nShootingProcType, m_nShootingBltType, m_nShootingAngle, packetData);
 			if (packetSize)
 				AddPacket(packetData, packetSize);
-			// ショットパワーメータ開始
+			// ショットパワ?メ??開始
 			m_eMainPhase = GAME_MAIN_PHASE_SHOTPOWER;
 			sess->obj_state = OBJ_STATE_MAIN_SHOTPOWER;
 			sess->frame_count = 0;
@@ -1064,7 +1064,7 @@ BOOL CGame::RunMainActive()
 			if (packetSize)
 				AddPacket(packetData, packetSize);
 		}
-		// 残り時間カウンタ
+		// 残り時間カウン?
 		m_pASpriteTimer->StepTimeCount();
 		m_pASpriteTimerBG->StepTimeCount();
 		m_nActiveTimeCounter++;
@@ -1076,7 +1076,7 @@ BOOL CGame::RunMainActive()
 			g_pGame->PlaySysSoundSE(SE_sai_Count);
 		}
 		break;
-	case GAME_MAIN_PHASE_SHOTPOWER:		// メーター増やす
+	case GAME_MAIN_PHASE_SHOTPOWER:		// メ???増やす
 		{
 			BOOL bTrigger = FALSE;
 #ifdef HOGE
@@ -1182,7 +1182,7 @@ BOOL CGame::MainRelease()
 	p_pUI->GetControl(IDC_MAIN_ASPRITE_TIMER)->SetVisible(false);
 	p_pUI->GetControl(IDC_MAIN_ASPRITE_TIMER_BG)->SetVisible(false);
 
-	// 選択アイテム位置設定
+	// 選択アイテ?位置設定
 	for (int i=0;i<GAME_ITEM_STOCK_MAX_COUNT;i++)
 		p_pUI->GetControl(IDC_MAIN_BTN_MY_ITEM_BASE+i)->SetVisible(false);
 
@@ -1200,18 +1200,18 @@ BOOL CGame::MainRelease()
 
 	SetVisibleBulletSelectButtons(false);
 
-	// ショットパワーの線
+	// ショットパワ?の線
 	m_pShotPowerIndicator->SetVisible(false);
 
-	// フォーカス弾をクリア20100929⑤
+	// フォ?カス弾をクリア20100929⑤
 	m_pFocusObject = NULL;
 	p_pUI->GetControl(IDC_MAIN_STATIC_NOTIFY_TURN)->SetVisible(false);
 	p_pUI->GetControl(IDC_MAIN_STATIC_NOTIFY_TURN_TEXT)->SetVisible(false);
 
-	// 自ターン知らせるコントロール非表示
+	// 自??ン知らせるコントロ?ル非?示
 	m_nNotifyMyTurn = 0;
 
-	// マウス入力初期化
+	// ?ウス入力初期化
 	m_vecStageViewTrans = D3DXVECTOR3(0,0,0);
 	m_nSavedInputX = 0;
 	m_nSavedInputY = 0;
@@ -1229,7 +1229,7 @@ BOOL CGame::MainRelease()
 //	m_pSoundPlayer->ClearPlayingList();
 	ClearScrSound();
 
-	// メインBGM停止
+	// メインBGM停?
 	StopBGM(TRUE);
 //===========================================================//
 	return TRUE;

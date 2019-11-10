@@ -2,7 +2,7 @@
 
 WCHAR* c_tTeamTextTable[] =
 {
-	L"‡@",	L"‡A",	L"‡B",	L"‡C",	L"‡D",
+	L"?",	L"‡A",	L"‡B",	L"‡C",	L"‡D",
 	L"‡E",	L"‡F",	L"‡H",	L"‡H",	L"‡H"
 };
 
@@ -19,7 +19,7 @@ HRESULT CTeamSeparater::Create(int nGUIResourceIndex, CDXUTDialog *pDialog, int 
 	m_nSeparate = nSeparate;
 	m_bVisible = false;
 	
-	// ì¬Ï‚Ý‚È‚çƒ|ƒCƒ“ƒ^Ý’è‚Ì‚Ý
+	// ì¬Ï‚Ý‚È‚ç?ƒCƒ“?Ý’è‚Ì‚Ý
 	if (pDialog->GetButton(IDC_TEAM_SEPARAT_BASE))
 	{
 		for (int i=0;i<MAX_TEAM_COUNT;i++)
@@ -28,7 +28,7 @@ HRESULT CTeamSeparater::Create(int nGUIResourceIndex, CDXUTDialog *pDialog, int 
 		return S_OK;
 	}
 
-	// ”wŒi‰æ‘œ—pƒ{ƒ^ƒ“‚ðì¬
+	// ”wŒi‰æ‘œ—p??ƒ“‚ðì¬
 //	p_pDialog->AddButton(IDC_TEAM_SEPARAT_BASE,
 //		L"",
 //		ROOM_SEPARATER_OFFSET_X,
@@ -79,7 +79,7 @@ HRESULT CTeamSeparater::Create(int nGUIResourceIndex, CDXUTDialog *pDialog, int 
 	return S_OK;
 }
 
-// À•W‚©‚çƒ`[ƒ€”Ô†‚ðŽæ“¾
+// À•W‚©‚ç???”Ô†‚ðŽæ“¾
 int CTeamSeparater::GetTeamNoFromPos(int x, int y)
 {
 	if (!m_bCreated)	return 0;
@@ -94,7 +94,7 @@ int CTeamSeparater::GetTeamNoFromPos(int x, int y)
 }
 
 // XV
-// nSeparate	:	ƒ`[ƒ€”
+// nSeparate	:	???”
 void CTeamSeparater::Update(int nSeparate)
 {
 	if (!m_bCreated)	return;
@@ -125,7 +125,7 @@ void CTeamSeparater::Update(int nSeparate)
 		if (!m_pArrayTeamNum[i]->GetVisible())
 			m_pArrayTeamNum[i]->SetVisible(m_bVisible);
 		
-		// ƒ{ƒ^ƒ“ˆÊ’uAƒTƒCƒY‚ÌÝ’è
+		// ??ƒ“ˆÊ’uAƒTƒCƒY‚ÌÝ’è
 		rcButton.left = i*nSeparateWidth + ROOM_ENTRY_LEFT;
 		rcButton.right = nSeparateWidth*(i+1);
 		m_pArrayTeamNum[i]->SetSize(nSeparateWidth, ROOM_SEPARATER_OFFSET_H);
@@ -141,7 +141,7 @@ void CTeamSeparater::Update(int nSeparate)
 //		m_pBGImage->SetVisible(true);
 }
 
-// •`‰æ
+// ?‰æ
 void CTeamSeparater::Render()
 {
 	if (!m_bCreated)	return;

@@ -3,18 +3,18 @@
 // parts
 // CGame::xxx > Funcsions > Room
 
-// 新規ユーザー情報の設定
+// 新規ユ?ザ?情報の設定
 void CGame::SetNewUser(type_session* sess, BOOL bAddLog)
 {
 	SetSessionInfo(sess);
 	m_nAuthedCount = CalcAuthedUserCount();
-	if (!SetRoomCharacter(sess->sess_index))					// アバター
+	if (!SetRoomCharacter(sess->sess_index))					// アバ??
 	{
 		DXTRACE_ERR(L"SetNewUser::SetRoomCharacter", E_FAIL);
 		return;
 	}
-	UpdateUserList(sess->sess_index);								// ユーザリストコントロール
-	UpdateWisperList(sess->sess_index);							// 個人チャットリスト
+	UpdateUserList(sess->sess_index);								// ユ?ザリストコントロ?ル
+	UpdateWisperList(sess->sess_index);							// 個人?ャットリスト
 	if (sess->sess_index == m_nUserIndex)
 		SetChacterSelectInfo(sess->chara_type);
 	m_pTeamRulePropertyManager->Update((GetMySessionInfo()->master!=0), m_nTeamCount);
@@ -43,7 +43,7 @@ void CGame::AddLogRoomIn(int nCharaIndex)
 // キャラセレ情報の設定
 void CGame::SetChacterSelectInfo(int nObjType)
 {
-	// ランダム
+	// ラン??
 	if (nObjType == ROOM_CHARA_RANDOM_ID)
 	{
 		SetChacterSelectInfoRandom();
@@ -60,7 +60,7 @@ void CGame::SetChacterSelectInfo(int nObjType)
 	pStatic = p_pUI->GetStatic(IDC_ROOM_STATIC_CHARA_INFO);
 	CDXUTColorListBox* pCLBBulletInfo = p_pUI->GetColorListBox(IDC_ROOM_LIST_CHARA_BLT_INFO);
 
-	SafePrintf(wsCharaInfo, 64, L"HP:%4d / MOVE:%4d / RANGE:%3d～%3d", scrinfo->max_hp, scrinfo->move, scrinfo->angle_range_min-180, scrinfo->angle_range_max-180);
+	SafePrintf(wsCharaInfo, 64, L"HP:%4d / MOVE:%4d / RANGE:%3d?%3d", scrinfo->max_hp, scrinfo->move, scrinfo->angle_range_min-180, scrinfo->angle_range_max-180);
 	pStatic->SetText(wsCharaInfo);
 
 	RECT rcBullet;
@@ -137,7 +137,7 @@ void CGame::SetChacterSelectInfoRandom()
 
 	pStatic = p_pUI->GetStatic(IDC_ROOM_STATIC_CHARA_INFO);
 	CDXUTColorListBox* pCLBBulletInfo = p_pUI->GetColorListBox(IDC_ROOM_LIST_CHARA_BLT_INFO);
-	pStatic->SetText(L"HP:？ / MOVE:？ / RANGE:？～？");
+	pStatic->SetText(L"HP:？ / MOVE:？ / RANGE:？?？");
 	// 弾リストをクリア
 	pCLBBulletInfo->RemoveAllItems();
 
@@ -151,7 +151,7 @@ void CGame::SetChacterSelectInfoRandom()
 	m_pCharacterBtnList->SetEnable(true);
 }
 
-// アイテムアイコンボタン押下
+// アイテ?アイコン??ン押下
 void CGame::OnItemIconButtonDown(CDXUTRadioButton* pBtn)
 {
 	int nIndex = (int)pBtn->GetUserData();
@@ -161,7 +161,7 @@ void CGame::OnItemIconButtonDown(CDXUTRadioButton* pBtn)
 		SafePrintf(wsDetail, MAX_GAME_ITEM_TEXT+8, L"コスト:%02d\n%s", c_tItemResouceInfoTable[nIndex].cost, c_tItemResouceInfoTable[nIndex].text);
 		pStatic->SetText(wsDetail);
 	}
-	// 選択したアイテムのアイコン切り替え
+	// 選択したアイテ?のアイコン切り替え
 	CDXUTButton* pIconBtn = p_pUI->GetButton(IDC_ROOM_BTN_ITEM_SEL_ICON);
 	if (nIndex != (int)pIconBtn->GetUserData())
 	{
@@ -178,7 +178,7 @@ void CGame::OnItemIconButtonDown(CDXUTRadioButton* pBtn)
 	}
 }
 
-// アイテムラジオボタンの用意
+// アイテ?ラジオ??ンの用意
 void CGame::SetItemIconButtonList()
 {
 	RECT rcTexture;
@@ -232,17 +232,17 @@ void CGame::SetItemIconButtonList()
 		pRadioButton->GetElement(0)->TextureColor.States[ DXUT_STATE_NORMAL ] =D3DCOLOR_ARGB(255,255,255,255);
 		pRadioButton->GetElement(0)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 
-		// 描画範囲
+		// ?画範囲
 		SetRect( &rcTexture,
 			c_tItemResouceInfoTable[i].left,
 			c_tItemResouceInfoTable[i].top,
 			c_tItemResouceInfoTable[i].right,
 			c_tItemResouceInfoTable[i].bottom);
 
-		// 追加した管理テクスチャ番号を指定
+		// 追加した管理テクス?ャ番号を指定
 		pRadioButton->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );
 
-		// ボタンとスクリプトID情報を関連付ける
+		// ??ンとスクリプトID情報を関連付ける
 		SetRect( &rcTexture,
 			IDC_ROOM_BTN_CHARA_SEL_CUR_X,
 			IDC_ROOM_BTN_CHARA_SEL_CUR_Y,
@@ -339,7 +339,7 @@ void CGame::SetSessionInfo(type_session *sess)
 	int nIndex = sess->sess_index;
 	if (sess->chara_type == ROOM_CHARA_RANDOM_ID)
 	{
-		// ランダム
+		// ラン??
 		m_SessionArray[nIndex].scrinfo = NULL;
 	}
 	else
@@ -348,7 +348,7 @@ void CGame::SetSessionInfo(type_session *sess)
 		pScrInfo = common::scr::FindCharaScrInfoFromCharaType(sess->chara_type, &m_mapCharaScrInfo);
 		if (!pScrInfo)
 		{
-			MessageBox(g_hWnd, L"スクリプトに未登録のキャラクタがログインしようとしました。", L"error", MB_OK);
+			MessageBox(g_hWnd, L"スクリプトに未登?のキャラク?がログインしようとしました。", L"error", MB_OK);
 			return;
 		}
 	}
@@ -377,7 +377,7 @@ void CGame::UpdateWisperList(int nIndex)
 		return;
 	}
 
-	// 更新	(0=ALL、1=TEAM、2～=個人)
+	// 更新	(0=ALL、1=TEAM、2?=個人)
 	for (int i=2;i < (int)pComboBox->GetNumItems();i++)
 	{
 		DXUTComboBoxItem* pItem = pComboBox->GetItem(i);
@@ -409,7 +409,7 @@ void CGame::UpdateWisperList(int nIndex)
 	}
 }
 
-// セッション情報からキャラクタを部屋にセット
+// セッション情報からキャラク?を部屋にセット
 BOOL CGame::SetRoomCharacter(int nIndex)
 {
 	HRESULT hr;
@@ -436,12 +436,12 @@ BOOL CGame::SetRoomCharacter(int nIndex)
 	return TRUE;
 }
 
-// セッション情報からキャラクタを更新
+// セッション情報からキャラク?を更新
 BOOL CGame::UpdateRoomCharacter(int nIndex)
 {
 	int nCharaType = m_SessionArray[nIndex].chara_type;
 
-	// キャラランダム
+	// キャララン??
 	if (nCharaType == ROOM_CHARA_RANDOM_ID)
 	{
 		m_SessionArray[nIndex].scrinfo = NULL;
@@ -451,7 +451,7 @@ BOOL CGame::UpdateRoomCharacter(int nIndex)
 			UpdateMyCharaInfo();
 		return TRUE;
 	}
-	// キャラタイプIDからスクリプト情報を検索
+	// キャラ?イプIDからスクリプト情報を検索
 	TCHARA_SCR_INFO* pScrInfo = common::scr::FindCharaScrInfoFromCharaType(nCharaType, &m_mapCharaScrInfo);
 	// スクリプトとの関連付けの更新が必要なら更新
 	if (m_SessionArray[nIndex].scrinfo != pScrInfo)
@@ -481,7 +481,7 @@ void CGame::UpdateMyCharaInfo()
 	}
 }
 
-// キャラ、アイテム、ルール表示ボタン
+// キャラ、アイテ?、ル?ル?示??ン
 void CGame::OnClickViewButton(int nControl)
 {
 	p_pUI->GetControl(IDC_ROOM_CHK_RULE_1)->SetVisible(false);
@@ -564,7 +564,7 @@ void CGame::OnClickViewButton(int nControl)
 // message	:	発言内容
 void CGame::CharacterSay(int nIndex, WCHAR *message)
 {
-	// ユーザNo範囲外
+	// ユ?ザNo範囲外
 	if (nIndex >= GetMaxLoginNum() || nIndex < 0)	return;
 
 	if ( m_eGameState == eGameRoom)
@@ -574,7 +574,7 @@ void CGame::CharacterSay(int nIndex, WCHAR *message)
 	}
 }
 
-// アイテムアイコンボタン押下
+// アイテ?アイコン??ン押下
 void CGame::OnSelectItemBtnList(CDXUTRadioButton* pBtn)
 {
 	int nIndex = (int)pBtn->GetUserData();
@@ -584,7 +584,7 @@ void CGame::OnSelectItemBtnList(CDXUTRadioButton* pBtn)
 	pStatic->SetText(wsDetail);
 //	pStatic->SetText(c_tItemResouceInfoTable[nIndex].text);
 
-	// 選択したアイテムのアイコン切り替え
+	// 選択したアイテ?のアイコン切り替え
 	CDXUTButton* pIconBtn = p_pUI->GetButton(IDC_ROOM_BTN_ITEM_SEL_ICON);
 	if (nIndex != (int)pIconBtn->GetUserData())
 	{
@@ -602,11 +602,11 @@ void CGame::OnSelectItemBtnList(CDXUTRadioButton* pBtn)
 	p_pUI->GetControl(IDC_ROOM_BTN_ADD_ITEM)->SetEnabled(GetMySessionInfo()->cost>= c_tItemResouceInfoTable[nIndex].cost);
 }
 
-// キャラ選択ラジオボタンにチェックを入れる
+// キャラ選択ラジオ??ンに?ェックを入れる
 void CGame::CheckCharacterSelectRadioBtnFromID(int nObjType)
 {
 	CDXUTRadioButton* pRadioButton = NULL;
-	// ボタンに設定されたユーザデータと照合
+	// ??ンに設定されたユ?ザデ??と照合
 	for (int i=0;pRadioButton = p_pUI->GetRadioButton(IDC_ROOM_BTN_CHARA_SEL_LIST_BASE+i);i++)
 	{
 		if (nObjType == (int)pRadioButton->GetUserData())
@@ -620,7 +620,7 @@ void CGame::CheckCharacterSelectRadioBtnFromID(int nObjType)
 #if RTRIAL
 
 #else
-// キャラ選択ラジオボタン押下イベント
+// キャラ選択ラジオ??ン押下イベント
 void CGame::OnCharacterSelectRadioBtnDown(CDXUTRadioButton* pBtn)
 {
 	WORD			packetSize = 0;
@@ -637,7 +637,7 @@ void CGame::OnCharacterSelectRadioBtnDown(CDXUTRadioButton* pBtn)
 }
 #endif
 
-// 選択ステージの変更
+// 選択ステ?ジの変更
 void CGame::SetStageIndex(int nStageIndex)
 {
 //	if (m_nStageIndex == nStageIndex)	return;
@@ -648,7 +648,7 @@ void CGame::SetStageIndex(int nStageIndex)
 
 	CDXUTButton* pBtnStageMain = p_pUI->GetButton(IDC_ROOM_BTN_STAGE_BASE);
 	CDXUTStatic* pStaticStageTitle = p_pUI->GetStatic(IDC_ROOM_STATIC_STAGE_TITLE);
-	// ステージ画像更新
+	// ステ?ジ画像更新
 	CDXUTElement* pElement = pBtnStageMain->GetElement(0);
 	if (m_nStageIndex != (int)pBtnStageMain->GetUserData())
 	{
@@ -657,9 +657,9 @@ void CGame::SetStageIndex(int nStageIndex)
 		pElement->SetTexture(pScrInfo->res_index, &rcTexture);
 		if (!pBtnStageMain->GetVisible())
 			pBtnStageMain->SetVisible(true);
-		// ステージタイトル更新
+		// ステ?ジ?イトル更新
 		pStaticStageTitle->SetText(pScrInfo->name);
-		// 設定したステージインデックスを入れておく
+		// 設定したステ?ジインデックスを入れておく
 		pBtnStageMain->SetUserData((void*)m_nStageIndex);
 	}
 	UpdateStageSelectButton();
@@ -668,7 +668,7 @@ void CGame::SetStageIndex(int nStageIndex)
 void CGame::UpdateStageSelectButton()
 {
 	CDXUTButton* pBtnStageL = p_pUI->GetButton(IDC_ROOM_BTN_STAGE_L);
-	CDXUTButton* pBtnStageR = p_pUI->GetButton(IDC_ROOM_BTN_STAGE_R);	// 選択ボタン設定
+	CDXUTButton* pBtnStageR = p_pUI->GetButton(IDC_ROOM_BTN_STAGE_R);	// 選択??ン設定
 	CDXUTButton* pBtnStageRnd = p_pUI->GetButton(IDC_ROOM_BTN_STAGE_RND);	
 	if (m_SessionArray[m_nUserIndex].master)
 	{
@@ -684,13 +684,13 @@ void CGame::UpdateStageSelectButton()
 	}
 }
 
-// ステージ選択LRボタン押下
+// ステ?ジ選択LR??ン押下
 void CGame::OnStageSelectButtonDown(int nNum)
 {
 	WORD			packetSize = 0;
 	BYTE				packetData[MAX_PACKET_SIZE];
 	int nReqStageIndex = m_nStageIndex+nNum;
-	// インデックスチェック
+	// インデックス?ェック
 	if (nReqStageIndex < 0)
 	{
 		p_pUI->GetButton(IDC_ROOM_BTN_STAGE_L)->SetEnabled(false);
@@ -717,7 +717,7 @@ void CGame::OnStageRandomButtonDown()
 		AddPacket(packetData, packetSize);
 }
 
-// ルール用チェックボタン押下
+// ル?ル用?ェック??ン押下
 void CGame::OnRuleCheckButtonDown(BYTE flg)
 {
 	WORD			packetSize = 0;
@@ -731,7 +731,7 @@ void CGame::OnRuleCheckButtonDown(BYTE flg)
 	if (packetSize)
 		AddPacket(packetData, packetSize);
 }
-// ルール変更
+// ル?ル変更
 void CGame::SetRule(BYTE rule_flg)
 {
 	p_pUI->GetCheckBox(IDC_ROOM_CHK_RULE_1)->SetChecked((rule_flg & GAME_RULE_01)?true:false);
@@ -741,7 +741,7 @@ void CGame::SetRule(BYTE rule_flg)
 	m_bytRuleFlg = rule_flg;
 }
 
-// 制限ターン数設定
+// 制限??ン数設定
 void CGame::SetTurnLimit(int turn)
 {
 	m_nLimitTurn = turn;
@@ -773,7 +773,7 @@ void CGame::SetActTimeLimit(int time)
 	p_pUI->GetStatic(IDC_ROOM_STATIC_ACT_TIME_LIMIT_VALUE)->SetText(wsTime);
 }
 
-// 使用アイテム追加ボタン押下
+// 使用アイテ?追加??ン押下
 void CGame::OnAddItemButtonDown()
 {
 	WORD			packetSize = 0;
@@ -782,36 +782,36 @@ void CGame::OnAddItemButtonDown()
 	// インデックス確認
 	if (m_nUserIndex >= GetMaxLoginNum() || m_nUserIndex < 0)	return;
 	int nItemIndex=0;
-	// 空いているアイテム欄を探す
+	// 空いているアイテ?欄を探す
 	for (;nItemIndex<g_nMaxItemStockCount;nItemIndex++)
 	{
 		if (!m_SessionArray[m_nUserIndex].items[nItemIndex])
 			break;
 	}
-	// 見つからなかったら、追加ボタンを無効化
+	// 見つからなかったら、追加??ンを無効化
 	if (nItemIndex >= g_nMaxItemStockCount)
 	{
 		p_pUI->GetControl(IDC_ROOM_BTN_ADD_ITEM)->SetEnabled(false);
 		return;
 	}
-	// 選択中のアイテムアイコンのユーザーデータにアイテムのインデックスが保持されている
+	// 選択中のアイテ?アイコンのユ?ザ?デ??にアイテ?のインデックスが保持されている
 	CDXUTButton* pIconBtn = p_pUI->GetButton(IDC_ROOM_BTN_ITEM_SEL_ICON);
 	int nItemTableIndex = (int)pIconBtn->GetUserData();
 	// インデックス確認
 	if (nItemTableIndex < 0 && nItemTableIndex >= GAME_ITEM_COUNT)	return;
 	DWORD dwItemFlg = c_tItemResouceInfoTable[nItemTableIndex].flg;
 
-	// アイテム選択要求の結果パケット受信まで追加ボタン無効化
+	// アイテ?選択要求の結果パケット受信まで追加??ン無効化
 	p_pUI->GetControl(IDC_ROOM_BTN_ADD_ITEM)->SetEnabled(false);		
 	packetSize = PacketMaker::MakePacketData_RoomSelectItem(nItemIndex, dwItemFlg, packetData);
 	if (packetSize)
 		AddPacket(packetData, packetSize);
 }
 
-// 自キャラの使用アイテムの更新
+// 自キャラの使用アイテ?の更新
 void CGame::UpdateMyItems()
 {
-	// アイテムの表示更新
+	// アイテ?の?示更新
 	int i=0;
 	for (i=0;i<GAME_ITEM_STOCK_MAX_COUNT;i++)
 	{
@@ -826,7 +826,7 @@ void CGame::UpdateMyItems()
 			pBtn->SetEnabled(false);
 			continue;
 		}
-		// フラグがNULLなら未使用欄で非表示
+		// フラグがNULLなら未使用欄で非?示
 		if (!GetMySessionInfo()->items[i])
 		{
 			pBtn->SetUserData((void*)0);
@@ -835,7 +835,7 @@ void CGame::UpdateMyItems()
 		}
 		else
 		{
-			// アイテムを探す
+			// アイテ?を探す
 			int j=0;
 			int nItemFlg = 0;
 			for (;j<GAME_ITEM_COUNT;j++)
@@ -846,7 +846,7 @@ void CGame::UpdateMyItems()
 					break;
 				}
 			}
-			// アイテムテーブルになかった
+			// アイテ?テ?ブルになかった
 			if (j== GAME_ITEM_COUNT)
 			{
 				// 未使用に設定要求
@@ -857,12 +857,12 @@ void CGame::UpdateMyItems()
 					AddPacket(packetData, packetSize);
 				continue;
 			}
-			// テクスチャセット、設定済みなら設定しない
+			// テクス?ャセット、設定済みなら設定しない
 			if ((int)pBtn->GetUserData() != nItemFlg)
 			{
 				pBtn->SetUserData((void*)c_tItemResouceInfoTable[j].flg);
 
-				// テクスチャセット
+				// テクス?ャセット
 				RECT rcTexture;
 				SetRect(&rcTexture,
 					c_tItemResouceInfoTable[j].left,
@@ -873,7 +873,7 @@ void CGame::UpdateMyItems()
 				pElement->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture);
 				pElement->TextureColor.Init(0xFFFFFFFF,0xFFFFFFFF);
 			}
-			// 表示
+			// ?示
 			if (!pBtn->GetEnabled())
 				pBtn->SetEnabled(true);
 
@@ -889,19 +889,19 @@ void CGame::UpdateMyItems()
 	SafePrintf(wsCost, 8, L"%d", (int)m_SessionArray[m_nUserIndex].cost);
 	CDXUTStatic* pStatic =  p_pUI->GetStatic(IDC_ROOM_STATIC_ITEM_REST_COST);
 	pStatic->SetText(wsCost);
-	// アイテム追加ボタンの有効状態更新
+	// アイテ?追加??ンの有効状態更新
 	CheckEnableItemAddButton();
 }
 
-// アイテム追加ボタンの有効状態確認
+// アイテ?追加??ンの有効状態確認
 void CGame::CheckEnableItemAddButton()
 {
 	bool bEnable = false;
 	CDXUTButton* pAddBtn = p_pUI->GetButton(IDC_ROOM_BTN_ADD_ITEM);
-	// 準備OK状態なら無効
+	// ?備OK状態なら無効
 	if (!m_SessionArray[m_nUserIndex].game_ready)
 	{
-		// 追加可能なアイテム欄があるか確認
+		// 追加可?なアイテ?欄があるか確認
 		for (int i=0;i<g_nMaxItemStockCount;i++)
 		{
 			// フラグがNULLなら未使用欄
@@ -913,7 +913,7 @@ void CGame::CheckEnableItemAddButton()
 		}
 		if (bEnable)
 		{
-			// 選択中のアイテムのコストと残りコストを確認
+			// 選択中のアイテ?のコストと残りコストを確認
 			int nItemTableIndex = (int)p_pUI->GetButton(IDC_ROOM_BTN_ITEM_SEL_ICON)->GetUserData();
 			if (nItemTableIndex >= 0 && nItemTableIndex < GAME_ITEM_COUNT)
 				bEnable = (m_SessionArray[m_nUserIndex].cost >= c_tItemResouceInfoTable[nItemTableIndex].cost);
@@ -924,7 +924,7 @@ void CGame::CheckEnableItemAddButton()
 		pAddBtn->SetEnabled(bEnable);
 }
 
-// 使用アイテム一覧クリック(使用アイテムを消す)
+// 使用アイテ?一覧クリック(使用アイテ?を消す)
 BOOL CGame::OnMyItemButtonDown(int nControlID)
 {
 	int nItemIndex = nControlID - IDC_ROOM_BTN_MY_ITEM_BASE;
@@ -934,17 +934,17 @@ BOOL CGame::OnMyItemButtonDown(int nControlID)
 
 	WORD			packetSize = 0;
 	BYTE				packetData[MAX_PACKET_SIZE];
-	// 0x00で使用アイテムを消す
+	// 0x00で使用アイテ?を消す
 	packetSize = PacketMaker::MakePacketData_RoomSelectItem(nItemIndex, 0x00, packetData);
 	if (packetSize)
 		AddPacket(packetData, packetSize);
 	return TRUE;
 }
 
-// チーム設定変更ボタン押下
+// ???設定変更??ン押下
 void CGame::OnTeamRuleButtonDown(int nNum)
 {
-	// マスター以外は変更できない FAILSAFE
+	// ?ス??以外は変更できない FAILSAFE
 	if (!m_SessionArray[m_nUserIndex].master)
 	{
 		p_pUI->GetControl(IDC_ROOM_BTN_RULE_TEAM_L)->SetEnabled(false);
@@ -953,7 +953,7 @@ void CGame::OnTeamRuleButtonDown(int nNum)
 	}
 	// 変更要求値の確認
 	int nReqTeamCount = m_nTeamCount+nNum;
-//> 20101105 端数でもチーム設定できるようにする
+//> 20101105 ?数でも???設定できるようにする
 	int nMaxTeamCount = min(MAXUSERNUM-1,m_nAuthedCount-1);
 //	int nMaxTeamCount = (int)( (float)m_nAuthedCount/ 2.0f);	
 
@@ -976,14 +976,14 @@ void CGame::OnTeamRuleButtonDown(int nNum)
 			p_pUI->GetControl(IDC_ROOM_BTN_RULE_TEAM_L)->SetEnabled(false);
 			return;
 		}
-		// 最大チーム数を越えているか確認
+		// 最大???数を越えているか確認
 		if (nReqTeamCount > nMaxTeamCount)
 		{
 			p_pUI->GetControl(IDC_ROOM_BTN_RULE_TEAM_R)->SetEnabled(false);
 			return;
 		}
 //	}
-//> 20101105 端数でもチーム設定できるようにする
+//> 20101105 ?数でも???設定できるようにする
 
 	// パケット送信
 	WORD			packetSize = 0;
@@ -993,7 +993,7 @@ void CGame::OnTeamRuleButtonDown(int nNum)
 		AddPacket(packetData, packetSize);
 }
 
-// チーム数設定変更
+// ???数設定変更
 void CGame::SetTeamCount(int nTeamCount)
 {
 	m_nTeamCount = nTeamCount;
@@ -1007,32 +1007,32 @@ void CGame::SetTeamCount(int nTeamCount)
 		SafePrintf(log, 32, L"SetTeamCount:%d", nTeamCount);
 		AddMessageLog(log);
 	}
-	//> チャットログに切断メッセージ追加
+	//> ?ャットログに切断メッセ?ジ追加
 	if (m_eGameState == eGameRoom)
 	{
 		PlaySysSoundSE(SE_sai_SrvInfo);
 		if (nTeamCount==1)
-			AddChatMessage(L"チーム設定[個人バトル]に設定されました", PK_USER_CHAT_SERVER_INFO);
+			AddChatMessage(L"???設定[個人バトル]に設定されました", PK_USER_CHAT_SERVER_INFO);
 		else
 		{
 			WCHAR wsMessage[MAX_CHAT_MSG+1];
-			SafePrintf(wsMessage, MAX_CHAT_MSG, L"チーム設定[%dチームバトル]に設定されました", nTeamCount);
+			SafePrintf(wsMessage, MAX_CHAT_MSG, L"???設定[%d???バトル]に設定されました", nTeamCount);
 			CDXUTListBox* pListBox = (CDXUTListBox*)p_pUI->GetControl(IDC_ROOM_LB_CHATLOG);
 			AddChatMessage(wsMessage, PK_USER_CHAT_SERVER_INFO);
 		}
 	}
-	//< チャットログに切断メッセージ追加
+	//< ?ャットログに切断メッセ?ジ追加
 }
 
-// マスターが設定できるコントロール状態更新(チーム分け、ステージ選択、ルール)
+// ?ス??が設定できるコントロ?ル状態更新(???分け、ステ?ジ選択、ル?ル)
 void CGame::UpdateGameMasterPropertyControlsEnabled()
 {
 	bool b = m_SessionArray[m_nUserIndex].master?true:false;
-	// ステージ選択設定
+	// ステ?ジ選択設定
 	UpdateStageSelectButton();
-	// チーム分け設定
+	// ???分け設定
 	UpdateTeamRuleProperty();
-	// ゲームルールの有効状態
+	// ゲ??ル?ルの有効状態
 	p_pUI->GetControl(IDC_ROOM_CHK_RULE_1)->SetEnabled(b);
 	p_pUI->GetControl(IDC_ROOM_CHK_RULE_2)->SetEnabled(b);
 	p_pUI->GetControl(IDC_ROOM_CHK_RULE_3)->SetEnabled(b);
@@ -1042,15 +1042,15 @@ void CGame::UpdateGameMasterPropertyControlsEnabled()
 	SetActTimeLimitEnabled(b);
 }
 
-// チーム設定更新
+// ???設定更新
 void CGame::UpdateTeamRuleProperty()
 {
-	// マスター以外は設定不可
+	// ?ス??以外は設定不可
 	m_pTeamRulePropertyManager->SetEnable(m_SessionArray[m_nUserIndex].master);
 	m_pTeamRulePropertyManager->Update((m_SessionArray[m_nUserIndex].master!=0), m_nTeamCount);
 }
 
-// ルール変更ボタン状態
+// ル?ル変更??ン状態
 void CGame::UpdateGameRuleState()
 {
 	p_pUI->GetCheckBox(IDC_ROOM_CHK_RULE_1)->SetEnabled(m_SessionArray[m_nUserIndex].master?true:false);
@@ -1059,20 +1059,20 @@ void CGame::UpdateGameRuleState()
 	p_pUI->GetCheckBox(IDC_ROOM_CHK_RULE_4)->SetEnabled(m_SessionArray[m_nUserIndex].master?true:false);
 }
 
-// 準備OKボタン押下
+// ?備OK??ン押下
 void CGame::OnReadyButtonDown()
 {
 	WORD			packetSize = 0;
 	BYTE				packetData[MAX_PACKET_SIZE];
 	
 	CDXUTButton* pBtn = p_pUI->GetButton(IDC_ROOM_BTN_READY);
-	// マスターの場合
+	// ?ス??の場合
 	if (m_SessionArray[m_nUserIndex].master)
 	{
 		if (!CheckChangeReadyStateOfMaster())
 			return;
 	}
-	else	// マスター以外
+	else	// ?ス??以外
 	{
 		if (!CheckChangeReadyStateOfUser())
 			return;
@@ -1084,22 +1084,22 @@ void CGame::OnReadyButtonDown()
 		AddPacket(packetData, packetSize);
 }
 
-// 準備OKにセット可能か確認
+// ?備OKにセット可?か確認
 BOOL CGame::CheckChangeReadyStateOfMaster()
 {
-	// 準備OKなら、ゲーム開始中のため変更させない
+	// ?備OKなら、ゲ??開始中のため変更させない
 	if (m_SessionArray[m_nUserIndex].game_ready)	return FALSE;
-	// 他ユーザが準備OKか確認
+	// 他ユ?ザが?備OKか確認
 	for (int i=0;i<GetMaxLoginNum();i++)
 	{
 		if (i == m_nUserIndex)	continue;
 		if (m_SessionArray[i].connect_state != CONN_STATE_AUTHED)	continue;
-		// マスターはマスター以外が準備OKでない場合、変更不可
+		// ?ス??は?ス??以外が?備OKでない場合、変更不可
 		if (!m_SessionArray[i].game_ready)
 			return FALSE;
 	}
 
-	// チームわけ確認 //
+	// ???わけ確認 //
 //	if (m_nTeamCount <= 1)	return TRUE;
 	BOOL bReady = !m_SessionArray[m_nUserIndex].game_ready;
 	if (bReady)
@@ -1109,34 +1109,34 @@ BOOL CGame::CheckChangeReadyStateOfMaster()
 
 BOOL CGame::CheckChangeReadyStateOfUser()
 {
-	// マスターが準備OKか確認
+	// ?ス??が?備OKか確認
 	for (int i=0;i<GetMaxLoginNum();i++)
 	{
 		if (m_SessionArray[i].connect_state != CONN_STATE_AUTHED)
 			continue;
-		// マスターが準備OKの場合はゲーム開始中のため、変更不可
+		// ?ス??が?備OKの場合はゲ??開始中のため、変更不可
 		if (m_SessionArray[i].master	&& m_SessionArray[i].game_ready)
 			return FALSE;
 	}
-	// チームわけ確認 //
+	// ???わけ確認 //
 	if (m_nTeamCount <= 1)	return TRUE;
 	BOOL bReady = !m_SessionArray[m_nUserIndex].game_ready;
-//> 20101105 端数でもチーム設定できるようにする
+//> 20101105 ?数でも???設定できるようにする
 //	if (bReady)
 //		return CheckAddTeam();
-//< 20101105 端数でもチーム設定できるようにする
+//< 20101105 ?数でも???設定できるようにする
 	return TRUE;
 }
 
-// チームに追加確認
+// ???に追加確認
 BOOL CGame::CheckAddTeam()
 {
-	// 一人プレイならチェックしない
+	// 一人プレイなら?ェックしない
 	if (g_bOneClient)
 		return TRUE;
 
 	int nEntryUserCount = 0;
-	// チームわけなしなら観戦人数チェック
+	// ???わけなしなら観戦人数?ェック
 	if (m_nTeamCount <= 1)
 	{
 		for (int i=0;i<GetMaxLoginNum();i++)
@@ -1147,19 +1147,19 @@ BOOL CGame::CheckAddTeam()
 		}
 		if (nEntryUserCount <= 1)
 		{
-			AddChatMessage(L"参加人数が少ないため、ゲームが開始できません", PK_USER_CHAT_SERVER_INFO);
+			AddChatMessage(L"参加人数が少ないため、ゲ??が開始できません", PK_USER_CHAT_SERVER_INFO);
 			return FALSE;
 		}
 		else if (nEntryUserCount  > MAXUSERNUM)
 		{
-			AddChatMessage(L"最大参加人数(８人）を超過しているため、ゲームが開始できません", PK_USER_CHAT_SERVER_INFO);
+			AddChatMessage(L"最大参加人数(８人）を超過しているため、ゲ??が開始できません", PK_USER_CHAT_SERVER_INFO);
 			return FALSE;
 		}
 		return TRUE;
 	}
-//> 20101105 端数でもチーム設定できるようにする
+//> 20101105 ?数でも???設定できるようにする
 /*
-	// 定員オーバー確認
+	// 定員オ?バ?確認
 	int nTeamUserNum = 0;
 	for (int j=0;j<MAXUSERNUM;j++)
 	{
@@ -1168,9 +1168,9 @@ BOOL CGame::CheckAddTeam()
 
 		int x = m_SessionArray[j].ax;
 		int y = m_SessionArray[j].ay;
-		// キャラの座標からチーム番号取得
+		// キャラの座標から???番号取得
 		int nTeamNo = m_pTeamSeparater->GetTeamNoFromPos(x,y);
-		// 準備済みの同チームキャラ
+		// ?備済みの同???キャラ
 		if ( nCheckTeamNo == nTeamNo)
 		{
 			nTeamUserNum++;
@@ -1186,13 +1186,13 @@ BOOL CGame::CheckAddTeam()
 	for (int j=0;j<GetMaxLoginNum();j++)
 	{
 		if (m_SessionArray[j].connect_state != CONN_STATE_AUTHED)	continue;
-		// マスター以外が準備OKじゃない場合、無効
+		// ?ス??以外が?備OKじゃない場合、無効
 		if (!m_SessionArray[j].game_ready && !m_SessionArray[j].master)
 			return FALSE;
 
 		int x = m_SessionArray[j].lx;
 		int y = m_SessionArray[j].ly;
-		// キャラの座標からチーム番号取得
+		// キャラの座標から???番号取得
 		int nTeamNo = m_pTeamSeparater->GetTeamNoFromPos(x,y);
 		if (nTeamNo < MAX_TEAM_COUNT)
 		{
@@ -1202,52 +1202,52 @@ BOOL CGame::CheckAddTeam()
 	}
 	if (nEntryUserCount > MAXUSERNUM)
 	{
-		AddChatMessage(L"最大参加人数(８人）を超過しているため、ゲームが開始できません", PK_USER_CHAT_SERVER_INFO);
+		AddChatMessage(L"最大参加人数(８人）を超過しているため、ゲ??が開始できません", PK_USER_CHAT_SERVER_INFO);
 		return FALSE;
 	}
-	// 人の居ないチームがある場合、チーム分け失敗
+	// 人の居ない???がある場合、???分け失敗
 	for (int i=0;i<m_nTeamCount;i++)
 	{
 		if (!nTeamSeats[i])
 		{
-			AddChatMessage(L"人の居ないチームが在ります、チーム分けを確認してください", PK_USER_CHAT_SERVER_INFO);
+			AddChatMessage(L"人の居ない???が在ります、???分けを確認してください", PK_USER_CHAT_SERVER_INFO);
 			return FALSE;
 		}
 	}
-//< 20101105 端数でもチーム設定できるようにする
+//< 20101105 ?数でも???設定できるようにする
 	return TRUE;
 }
 
-// マスター情報設定
+// ?ス??情報設定
 void CGame::SetGameMaster(int nIndex, BOOL bMaster)
 {
 	ptype_session sess = GetAuthedSessionInfo(nIndex);
 	if (!sess) return;
 	sess->master = bMaster;
-	// 準備状態を解除する
+	// ?備状態を解除する
 	sess->game_ready = 0;
-	// チーム番号をクリアする
+	// ???番号をクリアする
 	if (sess->obj_state & OBJ_STATE_ROOM)
 		sess->team_no = 0;
 
 	m_pRoomCharacters[nIndex]->UpdateState();
-	// 自身のマスター情報が変わった場合、有効状態を変更
+	// 自身の?ス??情報が変わった場合、有効状態を変更
 	UpdateGameMasterPropertyControlsEnabled();
-	// 自分がマスターならチャットログ+音で知らせる
+	// 自分が?ス??なら?ャットログ+音で知らせる
 	if (nIndex == m_nUserIndex)
 	{
 		PlaySysSoundSE(SE_sai_SrvInfo);
 		if (bMaster)
-			AddChatMessage(L"マスター権限に設定されました。ステージ、ゲームルール、チームバトル設定が変更可能です。", PK_USER_CHAT_SERVER_INFO);
+			AddChatMessage(L"?ス??権限に設定されました。ステ?ジ、ゲ??ル?ル、???バトル設定が変更可?です。", PK_USER_CHAT_SERVER_INFO);
 		else
-			AddChatMessage(L"マスター権限が解除されました。", PK_USER_CHAT_SERVER_INFO);
+			AddChatMessage(L"?ス??権限が解除されました。", PK_USER_CHAT_SERVER_INFO);
 	}
 }
 
 
 void CGame::UpdatePropertyControlsEnabled()
 {
-	// 準備OKの場合無効
+	// ?備OKの場合無効
 	bool b = !m_SessionArray[m_nUserIndex].game_ready;
 
 	p_pUI->GetControl(IDC_ROOM_BTN_ADD_ITEM)->SetEnabled(b);
@@ -1262,12 +1262,12 @@ void CGame::UpdatePropertyControlsEnabled()
 	}
 }
 
-// 準備OKボタンの状態更新
+// ?備OK??ンの状態更新
 void CGame::UpdateReadyButtonState()
 {
 	CDXUTButton *pBtn = p_pUI->GetButton(IDC_ROOM_BTN_READY);
 	bool bEnable = true;
-	// マスター
+	// ?ス??
 	if (m_SessionArray[m_nUserIndex].master)
 	{
 		if (g_bOneClient) 
@@ -1280,12 +1280,12 @@ void CGame::UpdateReadyButtonState()
 				bEnable = false;
 			else
 			{
-				// 他ユーザが準備OKか確認
+				// 他ユ?ザが?備OKか確認
 				for (int i=0;i<GetMaxLoginNum();i++)
 				{
 					if (i == m_nUserIndex)	continue;
 					if (m_SessionArray[i].connect_state != CONN_STATE_AUTHED)	continue;
-					// マスターはマスター以外が準備OKでない場合、変更不可
+					// ?ス??は?ス??以外が?備OKでない場合、変更不可
 					if (!m_SessionArray[i].game_ready)
 					{
 						bEnable = false;
@@ -1294,10 +1294,10 @@ void CGame::UpdateReadyButtonState()
 				}
 			}
 			pBtn->SetEnabled(bEnable);
-			// マスター以外が準備OK
+			// ?ス??以外が?備OK
 			if (bEnable && !m_SessionArray[m_nUserIndex].game_ready)
 			{
-				AddChatMessage(L"OKボタンを押すとゲームが開始できます", PK_USER_CHAT_SERVER_INFO);
+				AddChatMessage(L"OK??ンを押すとゲ??が開始できます", PK_USER_CHAT_SERVER_INFO);
 				PlaySysSoundSE(SE_sai_SrvInfo);
 			}
 		}
@@ -1320,21 +1320,21 @@ void CGame::UpdateReadyButtonState()
 	pElement->SetTexture( m_nDefaultGUIResourceIndex, &rcButton);
 }
 
-// 準備状態更新
+// ?備状態更新
 void CGame::SetGameReady(int nIndex, BOOL bReady)
 {
 	ptype_session pSess = GetAuthedSessionInfo(nIndex);
 	if (!pSess) return;
 	pSess->game_ready = bReady;
 
-	// マスターがゲーム準備OKの場合、開始
+	// ?ス??がゲ???備OKの場合、開始
 //	if (pSess->game_ready && pSess->master)
 //		m_eGameState = eGameRoomRelease;
 
 	m_pRoomCharacters[nIndex]->UpdateState();
 
 	CDXUTStatic* pStatic = p_pUI->GetStatic(IDC_ROOM_STATIC_MY_TEAMNO);
-	// チーム番号設定
+	// ???番号設定
 	if (nIndex == m_nUserIndex)
 	{
 		if (bReady && m_nTeamCount>1)
@@ -1347,7 +1347,7 @@ void CGame::SetGameReady(int nIndex, BOOL bReady)
 		{
 			pStatic->SetText(NULL);
 		}
-		// 設定コントロール状態更新
+		// 設定コントロ?ル状態更新
 		UpdatePropertyControlsEnabled();
 	}
 }
@@ -1380,10 +1380,10 @@ void CGame::ReEnterCharacter(int nCharaIndex)
 
 }
 
-// 制限ターン数のコントロールの情報を使って表示更新/パケット送信
+// 制限??ン数のコントロ?ルの情報を使って?示更新/パケット送信
 void CGame::UpdateLimitTurnFromControl(int modvalue)
 {
-	// マスターか確認
+	// ?ス??か確認
 	if (!m_SessionArray[m_nUserIndex].master)	return;
 
 	int nNewLimitTurn = 0;
@@ -1401,7 +1401,7 @@ void CGame::UpdateLimitTurnFromControl(int modvalue)
 	}
 }
 
-// 制限ターン数の有効/無効設定
+// 制限??ン数の有効/無効設定
 void CGame::SetLimitTurnEnabled(bool b)
 {
 	m_pSpinTurnLimit001->SetEnabled(b);
@@ -1418,7 +1418,7 @@ void CGame::SetActTimeLimitEnabled(bool b)
 // 
 void CGame::OnActTimeLimitButtonDown(int nNum)
 {
-	// 上限下限チェック
+	// 上限下限?ェック
 	int nActTimeLimit = m_nActTimeLimit+nNum;
 	if (nActTimeLimit < GAME_TURN_ACT_COUNT_MIN
 	|| nActTimeLimit > GAME_TURN_ACT_COUNT_MAX)

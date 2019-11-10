@@ -7,26 +7,26 @@ CStageEffect::CStageEffect()
 	m_nAgeCounter = 0;
 	m_nEffectNo = -1;
 	p_pTexture = NULL;
-	SetRectEmpty(&m_rcTexture);							// 描画範囲
+	SetRectEmpty(&m_rcTexture);							// ?画範囲
 	SetRectEmpty(&m_rcDraw);
 	m_vecPosition = D3DXVECTOR3(0,0,0);				// 位置
 	m_vecVector = D3DXVECTOR3(0,0,0);				// 移動値
 	m_vecAddVec = D3DXVECTOR3(0,0,0);				// 加速値
 	m_vecScalling = D3DXVECTOR3(0,0,0);				// 拡大縮小
 	m_vecScallingDraw = D3DXVECTOR3(1,1,1);				// 拡大縮小
-	m_fRotation = 0.0f;												// 回転値
+	m_fRotation = 0.0f;												// 回?値
 	m_clrDraw = 0xFFFFFFFF;
 	m_bytAlpha = 0xFF;
 	m_fRotateDraw = 0.0f;
 
-	m_nAnimationTime = 0;	// 次アニメーションインデックスへ移る時間
-	m_nAnimationTimeCounter = 0;	// 時間のカウンタ
+	m_nAnimationTime = 0;	// 次アニメ?ションインデックスへ移る時間
+	m_nAnimationTimeCounter = 0;	// 時間のカウン?
 	m_bAnimationLoop = FALSE;
 
-	m_nAnimationCount = 0;	// アニメーション数
-	m_nAnimationIndex = 0;	// アニメーションインデックス
+	m_nAnimationCount = 0;	// アニメ?ション数
+	m_nAnimationIndex = 0;	// アニメ?ションインデックス
 
-	m_nFade = 0;					// フェード
+	m_nFade = 0;					// フェ?ド
 
 	m_nFadeInOut = 0;
 	m_nRotationTimeCounter = 0;
@@ -34,8 +34,8 @@ CStageEffect::CStageEffect()
 	m_nVectorTimeCounter = 0;
 	m_nFadeTimeCounter = 0;
 	m_nRotationEffectTime = 0;
-	m_nFadeEffectTime = 0;			// フェード効果時間
-	m_nAnimationEffectTime = 0;	// アニメーション効果時間
+	m_nFadeEffectTime = 0;			// フェ?ド効果時間
+	m_nAnimationEffectTime = 0;	// アニメ?ション効果時間
 	m_nScallingEffectTime = 0;		// 拡大縮小効果時間
 	m_nVectorEffectTime = 0;			// 移動効果時間
 }
@@ -53,7 +53,7 @@ BOOL CStageEffect::Create(int nEffectNo, LPDIRECT3DTEXTURE9 pTexture, RECT* rcTe
 {
 	m_nEffectNo = nEffectNo;
 	p_pTexture = pTexture;
-	CopyRect(&m_rcTexture, rcTexture);				// 描画範囲
+	CopyRect(&m_rcTexture, rcTexture);				// ?画範囲
 	CopyRect(&m_rcDraw, rcTexture);
 	m_vecPosition = *pos;											// 位置	
 	m_vecCenter = D3DXVECTOR3( (float)(rcTexture->right-rcTexture->left)/2.0f, (float)(rcTexture->bottom-rcTexture->top)/2.0f, 0.0f);
@@ -66,9 +66,9 @@ BOOL CStageEffect::Create(int nEffectNo, LPDIRECT3DTEXTURE9 pTexture, RECT* rcTe
 }
 void CStageEffect::SetEffectTexture(RECT* rcTexture)
 {
-	CopyRect(&m_rcTexture, rcTexture);				// 描画範囲
+	CopyRect(&m_rcTexture, rcTexture);				// ?画範囲
 	CopyRect(&m_rcDraw, rcTexture);
-	// アニメーション
+	// アニメ?ション
 	if (m_nAnimationCount)
 	{
 		m_rcDraw.left = m_rcTexture.left+(m_rcTexture.right-m_rcTexture.left)*m_nAnimationIndex;
@@ -126,7 +126,7 @@ BOOL CStageEffect::Frame()
 			return FALSE;
 	}
 
-	// アニメーション
+	// アニメ?ション
 	if (m_nAnimationCount)
 	{
 		m_nAnimationTimeCounter++;
@@ -168,16 +168,16 @@ BOOL CStageEffect::Frame()
 
 	// 透明度
 	m_clrDraw = (m_clrDraw&0x00FFFFFF)|(m_bytAlpha<<24);
-	// フェード
+	// フェ?ド
 	if (!m_nFadeEffectTime || ++m_nFadeTimeCounter <  m_nFadeEffectTime)
 	{
 		int nAlpha = m_bytAlpha+m_nFade*m_nAgeCounter;
 		m_clrDraw = (m_clrDraw&0x00FFFFFF)|(max(min(nAlpha,0xFF),0)<<24);
 	}
-	// フェードインアウト
+	// フェ?ドインアウト
 	if (m_nFadeInOut)
 	{
-		// フェードイン
+		// フェ?ドイン
 		if (m_nFadeInOut >= m_nAgeCounter)
 		{
 			DWORD dwAlpha = (m_clrDraw&0xFF000000)>>24;
@@ -192,7 +192,7 @@ BOOL CStageEffect::Frame()
 		}
 	}
 
-	// 回転
+	// 回?
 	if (m_nRotationEffectTime && ++m_nRotationTimeCounter >= m_nRotationEffectTime)
 		m_fRotation = 0.0f;
 	m_fRotateDraw = safeFloatAdd(m_fRotateDraw, m_fRotation, m_fRotateDraw);

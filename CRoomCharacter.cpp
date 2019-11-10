@@ -31,12 +31,12 @@ CRoomCharacter::CRoomCharacter()
 
 // 生成
 // pDev			: D3Dデバイス
-// pTexture	: テクスチャ
-// pStatic		: スタティック
+// pTexture	: テクス?ャ
+// pStatic		: ス?ティック
 // pSess		: オブジェクト情報
-// nSpriteWidth,nSpriteHeight : テクスチャサイズ
-// nCharaWidth,nCharaheight	: キャラクタサイズ
-// nAnimationCount : ｱﾆﾒｰｼｮﾝ数
+// nSpriteWidth,nSpriteHeight : テクス?ャサイズ
+// nCharaWidth,nCharaheight	: キャラク?サイズ
+// nAnimationCount : ｱﾆﾒｰｼｮ??
 BOOL CRoomCharacter::Create(LPDIRECT3DTEXTURE9 pTexture, int nGUIResourceIndex,  CDXUTDialog* pDialog, type_session* pSess, int nSpriteWidth, int nSpriteHeight, int nAnimationCount, int nCharaWidth, int nCharaHeight)
 {
 	//作成済み確認
@@ -54,7 +54,7 @@ BOOL CRoomCharacter::Create(LPDIRECT3DTEXTURE9 pTexture, int nGUIResourceIndex, 
 
 	RECT rcTexture;
 	SetRect(&rcTexture, 120, 0, 220, 24);
-	m_pControlWord->GetElement(0)->SetTexture( nGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	m_pControlWord->GetElement(0)->SetTexture( nGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	m_pControlName->SetLocation(pSess->lx, pSess->ly);
 
 	WCHAR pName[MAX_USER_NAME+1];
@@ -88,7 +88,7 @@ BOOL CRoomCharacter::Create(LPDIRECT3DTEXTURE9 pTexture, int nGUIResourceIndex, 
 
 	RECT rcTexture;
 	SetRect(&rcTexture, 120, 0, 220, 24);
-	m_pControlWord->GetElement(0)->SetTexture( nGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	m_pControlWord->GetElement(0)->SetTexture( nGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	m_pControlName->SetLocation(pSess->lx, pSess->ly);
 
 	WCHAR pName[MAX_USER_NAME+1];
@@ -149,7 +149,7 @@ BOOL CRoomCharacter::CreateControls(LPDIRECT3DTEXTURE9 pTexture, int nGUIResourc
 // 状態更新
 void CRoomCharacter::UpdateState()
 {
-	// マスター状態
+	// ?ス??状態
 	CDXUTElement* pElement = m_pControlName->GetElement(0);
 	if (p_pSession->master)
 		pElement->FontColor.Init(COLOR_MASTER_NAME);
@@ -160,9 +160,9 @@ void CRoomCharacter::UpdateState()
 }
 
 // 更新
-// pTexture	: テクスチャ
-// nSpriteWidth,nSpriteHeight : 表示サイズ
-// nAnimationCount : ｱﾆﾒｰｼｮﾝ数
+// pTexture	: テクス?ャ
+// nSpriteWidth,nSpriteHeight : ?示サイズ
+// nAnimationCount : ｱﾆﾒｰｼｮ??
 BOOL CRoomCharacter::UpdateTexture(LPDIRECT3DTEXTURE9 pTexture, int nSpriteWidth, int nSpriteHeight, int nAnimationCount, int nCharaWidth, int nCharaHeight)
 {
 	if (!m_bCreated)
@@ -177,7 +177,7 @@ BOOL CRoomCharacter::UpdateTexture(LPDIRECT3DTEXTURE9 pTexture, int nSpriteWidth
 	D3DSURFACE_DESC SurfaceDesc;
 
 	LPDIRECT3DSURFACE9	d_psf;
-	// 転送先のサーフェース
+	// ?送先のサ?フェ?ス
 	V( pTexture->GetSurfaceLevel(0, &d_psf ) );
 	// 画像情報取得
 	V(d_psf->GetDesc(&SurfaceDesc));
@@ -207,7 +207,7 @@ BOOL CRoomCharacter::UpdateTexture(LPDIRECT3DTEXTURE9 pTexture, int nSpriteWidth
 
 	m_pControlName->SetSize(m_nControlNameWidth, m_nControlNameHeight);
 
-	// 表示テクスチャサイズの半分
+	// ?示テクス?ャサイズの半分
 	int nSizeHalfW = (nSpriteWidth/2);
 	int nSizeHalfH = (nSpriteHeight/2);
 	m_vecDrawCharaCenter = D3DXVECTOR3((float)nSizeHalfW, (float)nSizeHalfH, 0);
@@ -215,7 +215,7 @@ BOOL CRoomCharacter::UpdateTexture(LPDIRECT3DTEXTURE9 pTexture, int nSpriteWidth
 	m_nControlNameAdjustX = (m_nControlNameWidth/2);
 	m_nControlNameAdjustY = nCharaHeight/2;
 
-	// 表示範囲計算
+	// ?示範囲計算
 	CalcDrawRect();
 	// 状態も更新
 	UpdateState();
@@ -236,7 +236,7 @@ BOOL CRoomCharacter::UpdateTexture(LPDIRECT3DTEXTURE9 pTexture, int nSpriteWidth
 	D3DSURFACE_DESC SurfaceDesc;
 
 	LPDIRECT3DSURFACE9	d_psf;
-	// 転送先のサーフェース
+	// ?送先のサ?フェ?ス
 	V( pTexture->GetSurfaceLevel(0, &d_psf ) );
 	// 画像情報取得
 	V(d_psf->GetDesc(&SurfaceDesc));
@@ -266,14 +266,14 @@ BOOL CRoomCharacter::UpdateTexture(LPDIRECT3DTEXTURE9 pTexture, int nSpriteWidth
 
 	m_pControlName->SetSize(m_nControlNameWidth, m_nControlNameHeight);
 
-	// 表示テクスチャサイズの半分
+	// ?示テクス?ャサイズの半分
 	int nSizeHalfW = (nSpriteWidth/2);
 	int nSizeHalfH = (nSpriteHeight/2);
 	m_vecDrawCharaCenter = D3DXVECTOR3((float)nSizeHalfW, (float)nSizeHalfH, 0);
 
 	m_nControlNameAdjustX = (m_nControlNameWidth/2);
 	m_nControlNameAdjustY = m_nCharaHeight/2;
-	// 表示範囲計算
+	// ?示範囲計算
 	SetRect(&m_recDraw, nLeft, nTop, nRight, nBottom);
 	// 状態も更新
 	UpdateState();
@@ -316,7 +316,7 @@ void CRoomCharacter::Frame()
 	p_pSession->lx = max(0L, (int)min(WIN_WIDTH, p_pSession->lx+(p_pSession->vx*ROOM_MV_VEC_X)));
 	p_pSession->ly = max(0L, (int)min(p_pSession->ly+(p_pSession->vy*ROOM_MV_VEC_Y), ROOM_CHARA_BASE_MAX_MOVE_H));
 
-	// 準備OKの状態はｱﾆﾒｰｼｮﾝを止める
+	// ?備OKの状態はｱﾆﾒｰｼｮ??~める
 	if (!p_pSession->game_ready)
 	{
 		if (m_nAnimationCount)
@@ -332,10 +332,10 @@ void CRoomCharacter::Frame()
 		}
 	}
 
-	// 発言表示中
+	// 発言?示中
 	if (m_pControlWord->GetVisible() && m_bVisible)
 	{
-		// 表示カウンタを進め、表示終了時間がきたらテキスト非表示にする
+		// ?示カウン?を進め、?示終了時間がきたらテキスト非?示にする
 		m_nWordViewTimeCounter++;
 		if (m_nWordViewTimeCounter >= m_nWordViewTime)
 		{
@@ -345,7 +345,7 @@ void CRoomCharacter::Frame()
 	}
 }
 
-// 描画範囲再計算
+// ?画範囲再計算
 void CRoomCharacter::CalcDrawRect()
 {
 	int nAnimationIndex = m_nAnimationIndex;
@@ -362,7 +362,7 @@ void CRoomCharacter::Render(LPDIRECT3DDEVICE9 pDev,  float fElapsedTime)
 	if (!m_bCreated || !m_bVisible)
 		return;
 
-	// 部屋に居るキャラのみ描画
+	// 部屋に居るキャラのみ?画
 	if ( !(p_pSession->obj_state & OBJ_STATE_ROOM) )
 		return;
 
@@ -444,12 +444,12 @@ void CRoomCharacter::Show()
 
 void CRoomCharacter::OnLost()
 {
-	// テクスチャをNULLにする
+	// テクス?ャをNULLにする
 	p_pTexture = NULL;
 }
 
 void CRoomCharacter::OnReset()
 {
-	// テクスチャの再設定
+	// テクス?ャの再設定
 	p_pTexture = ((TCHARA_SCR_INFO*)p_pSession->scrinfo)->pTexture;
 }

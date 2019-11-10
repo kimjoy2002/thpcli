@@ -10,9 +10,9 @@ BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_UPDATE_STATUS(BYTE* data);
 BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_UPDATE_STATE(BYTE* data);
 BOOL PacketProc_Main_PK_USER_MAININFO_ITEM_USE(BYTE* data);
 
-BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_KILL(BYTE* data);		// キャラ死亡パケット情報
-BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_DROP(BYTE* data);		// キャラ死亡パケット情報
-BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_CLOSE(BYTE* data);	// キャラ死亡パケット情報
+BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_KILL(BYTE* data);		// キャラ?亡パケット情報
+BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_DROP(BYTE* data);		// キャラ?亡パケット情報
+BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_CLOSE(BYTE* data);	// キャラ?亡パケット情報
 
 BOOL PacketProc_Main_PK_REQ_TRIGGER_END(BYTE* data);
 
@@ -61,7 +61,7 @@ BOOL PacketProc_Main(BYTE* data)
 	case PK_USER_MAININFO_CHARA_DEAD_CLOSE:
 		ret = PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_CLOSE(data);
 		break;
-	case PK_USER_MAININFO_BULLET_TRIGGER:		// トリガーパケット
+	case PK_USER_MAININFO_BULLET_TRIGGER:		// トリガ?パケット
 		ret = PacketProc_Main_PK_USER_MAININFO_BULLET_TRIGGER(data);
 		break;
 	case PK_REQ_MAININFO_BULLET_SHOT:		// 弾発射要求パケット
@@ -220,11 +220,11 @@ BOOL PacketProc_Main_PK_USER_MAININFO_TURNEND(BYTE* data)
 		memcpy(&pSess->EXP_c, (BYTE*)&data[17], sizeof(short));
 		if (bExp && pSess->EXP_c >= ((TCHARA_SCR_INFO*)pSess->scrinfo)->sc_info.max_exp)
 		{
-			g_pGame->AddChatMessage(L"スペルカードが使用可能になりました。", PK_USER_CHAT_SERVER_INFO);
+			g_pGame->AddChatMessage(L"スペルカ?ドが使用可?になりました。", PK_USER_CHAT_SERVER_INFO);
 			g_pGame->PlaySysSoundSE(SE_sai_Chat);
 		}
 	}
-	// ターンエンド
+	// ??ンエンド
 	g_pGame->UpdatePrevWindValue();
 	g_pGame->UpdateWindValue((int)wind);
 	g_pGame->UpdateActiveState();
@@ -308,7 +308,7 @@ BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_UPDATE_STATE(BYTE* data)
 		pSess->dir = dir;
 		pSess->vx = sVecX;
 		pSess->vy = sVecY;
-		// キャラ表示更新
+		// キャラ?示更新
 		g_pGame->UpdateStageCharaDisplay(pSess->sess_index);
 	}
 	g_pCriticalSection->LeaveCriticalSection_Session();
@@ -320,7 +320,7 @@ BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_MV(BYTE* data)
 	BOOL ret = FALSE;
 	int nIndex = 4;
 
-	short nObjNo;		// ユーザNo
+	short nObjNo;		// ユ?ザNo
 	memcpy(&nObjNo, (BYTE*)&data[nIndex], sizeof(short));
 	nIndex += sizeof(short);
 
@@ -355,7 +355,7 @@ BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_MV(BYTE* data)
 			AddMessageLog(msglog);
 		}
 	}
-	// キャラ表示更新
+	// キャラ?示更新
 	g_pGame->UpdateStageCharaDisplay(pSess->sess_index);
 	g_pCriticalSection->LeaveCriticalSection_Session();
 
@@ -369,17 +369,17 @@ BOOL PacketProc_Main_PK_USER_MAININFO_BULLET_TRIGGER(BYTE* data)
 	short nObjNo;
 	memcpy(&nObjNo, &data[nIndex], sizeof(short));
 	nIndex += sizeof(short);
-	// スクリプト/アイテムのタイプ
+	// スクリプト/アイテ?の?イプ
 	int nProcType = data[nIndex];
 	nIndex++;
-	// 演出タイプ
+	// 演出?イプ
 	int nBltType = data[nIndex];
 	nIndex++;
 	// 角度
 	short sShotAngle = 0;
 	memcpy(&sShotAngle, &data[nIndex], sizeof(short));
 	nIndex += sizeof(short);
-	// パワー
+	// パワ?
 	short sShotPower = 0;
 	memcpy(&sShotPower, &data[nIndex], sizeof(short));
 	nIndex += sizeof(short);
@@ -387,7 +387,7 @@ BOOL PacketProc_Main_PK_USER_MAININFO_BULLET_TRIGGER(BYTE* data)
 	short sIndicatorShotAngle = 0;
 	memcpy(&sIndicatorShotAngle, &data[nIndex], sizeof(short));
 	nIndex += sizeof(short);
-	// Indicatorパワー
+	// Indicatorパワ?
 	short sIndicatorShotPower = 0;
 	memcpy(&sIndicatorShotPower, &data[nIndex], sizeof(short));
 	nIndex += sizeof(short);
@@ -452,10 +452,10 @@ BOOL PacketProc_Main_PK_USER_MAININFO_BULLET_SHOT(BYTE* data)
 	// 弾番号
 	memcpy(&newblt->obj_no, &data[nIndex], sizeof(short));
 	nIndex+=sizeof(short);
-	// 処理タイプ
+	// 処理?イプ
 	newblt->proc_type = (BYTE)data[nIndex];
 	nIndex++;
-	// 弾タイプ
+	// 弾?イプ
 	newblt->obj_type = (BYTE)data[nIndex];
 	nIndex++;
 	// 状態
@@ -723,7 +723,7 @@ BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_UPDATE_STATUS(BYTE* data)
 {
 	BOOL ret = FALSE;
 	int nIndex = 4;
-	short nObjNo;		// ユーザNo
+	short nObjNo;		// ユ?ザNo
 	memcpy(&nObjNo, (BYTE*)&data[nIndex], sizeof(short));
 	nIndex += sizeof(short);
 
@@ -750,12 +750,12 @@ BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_UPDATE_STATUS(BYTE* data)
 	nIndex += sizeof(short);
 	if (bExp && pSess->EXP_c >= ((TCHARA_SCR_INFO*)pSess->scrinfo)->sc_info.max_exp)
 	{
-		g_pGame->AddChatMessage(L"スペルカードが使用可能になりました。", PK_USER_CHAT_SERVER_INFO);
+		g_pGame->AddChatMessage(L"スペルカ?ドが使用可?になりました。", PK_USER_CHAT_SERVER_INFO);
 		g_pGame->PlaySysSoundSE(SE_sai_Chat);
 	}
 	if (nPrevHP != pSess->HP_c)
 		g_pGame->ChangeCharaHP(nObjNo, pSess->HP_c-nPrevHP);
-	// キャラ表示更新
+	// キャラ?示更新
 	g_pGame->UpdateStageCharaDisplay(pSess->sess_index);
 	g_pCriticalSection->LeaveCriticalSection_Session();
 	ret = TRUE;
@@ -797,14 +797,14 @@ BOOL PacketProc_Main_PK_USER_MAININFO_GAMEEND(BYTE* data)
 	int nUserCount = data[4];
 	g_pCriticalSection->EnterCriticalSection_Session(L'o');
 	
-	//> 一端順位をMAXにしておく 20101227
+	//> 一?順位をMAXにしておく 20101227
 	for (int i=0;i<g_pGame->GetMaxLoginNum();i++)
 	{
 		ptype_session pSess = g_pGame->GetSessionInfo(i);
 		if (pSess->entity)
 			pSess->frame_count = MAXUSERNUM;
 	}
-	//< 一端順位をMAXにしておく 20101227
+	//< 一?順位をMAXにしておく 20101227
 
 	for (int i=0;i<nUserCount;i++)
 	{
@@ -838,7 +838,7 @@ BOOL PacketProc_Main_PK_USER_MAININFO_ITEM_USE(BYTE* data)
 
 	int nItemIndex = data[4];
 	DWORD dwItemFlg;
-	memcpy(&dwItemFlg, (void*)&data[5], sizeof(DWORD));	// アイテムフラグ
+	memcpy(&dwItemFlg, (void*)&data[5], sizeof(DWORD));	// アイテ?フラグ
 	BOOL bSteal = (BOOL)data[9];
 
 	g_pCriticalSection->EnterCriticalSection_Session(L'p');
@@ -848,10 +848,10 @@ BOOL PacketProc_Main_PK_USER_MAININFO_ITEM_USE(BYTE* data)
 	return ret;
 }
 
-BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_KILL(BYTE* data)		// キャラ死亡パケット情報
+BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_KILL(BYTE* data)		// キャラ?亡パケット情報
 {
 	BOOL ret = FALSE;
-	short nObjNo;		// ユーザNo
+	short nObjNo;		// ユ?ザNo
 	memcpy(&nObjNo, (void*)&data[4], sizeof(short));
 	g_pCriticalSection->EnterCriticalSection_Session(L'@');
 	g_pGame->SetCharacterDead(nObjNo, PK_USER_MAININFO_CHARA_DEAD_KILL);
@@ -859,10 +859,10 @@ BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_KILL(BYTE* data)		// キャラ死亡
 	return ret;
 }
 
-BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_DROP(BYTE* data)		// キャラ死亡パケット情報
+BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_DROP(BYTE* data)		// キャラ?亡パケット情報
 {
 	BOOL ret = FALSE;
-	short nObjNo;		// ユーザNo
+	short nObjNo;		// ユ?ザNo
 	memcpy(&nObjNo, (void*)&data[4], sizeof(short));
 	g_pCriticalSection->EnterCriticalSection_Session(L'[');
 	g_pGame->SetCharacterDead(nObjNo, PK_USER_MAININFO_CHARA_DEAD_DROP);
@@ -870,10 +870,10 @@ BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_DROP(BYTE* data)		// キャラ死亡
 	return ret;
 }
 
-BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_CLOSE(BYTE* data)		// キャラ死亡パケット情報
+BOOL PacketProc_Main_PK_USER_MAININFO_CHARA_DEAD_CLOSE(BYTE* data)		// キャラ?亡パケット情報
 {
 	BOOL ret = FALSE;
-	short nObjNo;		// ユーザNo
+	short nObjNo;		// ユ?ザNo
 	memcpy(&nObjNo, (void*)&data[4], sizeof(short));
 	g_pCriticalSection->EnterCriticalSection_Session(L'Q');
 	g_pGame->SetCharacterDead(nObjNo, PK_USER_MAININFO_CHARA_DEAD_CLOSE);

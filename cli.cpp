@@ -45,7 +45,7 @@ BOOL StartClient(int nSocket)
 	g_pNetSess->InitSesssionArray();
 	if (!g_pNetSess->InitSock())
 	{
-		AddMessageLog(L"ソケット初期化失敗");
+		AddMessageLog(L"?ケット初期化失敗");
 		return 0;
 	}
 */

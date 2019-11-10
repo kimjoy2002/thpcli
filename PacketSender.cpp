@@ -45,7 +45,7 @@ DWORD __stdcall Thread_PacketSender(LPVOID param)
 	for(;;){
 		ErrIndex=0;
 
-		// キューの数が溜まるまで待つ
+		// キュ?の数が溜まるまで待つ
 		que_len=cp_queue->GetCount();
 		while(que_len== 0)
 		{
@@ -59,7 +59,7 @@ DWORD __stdcall Thread_PacketSender(LPVOID param)
 //			que_len = MAX_SENDPACKET_ONELOOP_QUEUE_SIZE;
 
 		// パケット用のクリティカルセクション待ち
-		// (キューを溜めているスレッドの操作が終わるのを待つ
+		// (キュ?を溜めているスレッドの?作が終わるのを待つ
 		g_pCriticalSection->EnterCriticalSection_Packet(L'3');
 
 		i=0;
@@ -70,7 +70,7 @@ DWORD __stdcall Thread_PacketSender(LPVOID param)
 			c = (type_session *)packet->session;
 			tmp_sock = packet->cli_sock;
 /*
-			if(!packet->session)				// パケットｾｯｼｮﾝNULL
+			if(!packet->session)				// パケットｾｯｼｮ?ULL
 			{
 				AddMessageLog(L"セッションがnull.........................");
 
@@ -94,7 +94,7 @@ DWORD __stdcall Thread_PacketSender(LPVOID param)
 			{
 
 //				rets = send(packet->cli_sock, (char*)packet->data, packet->size,0);
-//				if(rets<=0)						// 送信エラーチェック
+//				if(rets<=0)						// 送信エラ??ェック
 				nSendSize = packet->size;
 				if (!sendall(packet->cli_sock, (char*)packet->data, &nSendSize))
 				{
@@ -138,10 +138,10 @@ BOOL sendall(int sock, char* pkt, int* sendsize)
 	//> パケット送信
 	while (SOCKET_ERROR != (nSent = send(sock, &pkt[*sendsize], nBufferSize, 0)))
 	{
-		// ソケットが閉じられた
+		// ?ケットが閉じられた
 		if (!nSent)	break;
 //		if (!nSent)	return FALSE;
-		// パケットサイズオーバー
+		// パケットサイズオ?バ?
 		nBufferSize -= nSent;
 		if (nBufferSize <= 0)
 			break;
@@ -150,7 +150,7 @@ BOOL sendall(int sock, char* pkt, int* sendsize)
 	//< パケット送信
 
 	DWORD dwErrCode = WSAGetLastError();
-	// エラー(非ブロッキングモードの以外)
+	// エラ?(非ブロッキングモ?ドの以外)
 	if(dwErrCode && WSAEWOULDBLOCK != dwErrCode)
 	{
 #if ADD_WSAERROR_LOG

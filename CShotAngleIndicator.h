@@ -2,15 +2,15 @@
 #define H_SHOT_ANGLE_INDICATOR___
 // ===================================================================
 // CShotAngleIndicator.h
-//	角度の目安線を表示するクラス
+//	角度の目安線を?示するクラス
 // ===================================================================
 
 #include <windows.h>
 #include <TCHAR.h>
 
 #include "util.h"
-#include "../lib/DXUT/dxstdafx.h"
-#include "../lib/DXUT/DXUT.h"
+#include "../thplib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/DXUT.h"
 #include "resource.h"
 
 #define SHOT_ANGLE_INDICATOR_COLOR		(0xDD00FF00)

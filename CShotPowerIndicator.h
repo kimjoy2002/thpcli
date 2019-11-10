@@ -2,16 +2,15 @@
 #define H_SHOT_POWER_INDICATOR___
 // ===================================================================
 // CShotPowerIndicator.h
-//	パワーの目安線を表示するクラス
+//	パワ?の目安線を?示するクラス
 // ===================================================================
 
 #include <windows.h>
 #include <TCHAR.h>
 
 #include "util.h"
-#include "../include/define.h"
-#include "../lib/DXUT/dxstdafx.h"
-#include "../lib/DXUT/DXUT.h"
+#include "../thplib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/DXUT.h"
 #include "resource.h"
 
 class CShotPowerIndicator

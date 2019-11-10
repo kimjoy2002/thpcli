@@ -7,8 +7,6 @@
 
 #include <windows.h>
 #include <TCHAR.h>
-#include "../include/types.h"
-#include "../include/define.h"
 #include "util.h"
 #include <math.h>
 #include <d3d9.h>
@@ -17,10 +15,9 @@
 #include <map>
 #include <iostream>
 #include <vector>
-#include "../include/define.h"
 
-#include "../lib/DXUT/dxstdafx.h"
-#include "../lib/DXUT/DXUT.h"
+#include "../thplib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/DXUT.h"
 
 // ???番号（?②③…）の位置取り
 // ???の区切り線の?示

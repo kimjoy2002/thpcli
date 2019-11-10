@@ -12,9 +12,9 @@ CTeamRulePropertyControlManager::CTeamRulePropertyControlManager()
 }
 
 // 生成
-// pBtnArrowL	: 左矢印ボタン
-// pBtnArrowR	: 右矢印ボタン
-// pStaticText	: 文字表示用スタティック
+// pBtnArrowL	: 左矢印??ン
+// pBtnArrowR	: 右矢印??ン
+// pStaticText	: 文字?示用ス?ティック
 // pntLocate		: 左上位置
 void CTeamRulePropertyControlManager::Create(CDXUTButton *pBtnArrowL, CDXUTButton *pBtnArrowR, CDXUTStatic* pStaticText, int *pCount)
 {
@@ -42,7 +42,7 @@ void CTeamRulePropertyControlManager::Update(bool b, int nTeamCount)
 	// 個人戦よりも減らせない
 	SetButtonEnable(m_pBtnArrowL, b && m_bEnable && (nTeamCount-1) > 0);
 
-//> 20101105 端数でもチーム設定できるようにする
+//> 20101105 ?数でも???設定できるようにする
 	// ログイン人数-1より増やせない
 
 	if (b)
@@ -55,7 +55,7 @@ void CTeamRulePropertyControlManager::Update(bool b, int nTeamCount)
 	}
 	else
 		m_pBtnArrowR->SetEnabled(false);
-//> 20101105 端数でもチーム設定できるようにする
+//> 20101105 ?数でも???設定できるようにする
 	UpdateText(nTeamCount);
 }
 

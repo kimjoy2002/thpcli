@@ -36,7 +36,7 @@ BOOL RecvPacketProc(BYTE *data)
 				g_pGame->SuccessAuth(data);
 				if (!g_pGame->InitControl())
 				{
-					MessageBox(g_hWnd, L"認証結果：データ不足", L"認証結果", MB_OK);
+					MessageBox(g_hWnd, L"認証結果：デ??不足", L"認証結果", MB_OK);
 					g_bCloseSocket = TRUE;
 				}
 				g_pGame->SetState(eGameLoginRelease);
@@ -44,67 +44,67 @@ BOOL RecvPacketProc(BYTE *data)
 				break;
 			case AUTH_RESULT_INVALID_PWD:
 				g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
-				AddMessageLog(L"認証結果：不正なパスワード");
-				MessageBox(g_hWnd, L"認証結果：不正なパスワード", L"認証結果", MB_OK);
-				// ログイン二度押し禁止のため無効にしていたのを解除
+				AddMessageLog(L"認証結果：不正なパスワ?ド");
+				MessageBox(g_hWnd, L"認証結果：不正なパスワ?ド", L"認証結果", MB_OK);
+				// ログイン二度押し禁?のため無効にしていたのを解除
 				g_SysUI.GetControl(IDC_LOGIN_BTN_LOGIN)->SetEnabled(true);
 				g_pGame->m_bLoginStart = FALSE;
 				break;
 			case AUTH_RESULT_INVALID_USER_NAME:
 				g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
-				AddMessageLog(L"認証結果：ユーザ名が短すぎる、または長すぎます");
-				MessageBox(g_hWnd, L"認証結果：ユーザ名が短すぎる、または長すぎます", L"認証結果", MB_OK);
-				// ログイン二度押し禁止のため無効にしていたのを解除
+				AddMessageLog(L"認証結果：ユ?ザ名が短すぎる、または長すぎます");
+				MessageBox(g_hWnd, L"認証結果：ユ?ザ名が短すぎる、または長すぎます", L"認証結果", MB_OK);
+				// ログイン二度押し禁?のため無効にしていたのを解除
 				g_SysUI.GetControl(IDC_LOGIN_BTN_LOGIN)->SetEnabled(true);
 				g_pGame->m_bLoginStart = FALSE;
 				break;
 			case AUTH_RESULT_NO_UNIQUE_USER:
 				g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
-				AddMessageLog(L"認証結果：既に同じユーザ名がログインしています");
-				MessageBox(g_hWnd, L"認証結果：既に同じユーザ名がログインしています", L"認証結果", MB_OK);
-				// ログイン二度押し禁止のため無効にしていたのを解除
+				AddMessageLog(L"認証結果：既に同じユ?ザ名がログインしています");
+				MessageBox(g_hWnd, L"認証結果：既に同じユ?ザ名がログインしています", L"認証結果", MB_OK);
+				// ログイン二度押し禁?のため無効にしていたのを解除
 				g_SysUI.GetControl(IDC_LOGIN_BTN_LOGIN)->SetEnabled(true);
 				g_pGame->m_bLoginStart = FALSE;
 				break;
 			case AUTH_RESULT_GAME_PHASE:
 				g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
-				AddMessageLog(L"認証結果：現在ゲーム中のため入れません");
-				MessageBox(g_hWnd, L"認証結果：現在ゲーム中のため入れません", L"認証結果", MB_OK);
-				// ログイン二度押し禁止のため無効にしていたのを解除
+				AddMessageLog(L"認証結果：現在ゲ??中のため入れません");
+				MessageBox(g_hWnd, L"認証結果：現在ゲ??中のため入れません", L"認証結果", MB_OK);
+				// ログイン二度押し禁?のため無効にしていたのを解除
 				g_SysUI.GetControl(IDC_LOGIN_BTN_LOGIN)->SetEnabled(true);
 				g_pGame->m_bLoginStart = FALSE;
 				break;
 			case AUTH_RESULT_GAME_LOAD:
 				g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
-				AddMessageLog(L"認証結果：ゲームが開始されたため入れません");
-				MessageBox(g_hWnd, L"認証結果：ゲームが開始されたため入れません", L"認証結果", MB_OK);
-				// ログイン二度押し禁止のため無効にしていたのを解除
+				AddMessageLog(L"認証結果：ゲ??が開始されたため入れません");
+				MessageBox(g_hWnd, L"認証結果：ゲ??が開始されたため入れません", L"認証結果", MB_OK);
+				// ログイン二度押し禁?のため無効にしていたのを解除
 				g_SysUI.GetControl(IDC_LOGIN_BTN_LOGIN)->SetEnabled(true);
 				g_pGame->m_bLoginStart = FALSE;
 				break;
 			case AUTH_RESULT_GAME_INVALID:
 				g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
-				AddMessageLog(L"認証結果：サーバが閉じられている可能性があります");
-				MessageBox(g_hWnd, L"認証結果：サーバが閉じられている可能性があります", L"認証結果", MB_OK);
+				AddMessageLog(L"認証結果：サ?バが閉じられている可?性があります");
+				MessageBox(g_hWnd, L"認証結果：サ?バが閉じられている可?性があります", L"認証結果", MB_OK);
 				g_bCloseSocket = TRUE;
 				ret = TRUE;
 				break;
 			case AUTH_RESULT_TIMEOUT:
 				g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
-				AddMessageLog(L"認証結果：ログインタイムアウトしました");
-				MessageBox(g_hWnd, L"認証結果：ログインタイムアウトしました", L"認証結果", MB_OK);
+				AddMessageLog(L"認証結果：ログイン?イ?アウトしました");
+				MessageBox(g_hWnd, L"認証結果：ログイン?イ?アウトしました", L"認証結果", MB_OK);
 				g_bCloseSocket = TRUE;
 				ret = TRUE;
 				break;
 			case AUTH_RESULT_INVALID_SCR_CHARA_COUNT:
 				AddMessageLog(L"キャラスクリプト不足");
-				MessageBox(g_hWnd, L"サーバに接続するためのキャラスクリプトが不足しています。", L"スクリプトチェック", MB_ICONINFORMATION|MB_OK);
+				MessageBox(g_hWnd, L"サ?バに接続するためのキャラスクリプトが不足しています。", L"スクリプト?ェック", MB_ICONINFORMATION|MB_OK);
 				g_bCloseSocket = TRUE;
 				ret = TRUE;
 				break;
 			case AUTH_RESULT_INVALID_SCR_STAGE_COUNT:
-				AddMessageLog(L"ステージスクリプト不足");
-				MessageBox(g_hWnd, L"サーバに接続するためのステージスクリプトが不足しています。", L"スクリプトチェック", MB_ICONINFORMATION|MB_OK);
+				AddMessageLog(L"ステ?ジスクリプト不足");
+				MessageBox(g_hWnd, L"サ?バに接続するためのステ?ジスクリプトが不足しています。", L"スクリプト?ェック", MB_ICONINFORMATION|MB_OK);
 				g_bCloseSocket = TRUE;
 				ret = TRUE;
 				break;
@@ -115,21 +115,21 @@ BOOL RecvPacketProc(BYTE *data)
 					WORD id = 0;
 					memcpy(&id, &data[5], sizeof(WORD));
 					WCHAR log[128];
-					SafePrintf(log, 128, L"サーバに接続するためのキャラスクリプトが見つかりませんでした(ID=%d)", id);
-					MessageBox(g_hWnd, log, L"スクリプトチェック", MB_ICONINFORMATION|MB_OK);
+					SafePrintf(log, 128, L"サ?バに接続するためのキャラスクリプトが見つかりませんでした(ID=%d)", id);
+					MessageBox(g_hWnd, log, L"スクリプト?ェック", MB_ICONINFORMATION|MB_OK);
 				}
 				g_bCloseSocket = TRUE;
 				ret = TRUE;
 				break;
 			case AUTH_RESULT_INVALID_SCR_STAGE_NOT_FOUND:
-				AddMessageLog(L"ステージスクリプト不足");
+				AddMessageLog(L"ステ?ジスクリプト不足");
 				{
 					BYTE group = data[4];
 					WORD id = 0;
 					memcpy(&id, &data[5], sizeof(WORD));
 					WCHAR log[128];
-					SafePrintf(log, 128, L"サーバに接続するためのステージスクリプトが見つかりませんでした(ID=%d)", id);
-					MessageBox(g_hWnd, log, L"スクリプトチェック", MB_ICONINFORMATION|MB_OK);
+					SafePrintf(log, 128, L"サ?バに接続するためのステ?ジスクリプトが見つかりませんでした(ID=%d)", id);
+					MessageBox(g_hWnd, log, L"スクリプト?ェック", MB_ICONINFORMATION|MB_OK);
 				}
 				g_bCloseSocket = TRUE;
 				ret = TRUE;
@@ -147,17 +147,17 @@ BOOL RecvPacketProc(BYTE *data)
 					if (group == 0)
 					{
 						pName = g_pGame->GetScrName(id, FALSE);
-						SafePrintf(alog, 128, L"認証結果：サーバのデータとクライアントのデータが一致しませんでした\n（ステージスクリプトID[%d][%s]のデータ不一致）\nサーバにご確認ください", id, pName);
+						SafePrintf(alog, 128, L"認証結果：サ?バのデ??とクライアントのデ??が一致しませんでした\n（ステ?ジスクリプトID[%d][%s]のデ??不一致）\nサ?バにご確認ください", id, pName);
 #if TRIAL==0
-						SafePrintf(nlog, 128, L"サーバが使用しているステージスクリプトID[%d][%s]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", id, pName);
+						SafePrintf(nlog, 128, L"サ?バが使用しているステ?ジスクリプトID[%d][%s]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", id, pName);
 #endif
 					}
 					else
 					{
 						pName = g_pGame->GetScrName(id, TRUE);
-						SafePrintf(alog, 128, L"認証結果：サーバのデータとクライアントのデータが一致しませんでした\n（キャラクタスクリプトID[%d][%s]のデータ不一致）\nサーバにご確認ください", id, pName);
+						SafePrintf(alog, 128, L"認証結果：サ?バのデ??とクライアントのデ??が一致しませんでした\n（キャラク?スクリプトID[%d][%s]のデ??不一致）\nサ?バにご確認ください", id, pName);
 #if TRIAL==0
-						SafePrintf(nlog, 128, L"サーバが使用しているキャラクタスクリプトID[%d][%s]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", id, pName);
+						SafePrintf(nlog, 128, L"サ?バが使用しているキャラク?スクリプトID[%d][%s]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", id, pName);
 #endif
 					}
 					g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
@@ -165,7 +165,7 @@ BOOL RecvPacketProc(BYTE *data)
 					MessageBox(g_hWnd, alog, L"認証結果", MB_OK);
 #if TRIAL==0
 					if (g_bCloseSocket) return FALSE;
-					if (id >= 100 && MessageBox(g_hWnd, nlog, L"データ不一致", MB_YESNO) == IDYES)
+					if (id >= 100 && MessageBox(g_hWnd, nlog, L"デ??不一致", MB_YESNO) == IDYES)
 					{
 						if (g_bCloseSocket) return FALSE;
 						BYTE pkt[MAX_PACKET_SIZE];
@@ -182,20 +182,20 @@ BOOL RecvPacketProc(BYTE *data)
 				}
 			case AUTH_RESULT_FILESEND_ERROR:
 				g_pGame->DeleteRecvScrFile();
-				AddMessageLog(L"ファイル受信エラー");
-				MessageBox(g_hWnd, L"ファイル受信中エラーが発生しました。\n受信したスクリプトファイルのみ削除します。", L"データ受信", MB_OK);
+				AddMessageLog(L"フ?イル受信エラ?");
+				MessageBox(g_hWnd, L"フ?イル受信中エラ?が発生しました。\n受信したスクリプトフ?イルのみ削除します。", L"デ??受信", MB_OK);
 				g_bCloseSocket = TRUE;
 				ret = TRUE;
 				break;
 			case AUTH_RESULT_FILESEND_END:
-				AddMessageLog(L"データ受信終わり");
-				MessageBox(g_hWnd, L"データ受信が終わりました。\nもう一度起動し接続してください", L"データ受信", MB_ICONINFORMATION|MB_OK);
+				AddMessageLog(L"デ??受信終わり");
+				MessageBox(g_hWnd, L"デ??受信が終わりました。\nもう一度起動し接続してください", L"デ??受信", MB_ICONINFORMATION|MB_OK);
 				g_bCloseSocket = TRUE;
 				ret = TRUE;
 				break;
 			case AUTH_RESULT_FILESEND_DISABLE:
-				AddMessageLog(L"送信不可のデータ");
-				MessageBox(g_hWnd, L"送信不可のデータです。", L"データ受信", MB_ICONINFORMATION|MB_OK);
+				AddMessageLog(L"送信不可のデ??");
+				MessageBox(g_hWnd, L"送信不可のデ??です。", L"デ??受信", MB_ICONINFORMATION|MB_OK);
 				g_bCloseSocket = TRUE;
 				ret = TRUE;
 				break;
@@ -207,7 +207,7 @@ BOOL RecvPacketProc(BYTE *data)
 	case PK_REQ_HASH:
 		ret = g_pGame->ReqPacketHash(data);
 		break;
-	case PK_USER_CHAT:	// チャットパケット
+	case PK_USER_CHAT:	// ?ャットパケット
 		ret = PacketProc_Chat(data);
 		break;
 	case PK_USER_ROOMINFO:
@@ -305,7 +305,7 @@ DWORD __stdcall Thread_PacketReceiver(PVOID param)
 			if (g_pGame->GetState() & (GAME_STATE_LOGIN))
 				MessageBox(g_hWnd, L"接続数が満員です。\nクライアントを終了します。", L"connect error", MB_OK);
 			else
-				MessageBox(g_hWnd, L"サーバとの接続が切断されました。\nクライアントを終了します。", L"connect error", MB_OK);
+				MessageBox(g_hWnd, L"サ?バとの接続が切断されました。\nクライアントを終了します。", L"connect error", MB_OK);
 #endif
 			g_bCloseSocket = TRUE;
 			g_pGame->SetState( (EGameState)(((DWORD)g_pGame->GetState()&GAME_STATE_PHASE_MASK)|GAME_STATE_RELEASE));
@@ -344,10 +344,10 @@ DWORD __stdcall Thread_PacketReceiver(PVOID param)
 						memset(messa[nPacketStockIndex],0,MAX_PACKET_SIZE);
 						memcpy(messa[nPacketStockIndex],message,rPsize[nPacketStockIndex]);
 						memcpy(&rEnd,&messa[nPacketStockIndex][rPsize[nPacketStockIndex] -2],2);
-						if(rEnd != nEnd)	// パケット末尾コードチェック
+						if(rEnd != nEnd)	// パケット末尾コ?ド?ェック
 						{
 							WCHAR msglog[64];
-							SafePrintf(msglog, 64, L"パケット末尾にエラー...size=%d\n", (int)rPsize[nPacketProcIndex]);
+							SafePrintf(msglog, 64, L"パケット末尾にエラ?...size=%d\n", (int)rPsize[nPacketProcIndex]);
 							AddMessageLog(msglog);
 							continue;
 						}
@@ -363,9 +363,9 @@ DWORD __stdcall Thread_PacketReceiver(PVOID param)
 						for(;;)
 						{
 							if(nRecvStockSize <= 0)	break;
-							if (rPsize[nPacketStockIndex] > nRecvStockSize)	// 受信バッファよりパケットが大きい
+							if (rPsize[nPacketStockIndex] > nRecvStockSize)	// 受信バッフ?よりパケットが大きい
 							{
-								// 受信バッファを先頭に移動する必要がある
+								// 受信バッフ?を先頭に移動する必要がある
 								memset(messa[nPacketStockIndex],0,MAX_PACKET_SIZE);
 								memcpy(messa[nPacketStockIndex], &message[nDivIndex], nRecvStockSize);
 								break;
@@ -373,10 +373,10 @@ DWORD __stdcall Thread_PacketReceiver(PVOID param)
 							memset(messa[nPacketStockIndex],0,MAX_PACKET_SIZE);
 							memcpy(messa[nPacketStockIndex],&message[nDivIndex],rPsize[nPacketStockIndex]);
 							memcpy(&rEnd,&messa[nPacketStockIndex][ (int)(rPsize[nPacketStockIndex] -2)],2);
-							if(rEnd != nEnd)	// パケット末尾コードチェック
+							if(rEnd != nEnd)	// パケット末尾コ?ド?ェック
 							{
 								WCHAR msglog[MAX_MSG_BUFFER*4+1];
-								SafePrintf(msglog, MAX_MSG_BUFFER*4+1, L"パケット末尾にエラー(分割中エラー)...size=%d/index=%d/stock=%d", rPsize[nPacketStockIndex],nDivIndex,nRecvStockSize);
+								SafePrintf(msglog, MAX_MSG_BUFFER*4+1, L"パケット末尾にエラ?(分割中エラ?)...size=%d/index=%d/stock=%d", rPsize[nPacketStockIndex],nDivIndex,nRecvStockSize);
 								AddMessageLog(msglog);
 								g_pGame->GenerateDatMsg(msglog, (BYTE*)messa[nPacketStockIndex], rPsize[nPacketStockIndex]);
 								AddMessageLog(msglog);
@@ -401,10 +401,10 @@ DWORD __stdcall Thread_PacketReceiver(PVOID param)
 					{
 						memcpy(&messa[nPacketStockIndex][nRecvStockSize],message,rPsize[nPacketStockIndex]-nRecvStockSize);
 						memcpy(&rEnd,&messa[nPacketStockIndex][rPsize[nPacketStockIndex] -2],2);
-						if(rEnd != nEnd)	// パケット末尾コードチェック
+						if(rEnd != nEnd)	// パケット末尾コ?ド?ェック
 						{
 							WCHAR msglog[64];
-							SafePrintf(msglog, 64, L"パケット末尾にエラー...size=%d\n", (int)rPsize[nPacketProcIndex]);
+							SafePrintf(msglog, 64, L"パケット末尾にエラ?...size=%d\n", (int)rPsize[nPacketProcIndex]);
 							AddMessageLog(msglog);
 							continue;
 						}
@@ -421,9 +421,9 @@ DWORD __stdcall Thread_PacketReceiver(PVOID param)
 						for (;;)
 						{
 							if(nRecvStockSize <= 0)	break;
-							if ((rPsize[nPacketStockIndex]-nRecvStockIndex) > (nRecvStockSize))	// 受信バッファよりパケットが大きい
+							if ((rPsize[nPacketStockIndex]-nRecvStockIndex) > (nRecvStockSize))	// 受信バッフ?よりパケットが大きい
 							{
-								// 受信バッファを先頭に移動する必要がある
+								// 受信バッフ?を先頭に移動する必要がある
 								memcpy(&messa[nPacketStockIndex][nRecvStockIndex], &message[nDivIndex], nRecvStockSize);
 								nRecvStockSize += nRecvStockIndex;
 								break;
@@ -431,10 +431,10 @@ DWORD __stdcall Thread_PacketReceiver(PVOID param)
 //							memset(messa[nPacketStockIndex],0,MAX_PACKET_SIZE);
 							memcpy(&messa[nPacketStockIndex][nRecvStockIndex],&message[nDivIndex],rPsize[nPacketStockIndex]-nRecvStockIndex);
 							memcpy(&rEnd,&messa[nPacketStockIndex][ (int)(rPsize[nPacketStockIndex] -2)],2);
-							if(rEnd != nEnd)	// パケット末尾コードチェック
+							if(rEnd != nEnd)	// パケット末尾コ?ド?ェック
 							{
 								WCHAR msglog[MAX_MSG_BUFFER*4+1];
-								SafePrintf(msglog, MAX_MSG_BUFFER*4+1, L"パケット末尾にエラー(分割中エラー)...size=%d/index=%d/stock=%d", rPsize[nPacketStockIndex],nDivIndex,nRecvStockSize);
+								SafePrintf(msglog, MAX_MSG_BUFFER*4+1, L"パケット末尾にエラ?(分割中エラ?)...size=%d/index=%d/stock=%d", rPsize[nPacketStockIndex],nDivIndex,nRecvStockSize);
 								AddMessageLog(msglog);
 								g_pGame->GenerateDatMsg(msglog, (BYTE*)messa[nPacketStockIndex], rPsize[nPacketStockIndex]);
 								AddMessageLog(msglog);
@@ -477,7 +477,7 @@ DWORD __stdcall Thread_PacketReceiver(PVOID param)
 				if (g_pGame->GetState() & (GAME_STATE_LOGIN|GAME_STATE_TITLE))
 					MessageBox(g_hWnd, L"接続人数が満員です。\nクライアントを終了します。", L"connect error", MB_OK);
 				else
-					MessageBox(g_hWnd, L"サーバとの接続が切断されました。\nクライアントを終了します。", L"connect error", MB_OK);
+					MessageBox(g_hWnd, L"サ?バとの接続が切断されました。\nクライアントを終了します。", L"connect error", MB_OK);
 //#endif
 				
 				g_bCloseSocket = TRUE;
@@ -503,7 +503,7 @@ BOOL recvall(int sock, char* pkt, int* recvsize, int bufsize)
 	//> パケット受信
 	while (SOCKET_ERROR != (nRecvd = recv(sock, &pkt[*recvsize], nBufferSize, 0)))
 	{
-		// ソケットが閉じられた
+		// ?ケットが閉じられた
 		if (!nRecvd)
 		{
 			if (g_bDebug)
@@ -523,7 +523,7 @@ BOOL recvall(int sock, char* pkt, int* recvsize, int bufsize)
 		nBufferSize -= nRecvd;
 	}
 	DWORD dwErrCode = WSAGetLastError();
-	// エラー
+	// エラ?
 	if(dwErrCode && WSAEWOULDBLOCK != dwErrCode)
 	{
 #if ADD_WSAERROR_LOG
@@ -540,7 +540,7 @@ BOOL recvall(int sock, char* pkt, int* recvsize, int bufsize)
 	return TRUE;
 }
 
-// チャットパケット処理
+// ?ャットパケット処理
 BOOL PacketProc_Chat(BYTE *data)
 {
 // PK_USER_CHAT
@@ -566,7 +566,7 @@ BOOL PacketProc_Chat(BYTE *data)
 
 	if (!nChatLen)
 	{
-		AddMessageLog(L"無効なチャットパケットを受信");
+		AddMessageLog(L"無効な?ャットパケットを受信");
 		return FALSE;
 	}
 //		swprintf_s(addmsg, nNameLen+nChatLen+3, L"%s: %s", name, chatmsg);

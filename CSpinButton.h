@@ -2,15 +2,15 @@
 #define H_SPIN_BUTTON___
 // ===================================================================
 // CSpinButton.h
-//	数値表示と増減ボタンのクラス
+//	数値?示と増減??ンのクラス
 // ===================================================================
 
 #include <windows.h>
 #include <TCHAR.h>
 
 #include "util.h"
-#include "../lib/DXUT/dxstdafx.h"
-#include "../lib/DXUT/DXUT.h"
+#include "../thplib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/DXUT.h"
 #include "resource.h"
 
 
@@ -28,12 +28,12 @@ public:
 		|-------------|
 		|     button    |	減少
 		|-------------|
-		pDialog					追加先のダイアログ
+		pDialog					追加先の?イアログ
 		nBaseID				基底ID、nBaseIDから3つ使用する
-		nResouceIndex		リソース番号
+		nResouceIndex		リ??ス番号
 		x,y						左上座標
-		bw,bh					ボタンサイズ
-		sw,sh					スタティックテキストサイズ
+		bw,bh					??ンサイズ
+		sw,sh					ス?ティックテキストサイズ
 	*/
 	BOOL Create(CDXUTDialog* pDialog,int nBaseID, int nResourceIndex, int x, int y, int bw, int bh, int sw,int sh);
 	void Destroy();
@@ -103,8 +103,8 @@ protected:
 	int m_nDecrementID;
 
 	CDXUTDialog* p_pDialog;
-	CDXUTButton* m_pIncrement;				// 増加ボタン
-	CDXUTButton* m_pDecrement;				// 減少ボタン
+	CDXUTButton* m_pIncrement;				// 増加??ン
+	CDXUTButton* m_pDecrement;				// 減少??ン
 	CDXUTStatic*	m_pDigit;						// 数字
 };
 

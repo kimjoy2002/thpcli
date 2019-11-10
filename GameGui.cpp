@@ -20,7 +20,7 @@ void CALLBACK CGame::GUITitle(UINT nEvent, int nControlID, CDXUTControl* pContro
     case IDC_TITLE_BTN_EXIT:
 		SetState(eGameTitleRelease);		// 破棄処理へ移行
 		g_bCloseSocket = TRUE;
-//		StopClient();									// スレッドを止める
+//		StopClient();									// スレッドを?める
 //		Disconnect();								// 切断
 //		CloseWindow(g_hWnd);
 //		DXUTShutdown(0);
@@ -65,7 +65,7 @@ void CALLBACK CGame::GUILogin(UINT nEvent, int nControlID, CDXUTControl* pContro
 	case IDC_TITLE_BTN_EXIT:
 		SetState(eGameLoginRelease);		// 破棄処理へ移行
 		g_bCloseSocket = TRUE;
-//		StopClient();									// スレッドを止める
+//		StopClient();									// スレッドを?める
 //		Disconnect();								// 切断
 //		CloseWindow(g_hWnd);
 //		DXUTShutdown(0);
@@ -90,7 +90,7 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 	case IDC_ROOM_BTN_DISC:
 		SetState(eGameRoomRelease);		// 破棄処理へ移行
 		g_bCloseSocket = TRUE;
-//		StopClient();									// スレッドを止める
+//		StopClient();									// スレッドを?める
 //		Disconnect();								// 切断
 //		CloseWindow(g_hWnd);
 //		DXUTShutdown(0);
@@ -109,10 +109,10 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 			nMsgLen = _tcslen(((CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT))->GetText() );
 			if ( nMsgLen > 0 )
 			{
-				// チャット送信間隔が早すぎる
+				// ?ャット送信間隔が早すぎる
 				if (m_nChatSendInterval)
 				{
-					AddChatMessage(L"チャットメッセージの間隔が早過ぎます。", PK_USER_CHAT_SERVER_WARNING);
+					AddChatMessage(L"?ャットメッセ?ジの間隔が早過ぎます。", PK_USER_CHAT_SERVER_WARNING);
 					return;
 				}
 				if ( IsTeamRnadomizeCommand(((CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT))->GetText()) )
@@ -120,7 +120,7 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 					int iReqTeam = GetTeamRnadomizeCount(((CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT))->GetText());
 					if (!iReqTeam)
 					{
-						AddChatMessage(L"コマンドの数値が不正です", PK_USER_CHAT_SERVER_WARNING);
+						AddChatMessage(L"コ?ンドの数値が不正です", PK_USER_CHAT_SERVER_WARNING);
 						return;
 					}
 					// パケット作成
@@ -132,9 +132,9 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 				else
 				{
 					BYTE bytMessageRange = GetChatMessageRange();
-					// チャットメッセージ用バッファのサイズを超えていたら丸める
+					// ?ャットメッセ?ジ用バッフ?のサイズを超えていたら丸める
 					nMsgLen = min(MAX_CHAT_MSG*sizeof(WCHAR), nMsgLen*sizeof(WCHAR));
-					// メッセージをバッファにコピー
+					// メッセ?ジをバッフ?にコピ?
 					SafeMemCopy(msg, ((CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT))->GetText(), nMsgLen, nMsgLen);
 					// 0で埋める
 					msg[nMsgLen/sizeof(WCHAR)] = L'\0';
@@ -143,14 +143,14 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 					if (packetSize)
 						AddPacket(packetData, packetSize);
 					((CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT))->ClearText();
-					// メッセージ間隔設定
+					// メッセ?ジ間隔設定
 					m_nChatSendInterval = (int)CHAT_MESSAGE_INTERVAL;
 				}
 			}
 			break;
 		case EVENT_EDITBOX_CHANGE:
 			{
-				// 禁則文字チェック
+				// 禁則文字?ェック
 				BOOL bCheckOK = TRUE;
 				WCHAR pWMsg[MAX_MSG_BUFFER+1];
 				((CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT))->GetTextCopy(pWMsg, MAX_MSG_BUFFER);
@@ -220,14 +220,14 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 				m_pItemBtnList->OnRightButtonDown();
 		}
 		break;
-	case IDC_ROOM_BTN_READY:			// 準備OKボタン
+	case IDC_ROOM_BTN_READY:			// ?備OK??ン
 		if (!m_SessionArray[m_nUserIndex].game_ready)
 			PlaySysSoundSE(SE_suc_ON);
 		else
 			PlaySysSoundSE(SE_suc_OFF);
 		OnReadyButtonDown();
 		break;
-	case IDC_ROOM_BTN_ADD_ITEM:		// 使用アイテム追加ボタン
+	case IDC_ROOM_BTN_ADD_ITEM:		// 使用アイテ?追加??ン
 		PlaySysSoundSE(SE_suc_ON);
 		OnAddItemButtonDown();
 		break;
@@ -328,7 +328,7 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 			}
 		}
 		break;
-	case IDC_ROOM_BTN_CHARA_SEL_RANDOM:		// キャラランダムセレクト
+	case IDC_ROOM_BTN_CHARA_SEL_RANDOM:		// キャララン??セレクト
 #if RTRIAL
 #else
 		OnCharacterSelectRadioBtnDown(p_pUI->GetRadioButton(nControlID));
@@ -339,11 +339,11 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 #if RTRIAL	// 製品版と遊べる体験版
 		
 #else
-		// キャラ選択ボタン
+		// キャラ選択??ン
 		if (nControlID >= IDC_ROOM_BTN_CHARA_SEL_LIST_BASE
 			&& m_mapCharaScrInfo.find(nControlID-IDC_ROOM_BTN_CHARA_SEL_LIST_BASE) != m_mapCharaScrInfo.end())
-		{	// 準備OKなので変更不可
-			// 選択中キャラにチェックを戻す
+		{	// ?備OKなので変更不可
+			// 選択中キャラに?ェックを戻す
 			if (m_SessionArray[m_nUserIndex].game_ready)
 				g_pGame->CheckCharacterSelectRadioBtnFromID(m_SessionArray[m_nUserIndex].chara_type);
 			else
@@ -351,7 +351,7 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 				PlaySysSoundSE(SE_sur_ListSel);
 				OnCharacterSelectRadioBtnDown(p_pUI->GetRadioButton(nControlID));
 			}
-		}// アイテム選択ボタン
+		}// アイテ?選択??ン
 		else
 #endif	// RTRIAL
 			if (nControlID >= IDC_ROOM_RB_ITEM_BASE_INDEX
@@ -359,7 +359,7 @@ void CALLBACK CGame::GUIRoom(UINT nEvent, int nControlID, CDXUTControl* pControl
 		{
 			PlaySysSoundSE(SE_sur_ListSel);
 			OnSelectItemBtnList(p_pUI->GetRadioButton(nControlID));
-		}// 使用アイテム欄クリック
+		}// 使用アイテ?欄クリック
 		else if (nControlID >= IDC_MAIN_BTN_MY_ITEM_BASE && nControlID < (IDC_MAIN_BTN_MY_ITEM_BASE+g_nMaxItemStockCount))
 		{
 			if (nEvent == EVENT_BUTTON_CLICKED)
@@ -422,9 +422,9 @@ void CALLBACK CGame::GUIMain(UINT nEvent, int nControlID, CDXUTControl* pControl
 			if ( nMsgLen > 0 )
 			{
 				BYTE bytMessageRange = GetChatMessageRange();
-				// チャットメッセージ用バッファのサイズを超えていたら丸める
+				// ?ャットメッセ?ジ用バッフ?のサイズを超えていたら丸める
 				nMsgLen = min(MAX_CHAT_MSG*sizeof(WCHAR), nMsgLen*sizeof(WCHAR));
-				// メッセージをバッファにコピー
+				// メッセ?ジをバッフ?にコピ?
 				SafeMemCopy(msg, ((CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT))->GetText(), nMsgLen, nMsgLen);
 				// 0で埋める
 				msg[nMsgLen/sizeof(WCHAR)] = L'\0';
@@ -437,7 +437,7 @@ void CALLBACK CGame::GUIMain(UINT nEvent, int nControlID, CDXUTControl* pControl
 			break;
 		case EVENT_EDITBOX_CHANGE:
 			{
-				// 禁則文字チェック
+				// 禁則文字?ェック
 				BOOL bCheckOK = TRUE;
 				WCHAR pWMsg[MAX_MSG_BUFFER+1];
 				((CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT))->GetTextCopy(pWMsg, MAX_MSG_BUFFER);
@@ -496,7 +496,7 @@ void CALLBACK CGame::GUIMain(UINT nEvent, int nControlID, CDXUTControl* pControl
 		}
 		break;
 	default:	
-		// 弾選択ボタンが押下された
+		// 弾選択??ンが押下された
 		if (nControlID >= IDC_MAIN_BTN_SEL_BULLET_BASE && nControlID < (IDC_MAIN_BTN_SEL_BULLET_BASE+MAX_CHARA_BULLET_TYPE+1))
 			OnSelectBulletType(nControlID);
 		else if (nControlID >= IDC_MAIN_BTN_MY_ITEM_BASE && nControlID < (IDC_MAIN_BTN_MY_ITEM_BASE+g_nMaxItemStockCount))
@@ -523,7 +523,7 @@ void CALLBACK CGame::GUIResult(UINT nEvent, int nControlID, CDXUTControl* pContr
 	case IDC_RESULT_BTN_DISC:
 		SetState(eGameRoomRelease);		// 破棄処理へ移行
 		g_bCloseSocket = TRUE;
-//		StopClient();									// スレッドを止める
+//		StopClient();									// スレッドを?める
 //		Disconnect();								// 切断
 //		CloseWindow(g_hWnd);
 //		DXUTShutdown(0);
@@ -553,7 +553,7 @@ void CALLBACK CGame::OnConfigEvent( UINT nEvent, int nControlID, CDXUTControl* p
 //		break;
 	case IDC_CONFIG_SLIDER_BGM:
 		m_bytBGMVolume = (BYTE)p_pConfig->GetSlider(IDC_CONFIG_SLIDER_BGM)->GetValue();
-		// BGMボリュームが1以上
+		// BGM?リュ??が1以上
 		if (m_bytBGMVolume > 0)
 		{
 			// 再生していないなら再生開始
@@ -590,7 +590,7 @@ void CALLBACK CGame::OnConfigEvent( UINT nEvent, int nControlID, CDXUTControl* p
 	case IDC_CONFIG_BTN_CLOSE:
 		PlaySysSoundSE(SE_sub_ChangeView);
 		SaveConfig();
-		// BGM音量0なら再生を止める
+		// BGM音量0なら再生を?める
 		if (!m_bytBGMVolume)
 			StopBGM(FALSE);
 

@@ -2,22 +2,21 @@
 #define H_EXTERN____
 // ===================================================================
 // ext.h
-//	外部参照・ヘッダー
+//	外部参照・ヘッ??
 // ===================================================================
 
 #include <windows.h>
 #include <TCHAR.h>
 #include <STDLIB.h>
-#include "../include/types.h"
 
 #include "util.h"
 
-#include "../lib/DXUT/dxstdafx.h"
-#include "../lib/DXUT/DXUT.h"
+#include "../thplib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/DXUT.h"
 #include "CFiler.h"
 #include "game.h"
-#include "../common/CPacketQueue.h"
-#include "../common/CCriticalSection.h"
+#include "../thpcommon/CPacketQueue.h"
+#include "../thpcommon/CCriticalSection.h"
 
 #include "main.h"
 

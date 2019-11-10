@@ -4,7 +4,7 @@
 // -------------------------------------------------------------------
 // Class - CGame
 // -------------------------------------------------------------------
-// #コンストラクタ
+// #コンストラク?
 CGame::CGame()
 {
 	m_pD3D= NULL;
@@ -28,7 +28,7 @@ CGame::CGame()
 	ZeroMemory(&m_tKeyState, sizeof(TInputState));
 
 //===========================可変============================//
-//**定義した変数等の初期値
+//**定?した変数等の初期値
 //	ContLogClear();
 	m_nTcpSock = 0;
 	m_nUserIndex = -1;
@@ -149,14 +149,14 @@ CGame::CGame()
 //===========================================================//
 }
 
-// #デストラクタ
+// #デストラク?
 CGame::~CGame()
 {
 	m_bCreated = FALSE;
 //===========================可変============================//
-//**定義した変数等の破棄
+//**定?した変数等の破棄
 	
-	// ロードスレッドが動作中か
+	// ロ?ドスレッドが動作中か
 	OutputDebugStr(L"Thread");
 	DWORD dwParam;
 	if (GetExitCodeThread(m_hThreadLoading, &dwParam))
@@ -280,13 +280,13 @@ BOOL CGame::Create()
 	m_pDev->SetLight(0, &light);			// ライトを設定
 	m_pDev->LightEnable(0, TRUE);
 	m_pDev->SetRenderState( D3DRS_LIGHTING, TRUE);
-	// 投影マトリックスを設定する
+	// 投影?トリックスを設定する
 	D3DXMATRIX matProj;
 	RECT rcWindow = DXUTGetWindowClientRect();
 	FLOAT	   fAspect = (float) ((rcWindow.right-rcWindow.left)/(rcWindow.bottom-rcWindow.top));
 	D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI/4, fAspect, 1.0f, 1000.0f );
 	m_pDev->SetTransform( D3DTS_PROJECTION, &matProj );
-	m_pDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);	// カリングモード
+	m_pDev->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);	// カリングモ?ド
 
 	m_pSelBulletBtnList = new CDXUTButtonList();
 
@@ -470,7 +470,7 @@ void CALLBACK CGame::OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pCon
 	switch (m_eGameState)
 	{
 	// == Title == //
-	case eGameTitle:				// タイトル
+	case eGameTitle:				// ?イトル
 		GUITitle(nEvent, nControlID, pControl, pUserContext);
 		break;
 	case eGameLogin:				// ログイン
@@ -479,7 +479,7 @@ void CALLBACK CGame::OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pCon
 	case eGameRoom:				// 部屋
 		GUIRoom(nEvent, nControlID, pControl, pUserContext);
 		break;
-	case eGameLoad:				// ロード
+	case eGameLoad:				// ロ?ド
 		GUILoad(nEvent, nControlID, pControl, pUserContext);
 		break;
 	case eGameMain:				// メイン
@@ -494,7 +494,7 @@ void CALLBACK CGame::OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pCon
 }
 
 ///////////////////////////////////////////////////////////////
-// #メイン・ループ
+// #メイン・ル?プ
 ///////////////////////////////////////////////////////////////
 BOOL CGame::Game()
 {
@@ -541,13 +541,13 @@ BOOL CGame::Game()
 BOOL CGame::Init()
 {
 //===========================可変============================//
-//** ゲーム用意
+//** ゲ??用意
 	srand(timeGetTime()%0xFFFFFFFF);
 //	DeleteObject(hFont);
 #if USE_DINPUT
 	if (m_pInput && m_pInput->bCreated)
 	{
-		// デフォルトのキー設定を入れておく。
+		// デフォルトのキ?設定を入れておく。
 		TRelJoystick trJy;
 		for (int i=0;i<MAX_BUTTON;i++)
 			trJy.bytBtnIndex[i] = i;
@@ -563,7 +563,7 @@ BOOL CGame::Init()
 		trKc.buttons[CONT_BTN_2] = 45;
 		m_pInput->SetKeyCode(trKc);
 
-		// キー設定を読込。
+		// キ?設定を読込。
 		m_pInput->LoadFile(/*KEY_INI*/);
 	}
 #endif
@@ -583,17 +583,17 @@ BOOL CGame::Run(EGameState eGameState)
 	switch (eGameState)
 	{
 	// == Title == //
-	case eGameTitleInit:	// タイトル初期化
+	case eGameTitleInit:	// ?イトル初期化
 		m_eAllState = eGameRunTitleInit;
 		res = TitleInit();
 		if (res) m_eGameState = eGameTitle;
 		else	 break;
-	case eGameTitle:	// タイトルメイン
+	case eGameTitle:	// ?イトルメイン
 		m_eAllState = eGameRunTitle;
 		res = Title();
 		if (res)	m_eGameState = eGameTitleRelease;
 		else break;
-	case eGameTitleRelease:	// タイトル破棄
+	case eGameTitleRelease:	// ?イトル破棄
 		m_eAllState = eGameRunTitleRelease;
 		res = TitleRelease();
 		if (res)
@@ -736,7 +736,7 @@ void CGame::OnActive()
 }
 
 
-// フォーカス無し
+// フォ?カス無し
 void CGame::OnInactive()
 {
 	if (!m_bCreated) return;
@@ -751,10 +751,10 @@ void CGame::OnInactive()
 }
 
 //###########################################################//
-//#　描画
+//#??画
 //###########################################################//
 void CGame::Render(float fElapsedTime, LPDIRECT3DDEVICE9 pdev, EGameState eGameState)
-{//** 描画処理 LPDIRECT3DDEVICE8->Begin() End()の間
+{//** ?画処理 LPDIRECT3DDEVICE8->Begin() End()の間
 
 //===========================可変============================//
 	switch (eGameState)
@@ -806,7 +806,7 @@ void CGame::Render(float fElapsedTime, LPDIRECT3DDEVICE9 pdev, EGameState eGameS
 	m_pDXFont->DrawText(NULL, CData, -1, &rect, DT_LEFT, D3DCOLOR_XRGB(255, 255, 255));
 	rect.top += 20;
 
-	// ボタン表示
+	// ??ン?示
 	int d = 0;
 	for(int i=0; i<USE_BUTTONS; i++)
 	{
@@ -830,7 +830,7 @@ void CGame::Render(float fElapsedTime, LPDIRECT3DDEVICE9 pdev, EGameState eGameS
 			m_tKeyState.lX,m_tKeyState.lY);
 	m_pDXFont->DrawText(NULL, CData, -1, &rect, DT_LEFT, D3DCOLOR_XRGB(255, 255, 255));
 	rect.top += 20;
-	// ボタン表示
+	// ??ン?示
 	int d = 0;
 	for(int i=0; i<USE_BUTTONS; i++)
 	{
@@ -890,11 +890,11 @@ void CGame::Render(float fElapsedTime, LPDIRECT3DDEVICE9 pdev, EGameState eGameS
 #endif 0
 }
 //###########################################################//
-//#　マウス
+//#??ウス
 //###########################################################//
 void CGame::OnMouseLButton(BOOL bDown, int x, int y)
 {
-	// 各キャラの情報表示設定
+	// 各キャラの情報?示設定
 //	SetVisibleStageCharacterInfo(bDown?false:true);
 	
 	switch (m_eGameState)
@@ -927,7 +927,7 @@ void CGame::OnMouseLButton(BOOL bDown, int x, int y)
 			if (y<WIN_HEIGHT-MAIN_CONTROLPANEL_CNT_H_MIN)
 				m_bMouseLButtonDown = bDown;
 
-			// クリックされたら弾フォーカスを一時停止して画面ドラッグ可能にする
+			// クリックされたら弾フォ?カスを一時停?して画面ドラッグ可?にする
 			if (m_bMouseLButtonDown)
 			{
 				m_bPauseBulletFocus = TRUE;
@@ -935,7 +935,7 @@ void CGame::OnMouseLButton(BOOL bDown, int x, int y)
 				if (pChatLogBG->GetVisible())
 					pChatLogBG->SetVisible(false);
 
-				// ダブルクリックはクリア
+				// ?ブルクリックはクリア
 				m_nMyCharaFocusCounter = 0;
 			}
 			g_pCriticalSection->LeaveCriticalSection_StageTexture();
@@ -962,7 +962,7 @@ void CGame::OnMouseMButton(BOOL bDown, int x, int y)
 				// ステルス状態
 				if (pActSess->chara_state[CHARA_STATE_STEALTH_INDEX] > 0)
 				{
-					// 同チームか観戦なら半透明描画
+					// 同???か観戦なら半透明?画
 					if (pSelf && (pSelf->team_no == GALLERY_TEAM_NO || pActSess->team_no == pSelf->team_no))
 						bCanFocus = TRUE;
 				}
@@ -1054,7 +1054,7 @@ void CGame::OnMouseLButtonDoubleClick(WORD mk, int x,int y)
 	ptype_session self = GetMySessionInfo();
 	if (self)
 	{
-		if (self->obj_state & OBJ_STATE_MAIN_GALLERY_FLG)	return;	// 観戦の時は、フォーカスしない
+		if (self->obj_state & OBJ_STATE_MAIN_GALLERY_FLG)	return;	// 観戦の時は、フォ?カスしない
 
 		if (y<WIN_HEIGHT-MAIN_CONTROLPANEL_CNT_H_MIN)
 		{
@@ -1090,7 +1090,7 @@ void CGame::CalcViewTransCaps(BOOL bMain)
 }
 
 //###########################################################//
-//#　入力ログ
+//#?入力ログ
 //###########################################################//
 /*
 void CGame::ContLogSet(BYTE cont, BYTE button)
@@ -1135,7 +1135,7 @@ void CGame::Disconnect()
 }
 
 //###########################################################//
-//#　リセット
+//#?リセット
 //###########################################################//
 void CGame::OnResetDevice()
 {
@@ -1207,7 +1207,7 @@ void CGame::OnResetDevice()
 			if (TextureLoader::LoadTextureFromFileInMemory(&m_pBGTexture, m_pDev, pBuf, nBufSize, NULL, NULL, 0, 1))
 				SafeDeleteArray(pBuf);
 			else
-				MessageBox(g_hWnd, L"背景ロードエラー", L"error", MB_OK);
+				MessageBox(g_hWnd, L"背景ロ?ドエラ?", L"error", MB_OK);
 		}
 
 		g_pCriticalSection->EnterCriticalSection_Session(L'1');
@@ -1233,7 +1233,7 @@ void CGame::OnResetDevice()
 		SafeRelease(m_pStageTexture);
 		if (!m_pSelectedStageScrInfo)
 		{
-			MessageBox(g_hWnd, L"ステージ情報が消失しました",L"error", MB_OK);
+			MessageBox(g_hWnd, L"ステ?ジ情報が消失しました",L"error", MB_OK);
 			break;
 		}
 
@@ -1244,7 +1244,7 @@ void CGame::OnResetDevice()
 			SafeDeleteArray(pBuf);
 			if (!m_pMainStage->IsStageLoad())
 			{
-				MessageBox(g_hWnd, L"ステージロード失敗",L"error", MB_OK);
+				MessageBox(g_hWnd, L"ステ?ジロ?ド失敗",L"error", MB_OK);
 				break;
 			}
 		}
@@ -1259,7 +1259,7 @@ void CGame::OnResetDevice()
 			{
 				if (FAILED(D3DXCreateTextureFromFileEx(g_pDevice, m_pSelectedStageScrInfo->stage.path, 0,0, 1, 0, D3DDEFAULT_FORMAT, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, &m_pStageTexture)))
 				{
-					MessageBox(NULL, L"ステージテクスチャ作成失敗",L"ステージテクスチャ作成", MB_OK);
+					MessageBox(NULL, L"ステ?ジテクス?ャ作成失敗",L"ステ?ジテクス?ャ作成", MB_OK);
 					g_bCloseSocket = TRUE;
 					break;
 				}
@@ -1268,7 +1268,7 @@ void CGame::OnResetDevice()
 			{
 				if (!m_pMainStage->CreateTexture(m_pDev, &m_pStageTexture))
 				{
-					MessageBox(NULL, L"ステージテクスチャ作成失敗",L"ステージテクスチャ作成", MB_OK);
+					MessageBox(NULL, L"ステ?ジテクス?ャ作成失敗",L"ステ?ジテクス?ャ作成", MB_OK);
 					g_bCloseSocket = TRUE;
 					break;
 				}
@@ -1278,7 +1278,7 @@ void CGame::OnResetDevice()
 			SafeRelease(m_pStageBGTexture);
 			if (!m_pSelectedStageScrInfo)
 			{
-				MessageBox(g_hWnd, L"ステージ情報が消失しました",L"error", MB_OK);
+				MessageBox(g_hWnd, L"ステ?ジ情報が消失しました",L"error", MB_OK);
 				break;
 			}
 			g_pFiler->GetFileMemory(m_pSelectedStageScrInfo->bg.path, &pBuf, &nBufSize);
@@ -1310,7 +1310,7 @@ void CGame::OnResetDevice()
 		{
 			if (FAILED(D3DXCreateTextureFromFileEx(g_pDevice, m_pSelectedStageScrInfo->stage.path, 0,0, 1, 0, D3DDEFAULT_FORMAT, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, &m_pStageTexture)))
 			{
-				MessageBox(NULL, L"ステージテクスチャ作成失敗",L"ステージテクスチャ作成", MB_OK);
+				MessageBox(NULL, L"ステ?ジテクス?ャ作成失敗",L"ステ?ジテクス?ャ作成", MB_OK);
 				break;
 			}
 		}
@@ -1318,7 +1318,7 @@ void CGame::OnResetDevice()
 		{
 			if (m_pMainStage->CreateTexture(m_pDev, &m_pStageTexture))
 			{
-				MessageBox(NULL, L"ステージテクスチャ作成失敗",L"ステージテクスチャ作成", MB_OK);
+				MessageBox(NULL, L"ステ?ジテクス?ャ作成失敗",L"ステ?ジテクス?ャ作成", MB_OK);
 				break;
 			}
 		}
@@ -1326,7 +1326,7 @@ void CGame::OnResetDevice()
 		SafeRelease(m_pStageBGTexture);
 		if (!m_pSelectedStageScrInfo)
 		{
-			MessageBox(g_hWnd, L"ステージ情報が消失しました",L"error", MB_OK);
+			MessageBox(g_hWnd, L"ステ?ジ情報が消失しました",L"error", MB_OK);
 			break;
 		}
 		g_pFiler->GetFileMemory(m_pSelectedStageScrInfo->bg.path, &pBuf, &nBufSize);
@@ -1365,7 +1365,7 @@ BOOL CGame::OnResetSoundDevice()
 }
 
 //###########################################################//
-//#　ロスト
+//#?ロスト
 //###########################################################//
 void CGame::OnLostDevice()
 {
@@ -1402,7 +1402,7 @@ void CGame::OnLostDevice()
 		SafeRelease(m_pBGTexture);
 		SafeRelease(m_pStageTexture);
 		SafeRelease(m_pStageBGTexture);
-//		MessageBox(g_hWnd, L"ロード中にD3Dデバイスがロストしました", L"error", MB_OK);
+//		MessageBox(g_hWnd, L"ロ?ド中にD3Dデバイスがロストしました", L"error", MB_OK);
 
 		break;
 	case eGameLoadRelease:
@@ -1442,7 +1442,7 @@ void CGame::OnLostDevice()
 }
 
 //###########################################################//
-//#　デストロイ
+//#?デストロイ
 //###########################################################//
 void CGame::OnDestroyDevice()
 {

@@ -19,34 +19,34 @@ BOOL PacketProc_Room(BYTE *data)
 				sess.sess_index = (BYTE)data[nIndex];
 				sess.obj_no = sess.sess_index;
 				nIndex++;
-				// オブジェクトタイプ
+				// オブジェクト?イプ
 				sess.obj_type = OBJ_TYPE_CHARA;
-				// キャラタイプ
+				// キャラ?イプ
 				sess.chara_type = data[nIndex];
 				nIndex++;
-				// ユーザ名長
+				// ユ?ザ名長
 				sess.name_len = data[nIndex];
-				// ユーザ名範囲オーバー
+				// ユ?ザ名範囲オ?バ?
 				if (sess.name_len > MAX_USER_NAME*sizeof(WCHAR) || data[nIndex] == NULL)
 				{
 					g_pCriticalSection->LeaveCriticalSection_Session();
-					DXTRACE_MSG(L"PacketProc_RoomInfo:ユーザ名範囲オーバー");
+					DXTRACE_MSG(L"PacketProc_RoomInfo:ユ?ザ名範囲オ?バ?");
 					return FALSE;
 				}
 				nIndex++;
-				// ユーザ名
+				// ユ?ザ名
 				SafeMemCopy(sess.name, &data[nIndex], sess.name_len, MAX_USER_NAME*sizeof(WCHAR));
 				nIndex += sess.name_len;
 				// 状態
 				memcpy(&sess.obj_state, (BYTE*)&data[nIndex], sizeof(E_TYPE_OBJ_STATE));
 				nIndex+= sizeof(E_TYPE_OBJ_STATE);
-				// マスター状態
+				// ?ス??状態
 				sess.master = data[nIndex];
 				nIndex++;
-				// チームNo
+				// ???No
 				sess.team_no = data[nIndex];
 				nIndex++;
-				// 準備OK
+				// ?備OK
 				sess.game_ready = data[nIndex];
 				nIndex++;
 				// 座標値X
@@ -71,7 +71,7 @@ BOOL PacketProc_Room(BYTE *data)
 				sess.connect_state = CONN_STATE_AUTHED;
 				// キャラ情報設定
 				g_pGame->SetNewUser(&sess, FALSE);
-				// 準備状態を設定
+				// ?備状態を設定
 				g_pGame->SetGameReady(sess.sess_index, sess.game_ready);
 			}
 			// 部屋情報の有効状態更新
@@ -93,34 +93,34 @@ BOOL PacketProc_Room(BYTE *data)
 			sess.sess_index = (BYTE)data[nIndex];
 			sess.obj_no = sess.sess_index;
 			nIndex++;
-			// オブジェクトタイプ
+			// オブジェクト?イプ
 			sess.obj_type = OBJ_TYPE_CHARA;
-			// キャラタイプ
+			// キャラ?イプ
 			sess.chara_type = data[nIndex];
 			nIndex++;
-			// ユーザ名長
+			// ユ?ザ名長
 			sess.name_len = data[nIndex];
-			// ユーザ名範囲オーバー
+			// ユ?ザ名範囲オ?バ?
 			if (sess.name_len > MAX_USER_NAME*sizeof(WCHAR) || data[nIndex] == NULL)
 			{
 				g_pCriticalSection->LeaveCriticalSection_Session();
-				DXTRACE_MSG(L"PacketProc_RoomInfo:ユーザ名範囲オーバー");
+				DXTRACE_MSG(L"PacketProc_RoomInfo:ユ?ザ名範囲オ?バ?");
 				return FALSE;
 			}
 			nIndex++;
-			// ユーザ名
+			// ユ?ザ名
 			SafeMemCopy(sess.name, &data[nIndex], sess.name_len, MAX_USER_NAME*sizeof(WCHAR));
 			nIndex += sess.name_len;
 			// 状態
 			memcpy(&sess.obj_state, (BYTE*)&data[nIndex], sizeof(E_TYPE_OBJ_STATE));
 			nIndex+= sizeof(E_TYPE_OBJ_STATE);
-			// マスター状態
+			// ?ス??状態
 			sess.master = data[nIndex];
 			nIndex++;
-			// チームNo
+			// ???No
 			sess.team_no = data[nIndex];
 			nIndex++;
-			// 準備OK
+			// ?備OK
 			sess.game_ready = data[nIndex];
 			nIndex++;
 			// 座標値X
@@ -146,7 +146,7 @@ BOOL PacketProc_Room(BYTE *data)
 			nIndex+= sizeof(short);
 			// キャラ情報設定
 			g_pGame->SetNewUser(&sess, TRUE);
-			// 準備状態を設定
+			// ?備状態を設定
 			g_pGame->SetGameReady(sess.sess_index, sess.game_ready);
 			// 部屋情報の有効状態更新
 			if (sess.master)
@@ -160,8 +160,8 @@ BOOL PacketProc_Room(BYTE *data)
 		break;
 	case PK_USER_ROOMINFO_MASTER:
 		{
-			int nCharaIndex = data[4];		// ユーザNo
-			BOOL bMaster = (BOOL)data[5];	// マスター設定
+			int nCharaIndex = data[4];		// ユ?ザNo
+			BOOL bMaster = (BOOL)data[5];	// ?ス??設定
 			// 状態設定	
 			g_pCriticalSection->EnterCriticalSection_Session(L'T');
 			g_pGame->SetGameMaster(nCharaIndex, bMaster);
@@ -172,7 +172,7 @@ BOOL PacketProc_Room(BYTE *data)
 		break;
 	case PK_USER_ROOMINFO_MOVE:	// 部屋移動パケット
 		{
-			int nCharaIndex = data[4];		// ユーザNo
+			int nCharaIndex = data[4];		// ユ?ザNo
 			short nPosX = 0;	// 位置X
 			memcpy(&nPosX, (BYTE*)&data[5], sizeof(short));
 			short nPosY =0;	// 位置Y
@@ -204,8 +204,8 @@ BOOL PacketProc_Room(BYTE *data)
 		break;
 	case PK_USER_ROOMINFO_CHARA_SEL:		// キャラ選択
 		{
-			int nCharaIndex = data[4];		// ユーザNo
-			int nCharaType = data[5];		// キャラタイプ
+			int nCharaIndex = data[4];		// ユ?ザNo
+			int nCharaType = data[5];		// キャラ?イプ
 			// 情報更新
 			g_pCriticalSection->EnterCriticalSection_Session(L'U');
 			type_session* pSess = g_pGame->GetAuthedSessionInfo(nCharaIndex);
@@ -231,7 +231,7 @@ BOOL PacketProc_Room(BYTE *data)
 			OutputDebugStr(L"PK_USER_ROOMINFO_CHARA_SEL");
 		}
 		break;
-	case PK_USER_ROOMINFO_STAGE_SEL:	// ステージ選択
+	case PK_USER_ROOMINFO_STAGE_SEL:	// ステ?ジ選択
 		g_pGame->SetStageIndex((int)data[4]);
 		break;
 	case PK_USER_ROOMINFO_RULE:
@@ -247,11 +247,11 @@ BOOL PacketProc_Room(BYTE *data)
 	case PK_USER_ROOMINFO_RULE_ACT_TIME_LIMIT:
 		g_pGame->SetActTimeLimit(data[4]);
 		break;
-	case PK_USER_ROOMINFO_ITEM_SEL:	// アイテム選択
+	case PK_USER_ROOMINFO_ITEM_SEL:	// アイテ?選択
 		{
-			int nItemIndex = data[4];		// アイテム欄No
+			int nItemIndex = data[4];		// アイテ?欄No
 			DWORD dwItemFlg;
-			memcpy(&dwItemFlg, (void*)&data[5], sizeof(DWORD));	// アイテムフラグ
+			memcpy(&dwItemFlg, (void*)&data[5], sizeof(DWORD));	// アイテ?フラグ
 			WORD wCost = 0;
 			memcpy(&wCost, &data[9], sizeof(short));
 
@@ -275,7 +275,7 @@ BOOL PacketProc_Room(BYTE *data)
 		break;
 	case PK_USER_ROOMINFO_READY:
 		{
-			int nCharaIndex = data[4];		// ユーザNo
+			int nCharaIndex = data[4];		// ユ?ザNo
 			BOOL bReady = (BOOL)data[5];	// キャラNo
 			// 状態設定	
 			g_pCriticalSection->EnterCriticalSection_Session(L'O');
@@ -291,7 +291,7 @@ BOOL PacketProc_Room(BYTE *data)
 			int nCharaIndex = data[nIndex];	// user No
 			nIndex++;
 			g_pCriticalSection->EnterCriticalSection_Session(L'P');
-			// 再入場時、未接続ユーザーのクリア
+			// 再入場時、未接続ユ?ザ?のクリア
 			for (int i=0;i<g_pGame->GetMaxLoginNum();i++)
 			{
 				ptype_session inisess = g_pGame->GetSessionInfo(i);
@@ -331,11 +331,11 @@ BOOL PacketProc_Room(BYTE *data)
 			int nTeams = data[nIndex];	// Team num
 			if (nTeams <= 0)
 			{
-				g_pGame->AddChatMessage(L"正しいチーム数を入力して下さい", PK_USER_CHAT_SERVER_INFO);
+				g_pGame->AddChatMessage(L"正しい???数を入力して下さい", PK_USER_CHAT_SERVER_INFO);
 			}
 			else
 			{
-				g_pGame->AddChatMessage(L"---------チーム分け---------", PK_USER_CHAT_SERVER_INFO);
+				g_pGame->AddChatMessage(L"---------???分け---------", PK_USER_CHAT_SERVER_INFO);
 				++nIndex;
 				for (int i=0;i<nTeams;++i)
 				{

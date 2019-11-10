@@ -104,7 +104,7 @@ BOOL PacketProc_File_PK_USER_FILEINFO_OPEN(BYTE* data)
 	BOOL bComp = CheckFileHash(recvPath, md5_srv);
 	if (nFileNo == 0)
 		g_pGame->SetRecvScrFile(recvPath);
-	// ファイルが見つからなかったか,ファイルハッシュ不一致
+	// フ?イルが見つからなかったか,フ?イルハッシュ不一致
 	if (!bComp)
 	{
 		WCHAR exedir[_MAX_PATH*2+1];
@@ -129,7 +129,7 @@ BOOL PacketProc_File_PK_USER_FILEINFO_OPEN(BYTE* data)
 	else
 	{
 		SafeDeleteArray(recvPath);
-		// 次のファイルのハッシュ値を要求
+		// 次のフ?イルのハッシュ値を要求
 		BYTE pkt[MAX_PACKET_SIZE];
 		INT pktsize = PacketMaker::MakePacketData_ReqFileHash(bCharaScr, nID, nFileNo+1, pkt);
 		return g_pGame->AddPacket(pkt, pktsize);
@@ -180,15 +180,15 @@ BOOL PacketProc_File_PK_USER_FILEINFO_SEND(BYTE* data)
 		SafeDeleteArray(buf);
 	}
 	int nTotalWrite = ftell(s_pfRecvFile);
-	// 終端
+	// 終?
 	if (bEof)
 	{
-		// ファイルを閉じる
+		// フ?イルを閉じる
 		if (s_pfRecvFile)
 			fclose(s_pfRecvFile);
 		s_pfRecvFile = NULL;
 		AddMessageLog(L"FileClose & ReqNextHash");
-		// 次のファイルのハッシュ値を要求
+		// 次のフ?イルのハッシュ値を要求
 		BYTE pkt[MAX_PACKET_SIZE];
 		INT pktsize = PacketMaker::MakePacketData_ReqFileHash(bCharaScr, nID, nFileNo+1, pkt);
 		return g_pGame->AddPacket(pkt, pktsize);
@@ -213,7 +213,7 @@ BOOL PacketProc_File_PK_USER_FILEINFO_CLOSE(BYTE* data)
 	if (bCharaScr)
 		SafePrintf(msg, 64, L"キャラスクリプト(ID:%d)の受信が終わりました。", nID);
 	else
-		SafePrintf(msg, 64, L"ステージスクリプト(ID:%d)の受信が終わりました。", nID);
+		SafePrintf(msg, 64, L"ステ?ジスクリプト(ID:%d)の受信が終わりました。", nID);
 	AddMessageLog(msg);
 	MessageBox(g_hWnd, msg, L"ログイン", MB_ICONINFORMATION|MB_OK);
 

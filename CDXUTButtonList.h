@@ -2,15 +2,15 @@
 #define H_DXUT_BUTTON_LIST_CLASS___
 // ===================================================================
 // CDXUTButtonList.h
-//	DXUTButtonを並べるクラス・ヘッダー
+//	DXUTButtonを並べるクラス・ヘッ??
 // ===================================================================
 
 #include <windows.h>
 #include <TCHAR.h>
 #include <vector>
 
-#include "../DXUT/dxstdafx.h"
-#include "../DXUT/DXUT.h"
+#include "../thplib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/DXUT.h"
 
 #define 	BUTTON_LIST_HORIZON	(0x00)
 #define 	BUTTON_LIST_VERTICAL	(0x01)
@@ -21,12 +21,12 @@ public:
 	CDXUTButtonList();
 	virtual ~CDXUTButtonList() { m_vecButtons.clear(); };
 	// 生成
-	// pBtnArrowL	: 左矢印ボタン
-	// pBtnArrowR	: 右矢印ボタン
+	// pBtnArrowL	: 左矢印??ン
+	// pBtnArrowR	: 右矢印??ン
 	// pntLocate		: 左上位置
-	// nDrawRange	: 描画範囲の長さ
-	// bytStyle			: 描画スタイル	0x00 横 / 0x01 縦
-	// nSpace			: ボタンとボタンの間隔
+	// nDrawRange	: ?画範囲の長さ
+	// bytStyle			: ?画ス?イル	0x00 横 / 0x01 縦
+	// nSpace			: ??ンと??ンの間隔
 	void Create(CDXUTButton *pBtnArrowL, CDXUTButton *pBtnArrowR, POINT* pntLocate, int nDrawRange, BYTE bytStyle = 0, int nSpace = 0);
 
 	void Clear();

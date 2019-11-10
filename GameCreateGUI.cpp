@@ -1,7 +1,7 @@
 #include "ext.h"
 #include "Game.h"
 
-//> GUIコントロールの作成
+//> GUIコントロ?ルの作成
 BOOL CGame::CreateGUI()
 {
 	if (!p_pUI)	return FALSE;
@@ -17,52 +17,52 @@ BOOL CGame::CreateGUI()
 	CDXUTScrollBar* pScrollBar = NULL;
 	CDXUTMeter*	pMeter = NULL;
 	
-	// アイテム詳細表示サイズ作成
+	// アイテ?詳細?示サイズ作成
 	CreateItemDetailControlSize();
 
-	// リソースとスクリプトのインデックス情報クリア
+	// リ??スとスクリプトのインデックス情報クリア
 	m_mapCharaScrInfo.clear();
 
-	// デフォルトコントロール画像
+	// デフォルトコントロ?ル画像
 	m_nDefaultGUIResourceIndex = AddResourceTexture(IMG_GUI_SKIN);
 	if (m_nDefaultGUIResourceIndex == -1)
 		return FALSE;
 	DXUTTextureNode* pTextureNode = p_pUI->GetTexture(m_nDefaultGUIResourceIndex);
 	m_pDefaultGUIResourceTexture = pTextureNode->pTexture;
 
-	// ステージ画像
+	// ステ?ジ画像
 	if (!common::scr::LoadAllStageScript(g_L, g_pLuah, &m_mapStageScrInfo))
 	{
-		MessageBox(g_hWnd, L"ステージスクリプトロードエラー", L"script error", MB_OK);
+		MessageBox(g_hWnd, L"ステ?ジスクリプトロ?ドエラ?", L"script error", MB_OK);
 		return FALSE;
 	}
 
-	// リソースマネージャとダイアログにキャラ用のGUIパーツ追加
+	// リ??ス?ネ?ジャと?イアログにキャラ用のGUIパ?ツ追加
 	if (!common::scr::LoadAllCharaScript(p_pL, p_pLuah, &m_mapCharaScrInfo))
 	{
-		MessageBox(g_hWnd, L"キャラクタースクリプトロードエラー", L"script error", MB_OK);
+		MessageBox(g_hWnd, L"キャラク??スクリプトロ?ドエラ?", L"script error", MB_OK);
 		return FALSE;
 	}
 
-	// メイン コントロールパネル
+	// メイン コントロ?ルパネル
 	p_pUI->AddSprite( IDC_MAIN_CONTROLPANEL,
 		MAIN_CONTROLPANEL_CNT_RECT,
 		false, &pSprite );
 	pSprite->GetElement(0)->TextureColor.Init( 0xFFFFFFFF );
-	SetRect( &rcTexture, MAIN_CONTROLPANEL_IMG_RECT);											// 描画範囲
-	pSprite->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, MAIN_CONTROLPANEL_IMG_RECT);											// ?画範囲
+	pSprite->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pSprite->SetVisible(false);
 
 	// Room //////////////////////////////////////////////////////////////////////
-	// チャットログ用背景
+	// ?ャットログ用背景
 	p_pUI->AddSprite( IDC_MAIN_SPRITE_CHATLOG_BG,
 		MAIN_SPRITE_CHATLOG_BG_CNT_RECT,
 		false, &pSprite );
-	SetRect( &rcTexture, MAIN_SPRITE_CHATLOG_BG_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, MAIN_SPRITE_CHATLOG_BG_IMG_RECT);	// ?画範囲
 	pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pSprite->SetVisible(false);
 
-	// チャットログ //
+	// ?ャットログ //
     // List box
 	p_pUI->AddColorListBox( IDC_ROOM_LB_CHATLOG,
 		ROOM_CHATLOG_LB_CNT_RECT,
@@ -76,28 +76,28 @@ BOOL CGame::CreateGUI()
 	pElement = pColorListBox->GetElement(1);
     pElement->SetFont( 0, D3DCOLOR_ARGB( 255, 255, 255, 255 ), DT_LEFT | DT_VCENTER );
 	pElement->TextureColor.Init(0,0,0);
-	// リストアイテム１
+	// リストアイテ?１
 	pElement = pColorListBox->GetElement(2);
     pElement->SetFont( 0, D3DCOLOR_ARGB( 255, 255, 255, 255 ), DT_LEFT | DT_VCENTER );
 	pElement->TextureColor.Init(0,0,0);
-	// リストアイテム２
+	// リストアイテ?２
 	pElement = pColorListBox->GetElement(3);
     pElement->SetFont( 0, D3DCOLOR_ARGB( 255, 255, 255, 0 ), DT_LEFT | DT_VCENTER );
 	pElement->TextureColor.Init(0,0,0);
-	// リストアイテム３
+	// リストアイテ?３
 	CDXUTElement* pNewElement = new CDXUTElement(*pElement);
 	pNewElement->SetFont(0, D3DCOLOR_ARGB( 255, 0, 255, 0 ), DT_LEFT | DT_VCENTER );
 	pElement->TextureColor.Init(0,0,0);
 	pColorListBox->SetElement(4, pNewElement);
 	SafeDelete(pNewElement);
-	// リストアイテム４
+	// リストアイテ?４
 	pNewElement = new CDXUTElement(*pElement);
 	pNewElement->SetFont(0, D3DCOLOR_ARGB( 255, 255, 0, 0 ), DT_LEFT | DT_VCENTER );
 	pElement->TextureColor.Init(0,0,0);
 	pColorListBox->SetElement(5, pNewElement);
 	SafeDelete(pNewElement);
 	pColorListBox->SetVisible(false);
-	// リストアイテム５
+	// リストアイテ?５
 	pNewElement = new CDXUTElement(*pElement);
 	pNewElement->SetFont(0, D3DCOLOR_ARGB( 255, 0, 255, 255 ), DT_LEFT | DT_VCENTER );
 	pElement->TextureColor.Init(0,0,0);
@@ -106,13 +106,13 @@ BOOL CGame::CreateGUI()
 	pColorListBox->SetVisible(false);
 
 	pScrollBar = pColorListBox->GetScrollBar();
-	SetRect( &rcTexture, ROOM_CHATLOG_SB_IMG_U_RECT);	// 描画範囲
+	SetRect( &rcTexture, ROOM_CHATLOG_SB_IMG_U_RECT);	// ?画範囲
 	pScrollBar->GetElement(1)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, ROOM_CHATLOG_SB_IMG_D_RECT);	// 描画範囲
+	SetRect( &rcTexture, ROOM_CHATLOG_SB_IMG_D_RECT);	// ?画範囲
 	pScrollBar->GetElement(2)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, BTN_VBAR_RECT);	// 描画範囲
+	SetRect( &rcTexture, BTN_VBAR_RECT);	// ?画範囲
 	pScrollBar->GetElement(3)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	// チャットバー //
+	// ?ャットバ? //
 	CDXUTIMEEditBox* pIMEEdit = (CDXUTIMEEditBox*)p_pUI->GetControl(IDC_SHARE_EDIT);
 	pElement = pIMEEdit->GetElement(9);
 	SetRect(&rcTexture, ROOM_CHAT_EDIT_IMG_9_RECT);
@@ -132,23 +132,23 @@ BOOL CGame::CreateGUI()
 	pElement->FontColor.States[ DXUT_STATE_NORMAL ] = D3DCOLOR_ARGB(255, 0, 0, 0);
 	pElement->FontColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 0, 0, 0);
 	pElement->FontColor.States[ DXUT_STATE_DISABLED ] = D3DCOLOR_ARGB(255, 128, 128, 128);
-	SetRect( &rcTexture, ROOM_CHAT_CMB_IMG_0_RECT);	// 描画範囲
-	pElement->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_CHAT_CMB_IMG_0_RECT);	// ?画範囲
+	pElement->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	// Button
 	pElement = pCombo->GetElement(1);
 	SetRect( &rcTexture, ROOM_CHAT_CMB_IMG_1_RECT );
 	pElement->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );
 	// cmb scrollbar
 	pScrollBar = pCombo->GetScrollBar();
-	SetRect( &rcTexture, ROOM_CHATLOG_SB_IMG_U_RECT);	// 描画範囲
+	SetRect( &rcTexture, ROOM_CHATLOG_SB_IMG_U_RECT);	// ?画範囲
 	pScrollBar->GetElement(1)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, ROOM_CHATLOG_SB_IMG_D_RECT);	// 描画範囲
+	SetRect( &rcTexture, ROOM_CHATLOG_SB_IMG_D_RECT);	// ?画範囲
 	pScrollBar->GetElement(2)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, BTN_VBAR_RECT);	// 描画範囲
+	SetRect( &rcTexture, BTN_VBAR_RECT);	// ?画範囲
 	pScrollBar->GetElement(3)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pCombo->SetVisible(false);
 
-	// 退室ボタン
+	// 退室??ン
 	p_pUI->AddButton( IDC_ROOM_BTN_DISC, L"EXIT",
 		ROOM_EXIT_BTN_CNT_RECT,
 		0, false, &pBtn );
@@ -157,11 +157,11 @@ BOOL CGame::CreateGUI()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 	
-	SetRect( &rcTexture, ROOM_EXIT_BTN_IMG_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_EXIT_BTN_IMG_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetVisible(false);
 
-	// 準備OKボタン
+	// ?備OK??ン
 	p_pUI->AddButton( IDC_ROOM_BTN_READY, L"",
 		ROOM_BTN_READY_CNT,
 		0, false, &pBtn );
@@ -170,8 +170,8 @@ BOOL CGame::CreateGUI()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 
-	SetRect( &rcTexture, ROOM_BTN_READY_IMG_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_READY_IMG_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetVisible(false);
 
 	// config
@@ -183,11 +183,11 @@ BOOL CGame::CreateGUI()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 
-	SetRect( &rcTexture, ROOM_BTN_CONFIG_IMG_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_CONFIG_IMG_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetVisible(false);
 
-	// キャラ、アイテム、ルール画面表示ボタン //
+	// キャラ、アイテ?、ル?ル画面?示??ン //
 	// キャラ
 	p_pUI->AddButton( IDC_ROOM_BTN_VIEW_CHARA, L"キャラ",
 		ROOM_BTN_VIEW_CHARA_CNT_RECT,
@@ -197,13 +197,13 @@ BOOL CGame::CreateGUI()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 	
-	SetRect( &rcTexture, IDC_ROOM_BTN_VIEW_CHARA_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, IDC_ROOM_BTN_VIEW_CHARA_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetStateMouserOverOffset(0,0);
 	pBtn->SetStatePressedOverOffset(0,0);
 	pBtn->SetVisible(false);
-	// アイテム
-	p_pUI->AddButton( IDC_ROOM_BTN_VIEW_ITEM, L"アイテム",
+	// アイテ?
+	p_pUI->AddButton( IDC_ROOM_BTN_VIEW_ITEM, L"アイテ?",
 		ROOM_BTN_VIEW_ITEM_CNT_RECT,
 		0, false, &pBtn );
 	pBtn->GetElement(0)->TextureColor.Init( D3DCOLOR_ARGB( 0, 255, 255, 255 ) );  // Transparent center
@@ -211,13 +211,13 @@ BOOL CGame::CreateGUI()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 	
-	SetRect( &rcTexture, IDC_ROOM_BTN_VIEW_ITEM_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, IDC_ROOM_BTN_VIEW_ITEM_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetStateMouserOverOffset(0,0);
 	pBtn->SetStatePressedOverOffset(0,0);
 	pBtn->SetVisible(false);
-	// ルール
-	p_pUI->AddButton( IDC_ROOM_BTN_VIEW_RULE, L"ルール",
+	// ル?ル
+	p_pUI->AddButton( IDC_ROOM_BTN_VIEW_RULE, L"ル?ル",
 		ROOM_BTN_VIEW_RULE_CNT_RECT,
 		0, false, &pBtn );
 	pBtn->GetElement(0)->TextureColor.Init( D3DCOLOR_ARGB( 0, 255, 255, 255 ) );  // Transparent center
@@ -225,8 +225,8 @@ BOOL CGame::CreateGUI()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 	
-	SetRect( &rcTexture, IDC_ROOM_BTN_VIEW_RULE_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, IDC_ROOM_BTN_VIEW_RULE_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetStateMouserOverOffset(0,0);
 	pBtn->SetStatePressedOverOffset(0,0);
 	pBtn->SetVisible(false);
@@ -255,11 +255,11 @@ BOOL CGame::CreateGUI()
 	pColorListBox->GetElement(1)->SetFont(IDC_ROOM_BTN_CHARA_SEL_FONT, 0xFFFFFFFF, DT_LEFT);
 
 	pScrollBar = pColorListBox->GetScrollBar();
-	SetRect( &rcTexture, ROOM_LIST_CHARA_BLT_SB_U_RECT);	// 描画範囲
+	SetRect( &rcTexture, ROOM_LIST_CHARA_BLT_SB_U_RECT);	// ?画範囲
 	pScrollBar->GetElement(1)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, ROOM_LIST_CHARA_BLT_SB_D_RECT);	// 描画範囲
+	SetRect( &rcTexture, ROOM_LIST_CHARA_BLT_SB_D_RECT);	// ?画範囲
 	pScrollBar->GetElement(2)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, BTN_VBAR_RECT);	// 描画範囲
+	SetRect( &rcTexture, BTN_VBAR_RECT);	// ?画範囲
 	pScrollBar->GetElement(3)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 
 	pElement = pColorListBox->GetElement(1);
@@ -288,105 +288,105 @@ BOOL CGame::CreateGUI()
 	pStatic->GetElement(0)->SetFont(1, 0xFFFFFFFF, DT_TOP|DT_LEFT|DT_SINGLELINE);
 	pStatic->SetVisible(false);
 
-	// アイテムリスト //
+	// アイテ?リスト //
 	SetItemIconButtonList();
 
-	// アイテム情報
+	// アイテ?情報
 	p_pUI->AddStatic( IDC_ROOM_STATIC_ITEM_INFO,L"",
 		ROOM_STATIC_ITEM_INFO_CNT_RECT,
 		false, &pStatic );
 	p_pUI->GetStatic(IDC_ROOM_STATIC_ITEM_INFO)->GetElement(0)->SetFont(IDC_ROOM_BTN_CHARA_SEL_FONT, 0xFFFFFFFF, DT_TOP|DT_LEFT|DT_WORDBREAK);
 	pStatic->SetVisible(false);
 
-	// 選択したアイテムアイコン
+	// 選択したアイテ?アイコン
 	p_pUI->AddButton( IDC_ROOM_BTN_ITEM_SEL_ICON, L"",
 		ROOM_BTN_ITEM_SEL_ICON_CNT_RECT,
 		0, false, &pBtn );
 	pBtn->SetStateMouserOverOffset(0,0);
 	pBtn->SetStatePressedOverOffset(0,0);
-	// 描画範囲
+	// ?画範囲
 	SetRect( &rcTexture,	GAME_ITEM_BG_RECT);
 	pBtn->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture ,0xFFFFFFFF);
 	SetRect( &rcTexture,	GAME_ITEM_01_RECT);
 	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture ,0xFFFFFFFF);
 	pBtn->SetUserData((void*)0);
 	pBtn->SetVisible(false);
-	// 一つ目をチェックしておく
+	// 一つ目を?ェックしておく
 	p_pUI->GetRadioButton(IDC_ROOM_RB_ITEM_BASE_INDEX)->SetChecked(true);
 	OnItemIconButtonDown(p_pUI->GetRadioButton(IDC_ROOM_RB_ITEM_BASE_INDEX));
 
-	// 選択アイテム追加ボタン
+	// 選択アイテ?追加??ン
 	p_pUI->AddButton( IDC_ROOM_BTN_ADD_ITEM, L"",
 		ROOM_BTN_ADD_ITEM_CNT_RECT,
 		0, false, &pBtn );
 	pBtn->GetElement(0)->TextureColor.Init( 0,0,0 );
 	pBtn->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
-	SetRect( &rcTexture, ROOM_BTN_ADD_ITEM_IMG_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_ADD_ITEM_IMG_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetVisible(false);
 
-	// ルール //
-	// ルール１
+	// ル?ル //
+	// ル?ル１
 	p_pUI->AddCheckBox( IDC_ROOM_CHK_RULE_1,
 		ROOM_CHK_RULE_1_DETAIL,
 		ROOM_CHK_RULE_1_CNT_RECT,
 		false, 0, false, &pChkBox );
-	SetRect( &rcTexture, ROOM_CHK_RULE_1_IMG_RECT);	// 描画範囲
-	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, ROOM_CHK_RULE_1_CHK_IMG_RECT);	// 描画範囲
-	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_CHK_RULE_1_IMG_RECT);	// ?画範囲
+	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, ROOM_CHK_RULE_1_CHK_IMG_RECT);	// ?画範囲
+	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pChkBox->GetElement(1)->TextureColor.States[DXUT_STATE_DISABLED] = ROOM_CHK_RULE_DISABLE_COLOR;
 	pChkBox->SetUserData((void*)GAME_RULE_01);
 	pChkBox->SetVisible(false);
-	// ルール２
+	// ル?ル２
 	p_pUI->AddCheckBox( IDC_ROOM_CHK_RULE_2,
 		ROOM_CHK_RULE_2_DETAIL,
 		ROOM_CHK_RULE_2_CNT_RECT,
 		false, 0, false, &pChkBox );
-	SetRect( &rcTexture, ROOM_CHK_RULE_2_IMG_RECT);	// 描画範囲
-	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, ROOM_CHK_RULE_2_CHK_IMG_RECT);	// 描画範囲
-	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_CHK_RULE_2_IMG_RECT);	// ?画範囲
+	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, ROOM_CHK_RULE_2_CHK_IMG_RECT);	// ?画範囲
+	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pChkBox->GetElement(1)->TextureColor.States[DXUT_STATE_DISABLED] = ROOM_CHK_RULE_DISABLE_COLOR;
 	pChkBox->SetUserData((void*)GAME_RULE_02);
 	pChkBox->SetVisible(false);
-	// ルール３
+	// ル?ル３
 	p_pUI->AddCheckBox( IDC_ROOM_CHK_RULE_3,
 		ROOM_CHK_RULE_3_DETAIL,
 		ROOM_CHK_RULE_3_CNT_RECT,
 		false, 0, false, &pChkBox );
-	SetRect( &rcTexture, ROOM_CHK_RULE_3_IMG_RECT);	// 描画範囲
-	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, ROOM_CHK_RULE_3_CHK_IMG_RECT);	// 描画範囲
-	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_CHK_RULE_3_IMG_RECT);	// ?画範囲
+	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, ROOM_CHK_RULE_3_CHK_IMG_RECT);	// ?画範囲
+	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pChkBox->GetElement(1)->TextureColor.States[DXUT_STATE_DISABLED] = ROOM_CHK_RULE_DISABLE_COLOR;
 	pChkBox->SetUserData((void*)GAME_RULE_03);
 	pChkBox->SetVisible(false);
 
-	// ルール４
+	// ル?ル４
 	p_pUI->AddCheckBox( IDC_ROOM_CHK_RULE_4,
 		ROOM_CHK_RULE_4_DETAIL,
 		ROOM_CHK_RULE_4_CNT_RECT,
 		false, 0, false, &pChkBox );
-	SetRect( &rcTexture, ROOM_CHK_RULE_4_IMG_RECT);	// 描画範囲
-	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, ROOM_CHK_RULE_4_CHK_IMG_RECT);	// 描画範囲
-	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_CHK_RULE_4_IMG_RECT);	// ?画範囲
+	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, ROOM_CHK_RULE_4_CHK_IMG_RECT);	// ?画範囲
+	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pChkBox->GetElement(1)->TextureColor.States[DXUT_STATE_DISABLED] = ROOM_CHK_RULE_DISABLE_COLOR;
 	pChkBox->SetUserData((void*)GAME_RULE_04);
 	pChkBox->SetVisible(false);
 
-	// チーム分けのコントロール
+	// ???分けのコントロ?ル
 	SetTeamSeparateControl();
 
-	// ステージセレクト
+	// ステ?ジセレクト
 	SetStageSelectControl();
 
 	// 自キャラ情報 //
 	// 自キャラ名
-	// 手前に表示するため後に作成
+	// 手前に?示するため後に作成
 
-	// 自チーム番号
+	// 自???番号
 	p_pUI->AddStatic( IDC_ROOM_STATIC_MY_TEAMNO,L"",
 		ROOM_STATIC_MY_TEAMNO_CNT_RECT,
 		false, &pStatic);
@@ -396,10 +396,10 @@ BOOL CGame::CreateGUI()
 	pStatic->SetUserData(NULL);
 	pStatic->SetVisible(false);
 
-	// 自キャラ使用アイテムのアイコン //
+	// 自キャラ使用アイテ?のアイコン //
 	SetMyItemButtonList();
 
-	// 制限ターン数
+	// 制限??ン数
 	p_pUI->AddStatic( IDC_STATIC_SPIN_LIMIT_TURN_TEXT,ROOM_STATIC_SPIN_LIMIT_TURN_TEXT_MSG,
 		ROOM_STATIC_SPIN_LIMIT_TURN_TEXT_CNT_RECT,
 		false, &pStatic);
@@ -410,7 +410,7 @@ BOOL CGame::CreateGUI()
 	m_pSpinTurnLimit010->Create(p_pUI, IDC_ROOM_SPIN_LIMIT_TURN_010, m_nDefaultGUIResourceIndex, ROOM_SPIN_LIMIT_TURN_010_CNT_X, ROOM_SPIN_LIMIT_TURN_010_CNT_Y, ROOM_SPIN_LIMIT_TURN_CNT_W, ROOM_SPIN_LIMIT_TURN_CNT_H, ROOM_STATIC_LIMIG_TURN_CNT_W, ROOM_STATIC_LIMIG_TURN_CNT_H);
 	m_pSpinTurnLimit100->Create(p_pUI, IDC_ROOM_SPIN_LIMIT_TURN_100, m_nDefaultGUIResourceIndex, ROOM_SPIN_LIMIT_TURN_100_CNT_X, ROOM_SPIN_LIMIT_TURN_100_CNT_Y, ROOM_SPIN_LIMIT_TURN_CNT_W, ROOM_SPIN_LIMIT_TURN_CNT_H, ROOM_STATIC_LIMIG_TURN_CNT_W, ROOM_STATIC_LIMIG_TURN_CNT_H);
 
-	// ルール：制限時間
+	// ル?ル：制限時間
 	p_pUI->AddStatic( IDC_ROOM_STATIC_ACT_TIME_LIMIT_TEXT,ROOM_STATIC_ACT_TIME_LIMIT_TEXT_MSG,
 		ROOM_STATIC_ACT_TIME_LIMIT_TEXT_CNT_RECT,
 		false, &pStatic);
@@ -443,7 +443,7 @@ BOOL CGame::CreateGUI()
 	pStatic->GetElement(0)->SetFont(ROOM_STATIC_ACT_TIME_LIMIT_VALUE_FONT, 0xFFFFFFFF, DT_RIGHT);
 	pStatic->SetVisible(false);
 
-	// 残アイテムコスト
+	// 残アイテ?コスト
 	p_pUI->AddStatic( IDC_ROOM_STATIC_ITEM_REST_COST,L"",
 		ROOM_STATIC_ITEM_REST_COST_CNT_RECT,
 		false, &pStatic);
@@ -457,7 +457,7 @@ BOOL CGame::CreateGUI()
 	p_pUI->AddSprite( IDC_LOAD_SPRITE_TEXT,
 		LOAD_SPRITE_TEXT_CNT_RECT,
 		false, &pSprite );
-	SetRect( &rcTexture, LOAD_SPRITE_TEXT_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, LOAD_SPRITE_TEXT_IMG_RECT);	// ?画範囲
 	pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pSprite->SetVisible(false);
 
@@ -470,23 +470,23 @@ BOOL CGame::CreateGUI()
 	m_pShotAngle->SetRangeAngleMax(95+REVERSE_ANGLE);
 	m_pShotAngle->SetVisible(false);
 
-	// ショットアングルインジケーター
+	// ショットアングルインジケ???
 	m_pShotAngleIndicator = new CShotAngleIndicator();
 	if (!m_pShotAngleIndicator->Create(p_pUI, IDC_MAIN_AL_SHOT_ANGLE_INDICATOR, MAIN_AL_SHOT_ANGLE_INDICATOR_X, MAIN_AL_SHOT_ANGLE_INDICATOR_Y, MAIN_AL_SHOT_ANGLE_INDICATOR_LENGTH))
 		return FALSE;
 	m_pShotAngleIndicator->SetVisible(false);
 
-	// ショットパワー
+	// ショットパワ?
 	p_pUI->AddMeter( IDC_MAIN_METER_SHOTPOWER , 0,MAX_SHOT_POWER,
 		MAIN_METER_SHOTPOWER_CNT_RECT,
 		false, &pMeter );
 	m_pShotMeter = pMeter;
 	pMeter->GetElement(0)->TextureColor.Init( 0, 0 );
 	pMeter->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
-	SetRect( &rcTexture, MAIN_METER_SHOTPOWER_IMG_RECT);	// 描画範囲
-	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, MAIN_METER_CONTROLPANEL_FRAME_IMG_RECT);	// 描画範囲
-	pMeter->GetElement(2)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, MAIN_METER_SHOTPOWER_IMG_RECT);	// ?画範囲
+	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, MAIN_METER_CONTROLPANEL_FRAME_IMG_RECT);	// ?画範囲
+	pMeter->GetElement(2)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
 	pMeter->SetMargin(0,0);
 	pMeter->SetVisible(false);
 
@@ -498,66 +498,66 @@ BOOL CGame::CreateGUI()
 	if (m_pShotPowerIndicator->Create(p_pUI, IDC_MAIN_SPRITE_SPI, m_nDefaultGUIResourceIndex, &rcSPIInd, &rcSPICnt, &rcSPIImg))
 		m_pShotPowerIndicator->SetVisible(false);
 
-	// 移動メータ
+	// 移動メ??
 	p_pUI->AddMeter( IDC_MAIN_METER_MOVABLE, 1000,1000,
 		MAIN_METER_MOVABLE_CNT_RECT,
 		false, &pMeter );
 	m_pMeterMovable = pMeter;
 	pMeter->GetElement(0)->TextureColor.Init( 0, 0 );
 	pMeter->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
-	SetRect( &rcTexture, MAIN_METER_MOVABLE_IMG_RECT);	// 描画範囲
-	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, MAIN_METER_CONTROLPANEL_FRAME_IMG_RECT);	// 描画範囲
-	pMeter->GetElement(2)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, MAIN_METER_MOVABLE_IMG_RECT);	// ?画範囲
+	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, MAIN_METER_CONTROLPANEL_FRAME_IMG_RECT);	// ?画範囲
+	pMeter->GetElement(2)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
 	pMeter->SetMargin(0,0);
 	pMeter->SetVisible(false);
 
-	// HPメータ
+	// HPメ??
 	p_pUI->AddMeter( IDC_MAIN_METER_HP, 1000,1000,
 		MAIN_METER_HP_CNT_RECT,
 		false, &pMeter );
 	m_pMeterHP = pMeter;
 	pMeter->GetElement(0)->TextureColor.Init( 0, 0 );
 	pMeter->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
-	SetRect( &rcTexture, MAIN_METER_HP_IMG_RECT);	// 描画範囲
-	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, MAIN_METER_CONTROLPANEL_FRAME_IMG_RECT);	// 描画範囲
-	pMeter->GetElement(2)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, MAIN_METER_HP_IMG_RECT);	// ?画範囲
+	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, MAIN_METER_CONTROLPANEL_FRAME_IMG_RECT);	// ?画範囲
+	pMeter->GetElement(2)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
 	pMeter->SetMargin(0,0);
 	pMeter->SetVisible(false);
 
-	// 風メータL
+	// 風メ??L
 	p_pUI->AddMeter( IDC_MAIN_METER_WIND_L, 0,MAX_WIND_VALUE,
 		MAIN_METER_WIND_L_CNT_RECT,
 		false, &pMeter );
 	m_pMeterWindL = pMeter;
 	pMeter->GetElement(0)->TextureColor.Init( 0, 0 );		
 	pMeter->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
-	SetRect( &rcTexture, MAIN_METER_WIND_L_IMG_RECT);		// 描画範囲
-	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, MAIN_METER_WIND_L_IMG_RECT);		// ?画範囲
+	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
 	pMeter->SetMargin(0,0);
 	pMeter->SetVisible(false);
-	// 風メータR
+	// 風メ??R
 	p_pUI->AddMeter( IDC_MAIN_METER_WIND_R, 0,MAX_WIND_VALUE,
 		MAIN_METER_WIND_R_CNT_RECT,
 		false, &pMeter );
 	m_pMeterWindR = pMeter;
 	pMeter->GetElement(0)->TextureColor.Init( 0, 0 );		
 	pMeter->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
-	SetRect( &rcTexture, MAIN_METER_WIND_R_IMG_RECT);		// 描画範囲
-	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, MAIN_METER_WIND_R_IMG_RECT);		// ?画範囲
+	pMeter->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
 	pMeter->SetMargin(0,0);
 	pMeter->SetVisible(false);
 
-	// 前ターンの風向
+	// 前??ンの風向
 	p_pUI->AddSprite( IDC_MAIN_SPRITE_PREV_WIND_INDICATOR,
 		MAIN_SPRITE_PREV_WIND_INDICATOR_CNT_RECT,
 		false, &pSprite );
-	SetRect( &rcTexture, MAIN_SPRITE_PREV_WIND_INDICATOR_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, MAIN_SPRITE_PREV_WIND_INDICATOR_IMG_RECT);	// ?画範囲
 	pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pSprite->SetVisible(false);
 
-	// ターン残り秒数の後ろ
+	// ??ン残り秒数の後ろ
 	CDXUTAnimationSprite* pAnimationSprite;
 	p_pUI->AddAnimationSprite( IDC_MAIN_ASPRITE_TIMER_BG,
 		MAIN_ASPRITE_TIMER_CNT_RECT_BG,
@@ -567,7 +567,7 @@ BOOL CGame::CreateGUI()
 	pAnimationSprite->SetVisible(false);
 	m_pASpriteTimerBG = pAnimationSprite;
 
-	// ターン残り秒数
+	// ??ン残り秒数
 	p_pUI->AddAnimationSprite( IDC_MAIN_ASPRITE_TIMER ,
 		MAIN_ASPRITE_TIMER_CNT_RECT,
 		false, FALSE, &pAnimationSprite );
@@ -576,7 +576,7 @@ BOOL CGame::CreateGUI()
 	SetTimerAnimation(m_pASpriteTimer, m_pASpriteTimerBG);
 	pAnimationSprite->SetVisible(false);
 
-	// 弾選択ボタン
+	// 弾選択??ン
 	SetRect( &rcTexture,
 		IDC_ROOM_BTN_CHARA_SEL_CUR_X,
 		IDC_ROOM_BTN_CHARA_SEL_CUR_Y,
@@ -652,11 +652,11 @@ BOOL CGame::CreateGUI()
 	p_pUI->AddSprite( IDC_MAIN_SPRITE_FACE,
 		MAIN_SPRITE_FACE_CNT_X,MAIN_SPRITE_FACE_CNT_Y,MAIN_SPRITE_FACE_CNT_W,MAIN_SPRITE_FACE_CNT_H,
 		false, &pSprite );
-	SetRect( &rcTexture, MAIN_SPRITE_FACE_IMG_RECT_DUMMY);	// 描画範囲
+	SetRect( &rcTexture, MAIN_SPRITE_FACE_IMG_RECT_DUMMY);	// ?画範囲
 	pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pSprite->SetVisible(false);
 
-	// ターンパスボタン
+	// ??ンパス??ン
 	p_pUI->AddButton( IDC_MAIN_BTN_TURN_PASS,L"",
 		MAIN_BTN_TURN_PASS_CNT_RECT,
 		0, false, &pBtn );
@@ -714,7 +714,7 @@ BOOL CGame::CreateGUI()
 	pRadioButton->SetUserData((void*)MAX_CHARA_BULLET_TYPE);
 	pRadioButton->SetVisible(false);
 
-	// アイテム説明
+	// アイテ?説明
 	p_pUI->AddButton( IDC_ROOM_BTN_ITEM_DETAIL, L"",
 		0,0,200,24,
 		0, false, &pBtn );
@@ -731,7 +731,7 @@ BOOL CGame::CreateGUI()
 	//> Result
 	// ランキング背景
 	p_pUI->AddSprite( IDC_RESULT_SPRITE_BG_SCREEN,RESULT_SPRITE_BG_SCREEN_CNT_RECT, false, &pSprite);
-	SetRect( &rcTexture, RESULT_SPRITE_BG_SCREEN_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, RESULT_SPRITE_BG_SCREEN_IMG_RECT);	// ?画範囲
 	pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pSprite->SetVisible(false);
 	
@@ -750,7 +750,7 @@ BOOL CGame::CreateGUI()
 		pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture, cLineColorTable[i]);
 		pSprite->SetVisible(false);
 	}
-	// 結果確認ボタン
+	// 結果確認??ン
 	// Butons
 	p_pUI->AddButton( IDC_RESULT_BTN_CONFIRM, L"",
 		RESULT_BTN_CONFIRM_CNT_RECT,
@@ -759,11 +759,11 @@ BOOL CGame::CreateGUI()
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_NORMAL ] =D3DCOLOR_ARGB(255,255,255,255);
 	pBtn->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 	pBtn->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);	
-	SetRect( &rcTexture, RESULT_BTN_CONFIRM_IMG_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, RESULT_BTN_CONFIRM_IMG_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetVisible(false);
 
-	// ランキング用スクロールバー
+	// ランキング用スクロ?ルバ?
 	if (g_bOneClient)
 	{
 		p_pUI->AddScrollBar(IDC_RESULT_SB_RANK, RESULT_SB_RANK_CNT_X, RESULT_SB_RANK_CNT_Y, RESULT_SB_RANK_CNT_W, RESULT_SB_RANK_CNT_H, 0, MAXUSERNUM-RESULT_RANK_VIEW_RANGE+1, 0, false, &pScrollBar);
@@ -774,35 +774,35 @@ BOOL CGame::CreateGUI()
 		p_pUI->AddScrollBar(IDC_RESULT_SB_RANK, RESULT_SB_RANK_CNT_X, RESULT_SB_RANK_CNT_Y, RESULT_SB_RANK_CNT_W, RESULT_SB_RANK_CNT_H, 0, (int)m_vecCharacters.size()-RESULT_RANK_VIEW_RANGE+1, 0, false, &pScrollBar);
 		m_nRankItemCount = m_vecCharacters.size();
 	}
-	SetRect( &rcTexture, RESULT_SB_IMG_U_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, RESULT_SB_IMG_U_IMG_RECT);	// ?画範囲
 	pScrollBar->GetElement(1)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, RESULT_SB_IMG_D_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, RESULT_SB_IMG_D_IMG_RECT);	// ?画範囲
 	pScrollBar->GetElement(2)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, RESULT_SB_IMG_B_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, RESULT_SB_IMG_B_IMG_RECT);	// ?画範囲
 	pScrollBar->GetElement(3)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pScrollBar->SetVisible(false);
 
-	// ランキングタイトル
+	// ランキング?イトル
 	p_pUI->AddSprite( IDC_RESULT_SPRITE_RANK_TITLE, RESULT_SPRITE_RANK_TITLE_CNT_RECT, false, &pSprite);
-	SetRect( &rcTexture, RESULT_SPRITE_RANK_TITLE_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, RESULT_SPRITE_RANK_TITLE_IMG_RECT);	// ?画範囲
 	pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pSprite->SetVisible(false);
 
 	// テキスト背景
 	p_pUI->AddSprite( IDC_RESULT_SPRITE_TEXT_BG, RESULT_SPRITE_TEXT_BG_CNT_RECT, false, &pSprite);
-	SetRect( &rcTexture, RESULT_SPRITE_TEXT_BG_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, RESULT_SPRITE_TEXT_BG_IMG_RECT);	// ?画範囲
 	pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pSprite->SetVisible(false);
 	
 	// 顔背景
 	p_pUI->AddSprite( IDC_RESULT_SPRITE_FACE_BG, RESULT_SPRITE_FACE_BG_CNT_RECT, false, &pSprite);
-	SetRect( &rcTexture, RESULT_SPRITE_FACE_BG_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, RESULT_SPRITE_FACE_BG_IMG_RECT);	// ?画範囲
 	pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pSprite->SetVisible(false);
 
 	// 顔
 	p_pUI->AddSprite( IDC_RESULT_SPRITE_FACE, RESULT_SPRITE_FACE_CNT_RECT, false, &pSprite);
-	SetRect( &rcTexture, RESULT_SPRITE_FACE_IMG_RECT);	// 描画範囲
+	SetRect( &rcTexture, RESULT_SPRITE_FACE_IMG_RECT);	// ?画範囲
 	pSprite->GetElement(0)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 	pSprite->SetVisible(false);
 
@@ -827,9 +827,9 @@ BOOL CGame::CreateGUI()
 
 	return TRUE;
 }
-//< GUIコントロールの作成
+//< GUIコントロ?ルの作成
 
-// チーム分けのコントロール //
+// ???分けのコントロ?ル //
 void CGame::SetTeamSeparateControl()
 {
 	CDXUTStatic *pStatic;
@@ -839,25 +839,25 @@ void CGame::SetTeamSeparateControl()
 		false, &pStatic );
 	pStatic->GetElement(0)->SetFont(IDC_ROOM_BTN_CHARA_SEL_FONT, 0xFFFFFFFF, DT_TOP|DT_CENTER|DT_WORDBREAK);
 	pStatic->SetVisible(false);
-	// チームわけLボタン
+	// ???わけL??ン
 	CDXUTButton* pButtonL;
 	p_pUI->AddButton( IDC_ROOM_BTN_RULE_TEAM_L, L"",
 		ROOM_BTN_RULE_TEAM_L_CNT_RECT,
 		0, false, &pButtonL );
 	pButtonL->GetElement(0)->TextureColor.Init( 0,0,0 );
 	pButtonL->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
-	SetRect( &rcTexture, ROOM_BTN_RULE_TEAM_L_IMG_RECT);	// 描画範囲
-	pButtonL->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_RULE_TEAM_L_IMG_RECT);	// ?画範囲
+	pButtonL->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pButtonL->SetUserData((void*)(-1));
-	// チームわけRボタン
+	// ???わけR??ン
 	CDXUTButton* pButtonR;
 	p_pUI->AddButton( IDC_ROOM_BTN_RULE_TEAM_R, L"",
 		ROOM_BTN_RULE_TEAM_R_CNT_RECT,
 		0, false, &pButtonR );
 	pButtonR->GetElement(0)->TextureColor.Init( 0,0,0 );
 	pButtonR->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
-	SetRect( &rcTexture, ROOM_BTN_RULE_TEAM_R_IMG_RECT);	// 描画範囲
-	pButtonR->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_RULE_TEAM_R_IMG_RECT);	// ?画範囲
+	pButtonR->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pButtonR->SetUserData((void*)(1));
 
 	SafeDelete(m_pTeamRulePropertyManager);
@@ -865,7 +865,7 @@ void CGame::SetTeamSeparateControl()
 	m_pTeamRulePropertyManager->Create(pButtonL, pButtonR, pStatic, &m_nAuthedCount);
 	m_pTeamRulePropertyManager->SetVisible(false);
 
-	// チーム分割線用コントロール
+	// ???分割線用コントロ?ル
 	SafeDelete(m_pTeamSeparater);
 	m_pTeamSeparater = new CTeamSeparater();
 	int nGround = AddResourceTexture(IDC_ROOM_GROUND_IMAGE);
@@ -873,7 +873,7 @@ void CGame::SetTeamSeparateControl()
 	m_pTeamSeparater->SetVisible(false);
 }
 
-// ユーザーリストコントロール //
+// ユ?ザ?リストコントロ?ル //
 void CGame::SetUserList()
 {
 	CDXUTElement* pElement = NULL;
@@ -899,21 +899,21 @@ void CGame::SetUserList()
 	pElement->SetTexture(m_nDefaultGUIResourceIndex,&rcTexture, D3DCOLOR_ARGB( 0,0,0,0 ));
 
 	CDXUTScrollBar* pScrollBar = pColorListBox->GetScrollBar();
-	// スクロールバー
-	SetRect( &rcTexture, ROOM_USERLIST_SB_U_RECT);	// 描画範囲
+	// スクロ?ルバ?
+	SetRect( &rcTexture, ROOM_USERLIST_SB_U_RECT);	// ?画範囲
 	pScrollBar->GetElement(1)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, ROOM_USERLIST_SB_D_RECT);	// 描画範囲
+	SetRect( &rcTexture, ROOM_USERLIST_SB_D_RECT);	// ?画範囲
 	pScrollBar->GetElement(2)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
-	SetRect( &rcTexture, BTN_VBAR_RECT);	// 描画範囲
+	SetRect( &rcTexture, BTN_VBAR_RECT);	// ?画範囲
 	pScrollBar->GetElement(3)->SetTexture(m_nDefaultGUIResourceIndex, &rcTexture);
 
-	// リストアイテム１
+	// リストアイテ?１
 	pElement = pColorListBox->GetElement(2);
 	SetRect(&rcTexture, ROOM_BTN_CHARA_SEL_RANDOM_ICON_IMG_RECT);
     pElement->SetFont( 1, D3DCOLOR_ARGB( 255, 255, 255, 255 ), DT_LEFT | DT_VCENTER );
 	pElement->SetTexture(m_nDefaultGUIResourceIndex,&rcTexture, D3DCOLOR_ARGB( 255, 255, 255, 255 ));
 
-	// ランダム
+	// ラン??
 	CDXUTElement* pNewElement = new CDXUTElement(*pElement);
 	SetRect(&rcTexture, ROOM_BTN_CHARA_SEL_RANDOM_ICON_IMG_RECT);
 	pNewElement->SetFont(1, D3DCOLOR_ARGB( 255, 255, 255, 255 ), DT_LEFT | DT_VCENTER );
@@ -929,7 +929,7 @@ void CGame::SetUserList()
 	SafeDelete(pNewElement);
 
 	pColorListBox = (CDXUTColorListBox*)p_pUI->GetControl(IDC_ROOM_LB_USERLIST);
-	int nElementIndex = 3;	// 2 = 0,1,2が背景、選択色、ランダムで登録済みのため 2 スタート
+	int nElementIndex = 3;	// 2 = 0,1,2が背景、選択色、ラン??で登?済みのため 2 ス??ト
 	LuaFuncParam luaParams;
 	LuaFuncParam luaResults;
 	// 2をデフォルト設定
@@ -942,7 +942,7 @@ void CGame::SetUserList()
 
 		luaParams.Clear();
 		luaResults.Clear();
-		// アイコンテクスチャ範囲
+		// アイコンテクス?ャ範囲
 		luaParams.Number(it->second.scr_index);
 
 		if (!common::scr::CallLuaFunc(g_pLuah, "getChara_TexFace", &luaResults, 2, &luaParams, g_pCriticalSection))
@@ -953,7 +953,7 @@ void CGame::SetUserList()
 		rcTexture.right = rcTexture.left + ROOM_USERLIST_LB_ICON_W;
 		rcTexture.bottom = rcTexture.top + ROOM_USERLIST_LB_ICON_H;
 
-		// リストアイテム登録
+		// リストアイテ?登?
 		CDXUTElement* pNewElement = new CDXUTElement(*pElement);
 		pNewElement->SetFont(1, D3DCOLOR_ARGB( 255, 255, 255, 255 ), DT_LEFT | DT_VCENTER );
 		pNewElement->SetTexture(it->second.res_index,&rcTexture, D3DCOLOR_ARGB( 255, 255, 255, 255 ));
@@ -965,7 +965,7 @@ void CGame::SetUserList()
 	pColorListBox->SetVisible(false);
 }
 
-// キャラクタ用スクリプト分アイコンリストに追加 //
+// キャラク?用スクリプト分アイコンリストに追加 //
 void CGame::SetMyItemButtonList()
 {
 	RECT rcTexture;
@@ -1025,7 +1025,7 @@ void CGame::SetMyItemButtonList()
 	m_pMyItemBtnList->SetVisible(false);
 }
 
-// キャラクタ用スクリプト分アイコンリストに追加 //
+// キャラク?用スクリプト分アイコンリストに追加 //
 void CGame::SetCharacterIconButtonList()
 {
 	RECT rcTexture;
@@ -1064,7 +1064,7 @@ void CGame::SetCharacterIconButtonList()
 	m_pCharacterBtnList->SetLRBtnAlwaysVisible(TRUE);
 
 	CDXUTRadioButton *pRadioButton;
-	// ランダムボタンを作成
+	// ラン????ンを作成
 	p_pUI->AddRadioButton( IDC_ROOM_BTN_CHARA_SEL_RANDOM ,
 		IDC_ROOM_BTN_CHARA_SEL_BTN_GROUP,L"",
 		IDC_ROOM_BTN_CHARA_SEL_LIST_X,
@@ -1075,9 +1075,9 @@ void CGame::SetCharacterIconButtonList()
 	pRadioButton->GetElement(0)->TextureColor.Init( D3DCOLOR_ARGB( 0, 255, 255, 255 ) );  // Transparent center
 	pRadioButton->GetElement(0)->TextureColor.States[ DXUT_STATE_NORMAL ] =D3DCOLOR_ARGB(255,255,255,255);
 	pRadioButton->GetElement(0)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
-	// 描画範囲
+	// ?画範囲
 	SetRect( &rcTexture,ROOM_BTN_CHARA_SEL_RANDOM_IMG_RECT);
-	// 追加した管理テクスチャ番号を指定
+	// 追加した管理テクス?ャ番号を指定
 	pRadioButton->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );
 	SetRect( &rcTexture,
 		IDC_ROOM_BTN_CHARA_SEL_CUR_X,
@@ -1106,15 +1106,15 @@ void CGame::SetCharacterIconButtonList()
 		pRadioButton->GetElement(0)->TextureColor.Init( D3DCOLOR_ARGB( 0, 255, 255, 255 ) );  // Transparent center
 		pRadioButton->GetElement(0)->TextureColor.States[ DXUT_STATE_NORMAL ] =D3DCOLOR_ARGB(255,255,255,255);
 		pRadioButton->GetElement(0)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
-		// 描画範囲
+		// ?画範囲
 		SetRect( &rcTexture,
 			scrinfo->rec_sel_icon.left,
 			scrinfo->rec_sel_icon.top,
 			scrinfo->rec_sel_icon.left+scrinfo->rec_sel_icon.right,
 			scrinfo->rec_sel_icon.top+scrinfo->rec_sel_icon.bottom);
-		// 追加した管理テクスチャ番号を指定
+		// 追加した管理テクス?ャ番号を指定
 		pRadioButton->GetElement(0)->SetTexture( scrinfo->res_index, &rcTexture );
-		// ボタンとスクリプトID情報を関連付ける
+		// ??ンとスクリプトID情報を関連付ける
 
 		SetRect( &rcTexture,
 			IDC_ROOM_BTN_CHARA_SEL_CUR_X,
@@ -1131,19 +1131,19 @@ void CGame::SetCharacterIconButtonList()
 	m_pCharacterBtnList->SetVisible(false);
 }
 
-// ステージセレクトコントロール //
+// ステ?ジセレクトコントロ?ル //
 void CGame::SetStageSelectControl()
 {
 	RECT rcTexture;
 	CDXUTButton* pBtn = NULL;
-	// ステージタイトル
+	// ステ?ジ?イトル
 	p_pUI->AddStatic( IDC_ROOM_STATIC_STAGE_TITLE,L"",
 		ROOM_STATIC_STAGE_TITLE_CNT_RECT,
 		false, NULL);
 	p_pUI->GetStatic(IDC_ROOM_STATIC_STAGE_TITLE)->GetElement(0)->SetFont(ROOM_STATIC_STAGE_TITLE_FONT, 0xFFFFFFFF, DT_VCENTER|DT_CENTER|DT_SINGLELINE);
 	p_pUI->GetStatic(IDC_ROOM_STATIC_STAGE_TITLE)->SetVisible(false);
 
-	// ステージ選択ボタンL
+	// ステ?ジ選択??ンL
 	p_pUI->AddButton( IDC_ROOM_BTN_STAGE_L, L"",
 		ROOM_BTN_STAGE_L_CNT_RECT,
 		0, false, &pBtn );
@@ -1151,12 +1151,12 @@ void CGame::SetStageSelectControl()
 	pBtn->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
 	pBtn->SetStateMouserOverOffset(0,0);
 	pBtn->SetStatePressedOverOffset(-1,0);
-	SetRect( &rcTexture, ROOM_BTN_STAGE_L_IMG_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_STAGE_L_IMG_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetUserData((void*)-1);
 	pBtn->SetVisible(false);
 
-	// ステージ選択ボタンR
+	// ステ?ジ選択??ンR
 	p_pUI->AddButton( IDC_ROOM_BTN_STAGE_R, L"",
 		ROOM_BTN_STAGE_R_CNT_RECT,
 		0, false, &pBtn );
@@ -1164,12 +1164,12 @@ void CGame::SetStageSelectControl()
 	pBtn->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
 	pBtn->SetStateMouserOverOffset(0,0);
 	pBtn->SetStatePressedOverOffset(1,0);
-	SetRect( &rcTexture, ROOM_BTN_STAGE_R_IMG_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_STAGE_R_IMG_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetUserData((void*)1);
 	pBtn->SetVisible(false);
 
-	// ステージ選択ボタンRND
+	// ステ?ジ選択??ンRND
 	p_pUI->AddButton( IDC_ROOM_BTN_STAGE_RND, L"",
 		ROOM_BTN_STAGE_RND_CNT_RECT,
 		0, false, &pBtn );
@@ -1177,12 +1177,12 @@ void CGame::SetStageSelectControl()
 	pBtn->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
 	pBtn->SetStateMouserOverOffset(0,0);
 	pBtn->SetStatePressedOverOffset(0,1);
-	SetRect( &rcTexture, ROOM_BTN_STAGE_RND_IMG_RECT);	// 描画範囲
-	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_STAGE_RND_IMG_RECT);	// ?画範囲
+	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pBtn->SetUserData((void*)1);
 	pBtn->SetVisible(false);
 
-	// ステージ選択
+	// ステ?ジ選択
 	p_pUI->AddButton( IDC_ROOM_BTN_STAGE_BASE, L"",
 		ROOM_BTN_STAGE_BASE_CNT_RECT,
 		0, false, &pBtn );
@@ -1214,7 +1214,7 @@ void CGame::SetTimerAnimation(CDXUTAnimationSprite* pASprite, CDXUTAnimationSpri
 		{MAIN_ASPRITE_TIMER_RECT_25},
 	};
 	RECT rcTexture = {MAIN_ASPRITE_TIMER_RECT_19};
-	pASprite->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
+	pASprite->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
 	pASprite->SetAnimationTime(RUN_FRAMES);
 	for (int i=GAME_TURN_ACT_COUNT_MAX-1;i>=0;i--)
 		pASprite->AddAnimationRect(&t_rcTimerAnimationTable[i]);
@@ -1228,7 +1228,7 @@ void CGame::SetTimerAnimation(CDXUTAnimationSprite* pASprite, CDXUTAnimationSpri
 		{MAIN_ASPRITE_TIMER_BG_RECT_07},
 	};
 	SetRect(&rcTexture,MAIN_ASPRITE_TIMER_BG_RECT_00);
-	pASpriteBG->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクスチャ番号を指定
+	pASpriteBG->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture,0xFFFFFFFF);	// 追加した管理テクス?ャ番号を指定
 	pASpriteBG->SetAnimationTime(RUN_FRAMES);
 	for (int i=MAIN_ASPRITE_TIMER_BG_RECT_TABLE_COUNT-1;i>=0;i--)
 		pASpriteBG->AddAnimationRect(&t_rcTimerBGAnimationTable[i]);
@@ -1245,7 +1245,7 @@ const RECT c_rcRankNoImgRectTable[] =
 
 BOOL SessionNo_Asc( const type_session* left, const type_session* right )
 {
-	// Noが同じ値の場合、生存ターン数で並べる
+	// Noが同じ値の場合、生存??ン数で並べる
 	if (left->frame_count == right->frame_count)
 		return ((left->live_count) >= (right->live_count));
 	return ((left->frame_count) < (right->frame_count));
@@ -1289,7 +1289,7 @@ void CGame::CreateResultRank()
 	{
 		for (int j=i+1;j<m_nRankItemCount;j++)
 		{
-			// Noが同じ値の場合、生存ターン数で並べる
+			// Noが同じ値の場合、生存??ン数で並べる
 			if (pSort[i]->frame_count == pSort[j]->frame_count)
 			{
 				if ((pSort[i]->live_count) < (pSort[j]->live_count))
@@ -1342,7 +1342,7 @@ void CGame::CreateResultRank()
 		SetRect(&rcTexture, pCharaScrInfo->rec_sel_icon.left, pCharaScrInfo->rec_sel_icon.top, pCharaScrInfo->rec_sel_icon.right, pCharaScrInfo->rec_sel_icon.bottom);
 		pSprite->GetElement(0)->SetTexture(pCharaScrInfo->res_index, &rcTexture);
 
-		// チーム番号	
+		// ???番号	
 		if (m_nTeamCount > 1)
 		{
 			p_pUI->AddStatic(IDC_RESULT_STATIC_TEAM_BASE+nIndex, m_pTeamSeparater->GetTeamWchar(nTeamNo), RESULT_STATIC_TEAM_CNT_X_BASE, RESULT_STATIC_TEAM_CNT_Y_BASE+((RESULT_STATIC_TEAM_CNT_Y_OFFSET+RESULT_SPRITE_LINE_CNT_H)*nNo), RESULT_STATIC_TEAM_CNT_W, RESULT_STATIC_TEAM_CNT_H, false, &pStatic);
@@ -1363,7 +1363,7 @@ void CGame::CreateResultRank()
 }
 
 
-// 結果テキスト表示
+// 結果テキスト?示
 void CGame::SetResultText()
 {
 	int nResultType = CHARA_FACE_FINE;
@@ -1447,7 +1447,7 @@ BOOL CGame::CreateConfigGUI()
 	p_pConfig->SetTexture(m_nDefaultGUIResourceIndex, IMG_GUI_SKIN);
 
 	p_pConfig->AddSprite( IDC_CONFIG_SPRITE_BGM, CONFIG_SPRITE_BGM_CNT_RECT, false, &pSprite);
-	SetRect( &rcTexture, CONFIG_SPRITE_BGM_IMG_RECT);	// 描画範囲	
+	SetRect( &rcTexture, CONFIG_SPRITE_BGM_IMG_RECT);	// ?画範囲	
 	pSprite->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture);
 /*
 	// OK BUTTON
@@ -1458,7 +1458,7 @@ BOOL CGame::CreateConfigGUI()
 	pBtn->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
 	pBtn->SetStateMouserOverOffset(0,0);
 	pBtn->SetStatePressedOverOffset(1,1);
-	SetRect( &rcTexture, CONFIG_BTN_OK_IMG_RECT);	// 描画範囲	
+	SetRect( &rcTexture, CONFIG_BTN_OK_IMG_RECT);	// ?画範囲	
 	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );
 */
 	// CLOSE BUTTON
@@ -1469,7 +1469,7 @@ BOOL CGame::CreateConfigGUI()
 	pBtn->GetElement(1)->TextureColor.Init(0xFFFFFFFF, 0xFFFFFFFF);
 	pBtn->SetStateMouserOverOffset(0,0);
 	pBtn->SetStatePressedOverOffset(1,1);
-	SetRect( &rcTexture, CONFIG_BTN_CLOSE_IMG_RECT);	// 描画範囲	
+	SetRect( &rcTexture, CONFIG_BTN_CLOSE_IMG_RECT);	// ?画範囲	
 	pBtn->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );
 
 	// EFFECT ON/OFF
@@ -1477,10 +1477,10 @@ BOOL CGame::CreateConfigGUI()
 		CONFIG_CHK_EFFECT_TEXT,
 		CONFIG_CHK_EFFECT_CNT_RECT,
 		m_bEffectEnable?true:false, 0, false, &pChkBox );
-	SetRect( &rcTexture, CONFIG_CHK_EFFECT_IMG_ON_RECT);	// 描画範囲
-	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, CONFIG_CHK_EFFECT_IMG_OFF_RECT);	// 描画範囲
-	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, CONFIG_CHK_EFFECT_IMG_ON_RECT);	// ?画範囲
+	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, CONFIG_CHK_EFFECT_IMG_OFF_RECT);	// ?画範囲
+	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pChkBox->SetDrawShadow(false);
 	pChkBox->GetElement(0)->SetFont(1, 0xFFFFFFFF, DT_LEFT|DT_VCENTER);
 
@@ -1489,10 +1489,10 @@ BOOL CGame::CreateConfigGUI()
 		CONFIG_CHK_BLT_FOCUS_TEXT,
 		CONFIG_CHK_BLT_FOCUS_CNT_RECT,
 		m_bBulletFocus, 0, false, &pChkBox );
-	SetRect( &rcTexture, CONFIG_CHK_BLT_FOCUS_IMG_ON_RECT);	// 描画範囲
-	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, CONFIG_CHK_BLT_FOCUS_IMG_OFF_RECT);	// 描画範囲
-	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, CONFIG_CHK_BLT_FOCUS_IMG_ON_RECT);	// ?画範囲
+	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, CONFIG_CHK_BLT_FOCUS_IMG_OFF_RECT);	// ?画範囲
+	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pChkBox->SetDrawShadow(false);
 	pChkBox->GetElement(0)->SetFont(1, 0xFFFFFFFF, DT_LEFT|DT_VCENTER);
 
@@ -1501,10 +1501,10 @@ BOOL CGame::CreateConfigGUI()
 		CONFIG_CHK_ACT_FOCUS_TEXT,
 		CONFIG_CHK_ACT_FOCUS_CNT_RECT,
 		m_bActChrFocus, 0, false, &pChkBox );
-	SetRect( &rcTexture, CONFIG_CHK_ACT_FOCUS_IMG_ON_RECT);	// 描画範囲
-	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
-	SetRect( &rcTexture, CONFIG_CHK_ACT_FOCUS_IMG_OFF_RECT);	// 描画範囲
-	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, CONFIG_CHK_ACT_FOCUS_IMG_ON_RECT);	// ?画範囲
+	pChkBox->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
+	SetRect( &rcTexture, CONFIG_CHK_ACT_FOCUS_IMG_OFF_RECT);	// ?画範囲
+	pChkBox->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	pChkBox->SetDrawShadow(false);
 	pChkBox->GetElement(0)->SetFont(1, 0xFFFFFFFF, DT_LEFT|DT_VCENTER);
 
@@ -1513,21 +1513,21 @@ BOOL CGame::CreateConfigGUI()
 	p_pConfig->AddSlider( IDC_CONFIG_SLIDER_BGM, 
 		CONFIG_SLIDER_BGM_CNT_RECT, 0, 100, m_bytBGMVolume, false, &pSlider);
 	// SLIDER TRACK
-	SetRect( &rcTexture, CONFIG_SLIDER_BGM_IMG_TRK_RECT);	// 描画範囲
-	pSlider->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, CONFIG_SLIDER_BGM_IMG_TRK_RECT);	// ?画範囲
+	pSlider->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	// SLIDER BUTTON
-	SetRect( &rcTexture, CONFIG_SLIDER_BGM_IMG_BTN_RECT);	// 描画範囲
-	pSlider->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, CONFIG_SLIDER_BGM_IMG_BTN_RECT);	// ?画範囲
+	pSlider->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 
 	// SE VOLUME SLIDER
 	p_pConfig->AddSlider( IDC_CONFIG_SLIDER_SE, 
 		CONFIG_SLIDER_SE_CNT_RECT, 0, 100, m_bytSEVolume, false, &pSlider);
 	// SLIDER TRACK
-	SetRect( &rcTexture, CONFIG_SLIDER_SE_IMG_TRK_RECT);	// 描画範囲
-	pSlider->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, CONFIG_SLIDER_SE_IMG_TRK_RECT);	// ?画範囲
+	pSlider->GetElement(0)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	// SLIDER BUTTON
-	SetRect( &rcTexture, CONFIG_SLIDER_SE_IMG_BTN_RECT);	// 描画範囲
-	pSlider->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, CONFIG_SLIDER_SE_IMG_BTN_RECT);	// ?画範囲
+	pSlider->GetElement(1)->SetTexture( m_nDefaultGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 
 	// FRAME CAPTION
 	p_pConfig->AddStatic( IDC_CONFIG_STATIC_CAPTION, L"CONFIG MENU",
@@ -1554,7 +1554,7 @@ BOOL CGame::CreateConfigGUI()
 	return TRUE;
 }
 
-// システム音声読込み
+// システ?音声読込み
 BOOL CGame::LoadSystemSound()
 {
 	m_pSysSoundLibs->Clear();

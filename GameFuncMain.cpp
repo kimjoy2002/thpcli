@@ -27,12 +27,12 @@ void CGame::MainStart()
 	}
 */
 	UpdateControlPanelHPInfo();
-	// 描画範囲を更新しておく
+	// ?画範囲を更新しておく
 	m_vecStageViewTrans = D3DXVECTOR3(0,0,0);
 	UpdateStageDrawRect();
 	UpdateSCExp();
 
-	// キャラロードイベントを呼ぶループ
+	// キャラロ?ドイベントを呼ぶル?プ
 	for (int i=0;i<GetMaxLoginNum();i++)
 	{
 		if (!m_SessionArray[i].entity) 
@@ -45,12 +45,12 @@ void CGame::MainStart()
 		if (sess->obj_state == OBJ_STATE_MAIN_GALLERY)
 			continue;
 		LuaFuncParam luaParams,luaResults;
-		// ユーザ番号と位置
+		// ユ?ザ番号と位置
 		luaParams.Number(sess->scrinfo->scr_index).Number(sess->obj_no).Number(sess->ax).Number(sess->ay);
 		if (!common::scr::CallLuaFunc(g_pLuah, "onLoad_Chara", &luaResults, 0, &luaParams, g_pCriticalSection))
 			return;
 
-		// 認証していないなら死亡
+		// 認証していないなら?亡
 		if (m_SessionArray[i].connect_state != CONN_STATE_AUTHED) 
 		{
 			if (m_SessionArray[i].entity)
@@ -61,7 +61,7 @@ void CGame::MainStart()
 	if (m_pSelectedStageScrInfo)
 	{
 		LuaFuncParam luaParams,luaResults;
-		// ユーザ番号と位置
+		// ユ?ザ番号と位置
 		luaParams.Number(m_pSelectedStageScrInfo->scr_index);
 		if (!common::scr::CallLuaFunc(g_pLuah, "onLoad_Stage", &luaResults, 0, &luaParams, g_pCriticalSection))
 			return;
@@ -69,7 +69,7 @@ void CGame::MainStart()
 
 }
 
-// 最新プロパティをステージキャラに反映（表示更新）
+// 最新プロパティをステ?ジキャラに反映（?示更新）
 void CGame::UpdateStageCharaDisplay(int nCharaIndex)
 {
 	if (nCharaIndex >= GetMaxLoginNum() || nCharaIndex < 0)	return;
@@ -94,7 +94,7 @@ void CGame::ActivateCharacter(int nObjNo, WORD wTurnCount)
 		{
 			sess->obj_state = OBJ_STATE_MAIN_WAIT;
 			m_pStageCharacters[sess->sess_index]->SetMyTurn(false);
-			// ターンエンドイベント
+			// ??ンエンドイベント
 //			NotifyTurnEnd(sess);	// 20120819
 		}
 		sess->frame_count = 0;
@@ -108,9 +108,9 @@ void CGame::ActivateCharacter(int nObjNo, WORD wTurnCount)
 			sess->obj_state = OBJ_STATE_MAIN_ACTIVE;
 		m_pStageCharacters[sess->sess_index]->SetMyTurn(true);
 		sess->frame_count = 0;
-		// ターンスタートイベント
+		// ??ンス??トイベント
 		NotifyTurnStart(sess);	// 20120819
-		// 同チームか観戦、別チームでステルスじゃなければフォーカス
+		// 同???か観戦、別???でステルスじゃなければフォ?カス
 		int nMyTeamNo = GetMySessionInfo()->team_no;
 		if (m_bActChrFocus &&
 			(
@@ -130,7 +130,7 @@ void CGame::ActivateCharacter(int nObjNo, WORD wTurnCount)
 		{
 			UpdateMyItems();	// !!!!!!
 			PlaySysSoundSE(SE_sgi_MyTurn);
-	//		// ショットパワーメータ初期化
+	//		// ショットパワ?メ??初期化
 	//		m_pShotMeter->SetValue(0);
 			// カウント
 			m_pASpriteTimer->SetVisible(true);
@@ -140,7 +140,7 @@ void CGame::ActivateCharacter(int nObjNo, WORD wTurnCount)
 			m_pASpriteTimerBG->InitAnimationTime();
 			m_nActiveTimeCounter = 0;
 			m_eMainPhase = GAME_MAIN_PHASE_ACT;
-			// 自ターンパス有効表示テクスチャ設定
+			// 自??ンパス有効?示テクス?ャ設定
 			SetRect(&p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->GetElement(1)->rcTexture, MAIN_BTN_TURN_PASS_IMG_ENABLE_RECT);
 			p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetUserData((void*)TRUE);
 			m_nNotifyMyTurn = NOTIFY_MY_TURN_TIME;
@@ -155,7 +155,7 @@ void CGame::ActivateCharacter(int nObjNo, WORD wTurnCount)
 			m_pASpriteTimer->SetVisible(false);
 			m_pASpriteTimerBG->SetVisible(false);
 			m_eMainPhase = GAME_MAIN_PHASE_NONE;
-			// 自ターンパス有効表示テクスチャ設定
+			// 自??ンパス有効?示テクス?ャ設定
 			SetRect(&p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->GetElement(1)->rcTexture, MAIN_BTN_TURN_PASS_IMG_DISABLE_RECT);
 			p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetUserData((void*)FALSE);
 		}
@@ -165,16 +165,16 @@ void CGame::ActivateCharacter(int nObjNo, WORD wTurnCount)
 void CGame::UpdateActiveState()
 {
 	bool bActive = (GetMySessionInfo()->obj_state == OBJ_STATE_MAIN_ACTIVE);
-	// カウントダウン有効/無効化
+	// カウント?ウン有効/無効化
 	m_pASpriteTimer->SetEnabled(bActive);
 	m_pASpriteTimerBG->SetEnabled(bActive);
 ///	SetMyIteamsEnabled(bActive);	// 説明みたいから無効化はなし
 }
 
-// 使用アイテムの有効/無効化
+// 使用アイテ?の有効/無効化
 void CGame::SetMyIteamsEnabled(bool bEnabled)
 {
-	// 選択アイテム位置設定
+	// 選択アイテ?位置設定
 	m_pMyItemBtnList->SetEnable(bEnabled);
 
 	// 有効化する場合は個別に確認
@@ -220,12 +220,12 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			{
 				WCHAR wsName[MAX_USER_NAME];
 				common::session::GetSessionName(pSess, wsName);
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo))
 					SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s", wsName, GAME_STATE_INFO_STEALTH);
 				else
-					SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%dターン)", wsName, GAME_STATE_INFO_STEALTH, pSess->chara_state[CHARA_STATE_STEALTH_INDEX]);
+					SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%d??ン)", wsName, GAME_STATE_INFO_STEALTH, pSess->chara_state[CHARA_STATE_STEALTH_INDEX]);
 				AddChatMessage(wsMessage, PK_USER_CHAT_SERVER_INFO);
 				PlaySysSoundSE(SE_sgi_Stealth);
 			}
@@ -245,7 +245,7 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// パワーアップ状態になったときだけ鳴る
+				// パワ?アップ状態になったときだけ鳴る
 				if (nState == CHARA_STATE_POWERUP_ON)
 				{
 					WCHAR wsName[MAX_USER_NAME];
@@ -256,8 +256,8 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 				}
 			}
 			break;
-		case CHARA_STATE_BLIND_INDEX:		// 暗転状態
-			// 自分がなった場合、現在のアクティブキャラが分からなくなるため▼マークを■にしておく
+		case CHARA_STATE_BLIND_INDEX:		// 暗?状態
+			// 自分がなった場合、現在のアクティブキャラが分からなくなるため▼??クを■にしておく
 			if (pSess->sess_index == m_nUserIndex)
 			{
 				if (pSess->obj_no != m_nActiveObjectNo)
@@ -267,14 +267,14 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			}
 			else
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
 				common::session::GetSessionName(pSess, wsName);
-				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%dターン)", wsName, GAME_STATE_INFO_BLIND, pSess->chara_state[CHARA_STATE_BLIND_INDEX]);
+				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%d??ン)", wsName, GAME_STATE_INFO_BLIND, pSess->chara_state[CHARA_STATE_BLIND_INDEX]);
 				AddChatMessage(wsMessage, PK_USER_CHAT_SERVER_INFO);
 			}
 			PlaySysSoundSE(SE_sgi_Blind);
@@ -283,14 +283,14 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
 				common::session::GetSessionName(pSess, wsName);
-				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%dターン)", wsName, GAME_STATE_INFO_REVERSE, pSess->chara_state[CHARA_STATE_REVERSE_INDEX]);
+				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%d??ン)", wsName, GAME_STATE_INFO_REVERSE, pSess->chara_state[CHARA_STATE_REVERSE_INDEX]);
 				AddChatMessage(wsMessage, PK_USER_CHAT_SERVER_INFO);
 			}
 			else
@@ -304,14 +304,14 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
 				common::session::GetSessionName(pSess, wsName);
-				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%dターン)", wsName, GAME_STATE_INFO_NOMOVE, pSess->chara_state[CHARA_STATE_NOMOVE_INDEX]);
+				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%d??ン)", wsName, GAME_STATE_INFO_NOMOVE, pSess->chara_state[CHARA_STATE_NOMOVE_INDEX]);
 				AddChatMessage(wsMessage, PK_USER_CHAT_SERVER_INFO);
 			}
 			else
@@ -325,14 +325,14 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
 				common::session::GetSessionName(pSess, wsName);
-				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%dターン)", wsName, GAME_STATE_INFO_NOANGLE, pSess->chara_state[CHARA_STATE_NOANGLE_INDEX]);
+				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%d??ン)", wsName, GAME_STATE_INFO_NOANGLE, pSess->chara_state[CHARA_STATE_NOANGLE_INDEX]);
 				AddChatMessage(wsMessage, PK_USER_CHAT_SERVER_INFO);
 			}
 			else
@@ -346,14 +346,14 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
 				common::session::GetSessionName(pSess, wsName);
-				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%dターン)", wsName, GAME_STATE_INFO_PAIN, pSess->chara_state[CHARA_STATE_PAIN_INDEX]);
+				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s(残り%d??ン)", wsName, GAME_STATE_INFO_PAIN, pSess->chara_state[CHARA_STATE_PAIN_INDEX]);
 				AddChatMessage(wsMessage, PK_USER_CHAT_SERVER_INFO);
 			}
 			else
@@ -375,7 +375,7 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
 				common::session::GetSessionName(pSess, wsName);
@@ -403,7 +403,7 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// パワーアップ状態になったときだけ鳴る
+				// パワ?アップ状態になったときだけ鳴る
 				WCHAR wsName[MAX_USER_NAME];
 				common::session::GetSessionName(pSess, wsName);
 				SafePrintf(wsMessage, MAX_MSG_BUFFER, L"%sさんが%s", wsName, GAME_STATE_INFO_POWERUP_OFF);
@@ -413,8 +413,8 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 				AddChatMessage(GAME_STATE_INFO_POWERUP_OFF, PK_USER_CHAT_SERVER_INFO);
 			PlaySysSoundSE(SE_sai_Chat);
 			break;
-		case CHARA_STATE_BLIND_INDEX:		// 暗転状態
-			// 自分がなった場合、現在のアクティブキャラが分からなくなるため▼マークを■にしておく
+		case CHARA_STATE_BLIND_INDEX:		// 暗?状態
+			// 自分がなった場合、現在のアクティブキャラが分からなくなるため▼??クを■にしておく
 			if (pSess->sess_index == m_nUserIndex)
 			{
 				if (pSess->obj_no != m_nActiveObjectNo)
@@ -423,9 +423,9 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			}
 			else
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
@@ -439,9 +439,9 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
@@ -459,9 +459,9 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
@@ -477,9 +477,9 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合、情報出力
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
@@ -500,9 +500,9 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 			// 他キャラの場合
 			if (pSess->sess_index != m_nUserIndex)
 			{
-				// 自キャラが暗転中はメッセージを出さない
+				// 自キャラが暗?中はメッセ?ジを出さない
 				if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 				WCHAR wsName[MAX_USER_NAME];
@@ -519,9 +519,9 @@ void CGame::UpdateCharaState(int nObjNo, int nStateIndex, int nState)
 				// 他キャラの場合
 				if (pSess->sess_index != m_nUserIndex)
 				{
-					// 自キャラが暗転中はメッセージを出さない
+					// 自キャラが暗?中はメッセ?ジを出さない
 					if (GetMySessionInfo()->chara_state[CHARA_STATE_BLIND_INDEX])	break;
-				// 観戦以外且つ味方以外のステルスキャラのメッセージを出さない
+				// 観戦以外且つ味方以外のステルスキャラのメッセ?ジを出さない
 				int nMyTeamNo = GetMySessionInfo()->team_no;
 				if ((nMyTeamNo != GALLERY_TEAM_NO && pSess->team_no != nMyTeamNo) && pSess->chara_state[CHARA_STATE_STEALTH_INDEX])	break;
 					WCHAR wsName[MAX_USER_NAME];
@@ -586,18 +586,18 @@ void CGame::UpdateWindValue(int value)
 	}
 }
 
-// アイテム追加
+// アイテ?追加
 BOOL CGame::AddCharaItem(int nObjNo, int nSlot, DWORD dwItemFlg, BOOL bSteal)
 {
 	ptype_session sess = GetSessionObj(nObjNo);
-	// 引数チェック
+	// 引数?ェック
 	if (!sess) return FALSE;
 	if (nSlot < 0 && nSlot >= g_nMaxItemStockCount) return FALSE;
 	if (!(dwItemFlg & GAME_ITEM_ENABLE_FLG))	return FALSE;
 	
 	sess->items[nSlot] = dwItemFlg;		// 設定
 	
-	// 自キャラの場合、表示を更新
+	// 自キャラの場合、?示を更新
 	if (nObjNo == m_nUserIndex)
 	{
 		UpdateMyItems();
@@ -617,13 +617,13 @@ void CGame::ShotBullet(int nAngle, int nPower, int nIndicatorAngle, int nIndicat
 	WORD	packetSize = 0;
 	BYTE		packetData[MAX_PACKET_SIZE];
 
-	// アイテム弾の使用
+	// アイテ?弾の使用
 	int nProcType = BLT_PROC_TYPE_SCR_CHARA;
-	// スペルカード選択
+	// スペルカ?ド選択
 	if (m_nSelectBulletNo == MAX_CHARA_BULLET_TYPE)
 		nProcType = BLT_PROC_TYPE_SCR_SPELL;
 
-	int nBltType = GetStockItemBullet();	// 装填済みのアイテム弾取得
+	int nBltType = GetStockItemBullet();	// 装填済みのアイテ?弾取得
 	if (nBltType != -1)
 		nProcType = BLT_PROC_TYPE_ITEM;
 	else
@@ -740,14 +740,14 @@ void CGame::ReqBulletShot(int nObjNo)
 	int powerIndicatorValue = m_pShotPowerIndicator->GetCXForView();
 	int angleIndicatorValue = m_pShotAngleIndicator->GetCurrentAngle();
 	ShotBullet(m_pShotAngle->GetShotAngle(), m_pShotMeter->GetValue(), angleIndicatorValue, powerIndicatorValue);
-	// 発射ならコンフィグ、アイテム使用、自ターンパスを無効化
+	// 発射ならコンフィグ、アイテ?使用、自??ンパスを無効化
 	if (GetSessionIndex(nObjNo) == m_nUserIndex)
 	{
 		p_pUI->GetControl(IDC_MAIN_BTN_CONFIG)->SetEnabled(true);
 		// 弾選択を有効化
 		SetMyBulletsEnabled(true);		// 20101122
 ///		SetMyIteamsEnabled(false);
-//		// 自ターンパス有効表示テクスチャ設定
+//		// 自??ンパス有効?示テクス?ャ設定
 //		SetRect(&p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->GetElement(1)->rcTexture, MAIN_BTN_TURN_PASS_IMG_DISABLE_RECT);
 //		p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetUserData((void*)FALSE);
 	}
@@ -758,14 +758,14 @@ void CGame::RejBulletShot(int nObjNo)
 	m_eMainPhase = GAME_MAIN_PHASE_ACT;
 	m_pShotMeter->SetValue(0);
 	
-	// 発射拒否ならコンフィグ、アイテム使用、自ターンパス有効化
+	// 発射拒否ならコンフィグ、アイテ?使用、自??ンパス有効化
 	if (GetSessionIndex(nObjNo) == m_nUserIndex)
 	{
 		p_pUI->GetControl(IDC_MAIN_BTN_CONFIG)->SetEnabled(true);
 		// 弾選択を有効化
 		SetMyBulletsEnabled(true);		// 20101122
 ///		SetMyIteamsEnabled(true);
-		// 自ターンパス有効表示テクスチャ設定
+		// 自??ンパス有効?示テクス?ャ設定
 		SetRect(&p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->GetElement(1)->rcTexture, MAIN_BTN_TURN_PASS_IMG_ENABLE_RECT);
 		p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetUserData((void*)TRUE);
 	}
@@ -774,12 +774,12 @@ void CGame::RejBulletShot(int nObjNo)
 void CGame::RejTurnPass(int nObjNo)
 {
 	m_eMainPhase = GAME_MAIN_PHASE_ACT;
-	// 発射拒否ならコンフィグ、アイテム使用、自ターンパス有効化
+	// 発射拒否ならコンフィグ、アイテ?使用、自??ンパス有効化
 	if (GetSessionIndex(nObjNo) == m_nUserIndex)
 	{
 		p_pUI->GetControl(IDC_MAIN_BTN_CONFIG)->SetEnabled(true);
 ///		SetMyIteamsEnabled(true);
-		// 自ターンパス有効表示テクスチャ設定
+		// 自??ンパス有効?示テクス?ャ設定
 		SetRect(&p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->GetElement(1)->rcTexture, MAIN_BTN_TURN_PASS_IMG_ENABLE_RECT);
 		p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetUserData((void*)TRUE);
 	}	
@@ -810,9 +810,9 @@ BOOL CGame::AddObject(type_obj* obj)
 		{
 			ptype_session self = GetMySessionInfo();
 			ptype_session blt_sess = &m_SessionArray[((type_blt*)obj)->chr_obj_no];
-			if (self->chara_state[CHARA_STATE_BLIND_INDEX]	// 暗転中か
-				|| (self->team_no == blt_sess->team_no || self->team_no == GALLERY_TEAM_NO)	// 同チーム観戦
-				|| ((self->team_no != blt_sess->team_no)				// 敵チーム且つステルス中
+			if (self->chara_state[CHARA_STATE_BLIND_INDEX]	// 暗?中か
+				|| (self->team_no == blt_sess->team_no || self->team_no == GALLERY_TEAM_NO)	// 同???観戦
+				|| ((self->team_no != blt_sess->team_no)				// 敵???且つステルス中
 				&& !blt_sess->chara_state[CHARA_STATE_STEALTH_INDEX]))
 			{
 //				AddMessageLog(L"NewFocus");
@@ -864,7 +864,7 @@ BOOL CGame::AddBullet(type_blt* blt)
 	{
 		TCHARA_SCR_INFO* pCharaScrInfo = common::scr::FindCharaScrInfoFromCharaType(blt->chara_type, &m_mapCharaScrInfo);
 		if (!pCharaScrInfo)	return FALSE;
-		// スクリプト情報とオブジェクト構造体の関連付け
+		// スクリプト情報とオブジェクト?造体の関連付け
 		blt->scrinfo = pCharaScrInfo;
 		blt->hit_range = pCharaScrInfo->blt_info[blt->bullet_type].hit_range;
 		break;
@@ -873,7 +873,7 @@ BOOL CGame::AddBullet(type_blt* blt)
 	{
 		TCHARA_SCR_INFO* pCharaScrInfo = common::scr::FindCharaScrInfoFromCharaType(blt->chara_type, &m_mapCharaScrInfo);
 		if (!pCharaScrInfo)	return FALSE;
-		// スクリプト情報とオブジェクト構造体の関連付け
+		// スクリプト情報とオブジェクト?造体の関連付け
 		blt->scrinfo = pCharaScrInfo;
 		blt->hit_range = pCharaScrInfo->sc_info.hit_range;
 		break;
@@ -883,7 +883,7 @@ BOOL CGame::AddBullet(type_blt* blt)
 		blt->hit_range = m_pSelectedStageScrInfo->blt_info[blt->bullet_type].hit_range;
 		break;
 	case BLT_PROC_TYPE_ITEM:
-	default:	// アイテム
+	default:	// アイテ?
 		PlaySysSoundSE(SE_sgi_Shot);
 		blt->hit_range = BLT_DEFAULT_HITRANGE;
 		break;
@@ -941,7 +941,7 @@ void CGame::OnCreateScrStageBullet(type_blt* blt)
 	if (!m_pSelectedStageScrInfo)	return;
 	m_pScrProcObject = blt;
 	
-	// 弾描画前イベント
+	// 弾?画前イベント
 	luaParams.Number(m_pSelectedStageScrInfo->scr_index).Number(blt->chr_obj_no).Number(blt->bullet_type).Number(blt->ax).Number(blt->ay).Number(blt->vx).Number(blt->vy);
 	common::scr::CallLuaFunc(g_pLuah, "onCreate_StageBullet", &luaResults, 1, &luaParams, g_pCriticalSection);
 	m_pScrProcObject = NULL;
@@ -970,7 +970,7 @@ void CGame::FrameObjects()
 //			AddMessageLog(L"FRAME_PAUSE");
 			continue;
 		}
-		// TACTICはフレーム処理しない
+		// TACTICはフレ??処理しない
 		if (blt->obj_type & OBJ_TYPE_TACTIC)	continue;
 
 		switch (blt->obj_state)
@@ -1171,10 +1171,10 @@ void CGame::RenderObject(ptype_obj obj, D3DXMATRIX* matStage)
 
 void CGame::OnRenderScrBullet(type_blt* blt, D3DXMATRIX* matStage)
 {
-	// TACTICは描画しない
+	// TACTICは?画しない
 	if (blt->obj_type & OBJ_TYPE_TACTIC)	return;
 
-	// 弾描画前にスクリプトに通知
+	// 弾?画前にスクリプトに通知
 	NotifyRenderScrBullet(blt);
 
 	if (blt->scrinfo)
@@ -1183,9 +1183,9 @@ void CGame::OnRenderScrBullet(type_blt* blt, D3DXMATRIX* matStage)
 		// 傾きD3DXMATRIX matR, matT, matT2;
 		// 変換行列初期化
 		::D3DXMatrixIdentity(&mat);
-		// 1. 一度スプライトの中心点をウィンドウの原点(0,0)にあわせる
+		// 1. 一度スプライトの中心?をウィンドウの原?(0,0)にあわせる
 		::D3DXMatrixTranslation(&matT, (float)(-blt->ax), (float)(-blt->ay), 0.0f);
-		// 2. スプライトを回転させる
+		// 2. スプライトを回?させる
 		::D3DXMatrixRotationZ(&matR, D3DXToRadian(blt->angle));
 		// 3. 1でずらした分を元に戻す
 		::D3DXMatrixTranslation(&matT2,blt->ax, blt->ay, 0.0f);
@@ -1206,7 +1206,7 @@ void CGame::OnRenderScrBullet(type_blt* blt, D3DXMATRIX* matStage)
 			CopyRect(&rcTexInfo, &((TSTAGE_SCR_INFO*)blt->scrinfo)->blt_info[blt->bullet_type].rec_blt_tex);
 			break;
 		}
-			// 使用テクスチャ上の描画範囲
+			// 使用テクス?ャ上の?画範囲
 		SetRect(&rcTexture,
 			rcTexInfo.left+(blt->tex_index*rcTexInfo.right),
 			rcTexInfo.top,//+(blt->tex_index*rcTexInfo.bottom),
@@ -1231,7 +1231,7 @@ void CGame::OnRenderScrBullet(type_blt* blt, D3DXMATRIX* matStage)
 #endif
 }
 
-// 弾の描画
+// 弾の?画
 void CGame::NotifyRenderScrBullet(type_blt* blt)
 {
 	LuaFuncParam luaParams;
@@ -1239,7 +1239,7 @@ void CGame::NotifyRenderScrBullet(type_blt* blt)
 	int vec_angle = GetAngle((double)blt->vx, (double)blt->vy);	// 進んでいる方向（角度）を算出
 	TCHARA_SCR_INFO* pScrInfo = (TCHARA_SCR_INFO*)blt->scrinfo;
 
-	// 弾描画前イベント
+	// 弾?画前イベント
 	switch (blt->proc_type)
 	{
 	case BLT_PROC_TYPE_SCR_CHARA:
@@ -1314,9 +1314,9 @@ void CGame::OnRenderItemBullet(type_blt* blt, D3DXMATRIX* matStage)
 	// 傾きD3DXMATRIX matR, matT, matT2;
 	// 変換行列初期化
 	::D3DXMatrixIdentity(&mat);
-	// 1. 一度スプライトの中心点をウィンドウの原点(0,0)にあわせる
+	// 1. 一度スプライトの中心?をウィンドウの原?(0,0)にあわせる
 	::D3DXMatrixTranslation(&matT, (float)(-blt->ax), (float)(-blt->ay), 0.0f);
-	// 2. スプライトを回転させる
+	// 2. スプライトを回?させる
 	::D3DXMatrixRotationZ(&matR, D3DXToRadian(blt->angle));
 	// 3. 1でずらした分を元に戻す
 	::D3DXMatrixTranslation(&matT2,blt->ax, blt->ay, 0.0f);
@@ -1466,7 +1466,7 @@ bool CGame::RemoveObject(int nObjNo)
 			&& !m_bPauseBulletFocus
 			&& m_vecObjectNo.size() <= BLT_FOCUS_OBJ_RM_TO_ACTIVE_COUNT_MAX)
 		{
-			// 弾ループ
+			// 弾ル?プ
 			std::vector<int> vecList;
 			vecList.assign(m_vecObjectNo.begin(), m_vecObjectNo.end());
 			
@@ -1489,7 +1489,7 @@ bool CGame::RemoveObject(int nObjNo)
 			}
 		}
 #else
-		// 弾ループ
+		// 弾ル?プ
 		std::vector<int> vecList;
 		vecList.assign(m_vecObjectNo.begin(), m_vecObjectNo.end());
 		for (std::vector<int>::iterator itno = vecList.begin();
@@ -1548,7 +1548,7 @@ BOOL CGame::BombObject(int scr_id, int blt_type, int blt_chr_no, int blt_no, int
 		{
 			g_pCriticalSection->LeaveCriticalSection_Object();
 //			g_pCriticalSection->LeaveCriticalSection_Lua();
-			AddMessageLog(L"BombObject() キャラスクリプト検索エラー");
+			AddMessageLog(L"BombObject() キャラスクリプト検索エラ?");
 			return FALSE;
 		}
 		if (blt_type != DEF_BLT_TYPE_SPELL)
@@ -1608,20 +1608,20 @@ BOOL CGame::BombObject(int scr_id, int blt_type, int blt_chr_no, int blt_no, int
 			BOOL bRetCopyToTexture = PngLoader::CopyToTexture(m_pDev, &rcCopyRect, xs, ys, m_pMainStage->GetImage(), m_pStageTexture);
 			g_pCriticalSection->LeaveCriticalSection_StageTexture();
 
-			// コピー失敗ログ
+			// コピ?失敗ログ
 			if (!bRetCopyToTexture)
 				AddMessageLog(L"FailedErasedTextureCopyProc");
 
-			// ステージスクリプトへステージ削除イベント
+			// ステ?ジスクリプトへステ?ジ削除イベント
 			LuaFuncParam luaParams;
 			LuaFuncParam luaResults;
 			
-			// キャラが発射した弾の場合、ステージ削除イベントを起こす
-//> 20110420 ステージが作成した弾の場合、onErase_Stageが呼び出されなかったのを修正
+			// キャラが発射した弾の場合、ステ?ジ削除イベントを起こす
+//> 20110420 ステ?ジが作成した弾の場合、onErase_Stageが呼び出されなかったのを修正
 //			if (blt_chr_no != STAGE_OBJ_NO)
-//< 20110420 ステージが作成した弾の場合、onErase_Stageが呼び出されなかったのを修正
+//< 20110420 ステ?ジが作成した弾の場合、onErase_Stageが呼び出されなかったのを修正
 			{
-				// 弾を作ったキャラのスクリプト番号,弾を作ったキャラのObjNo,当たった弾のObjNo,弾のタイプ,当たった弾の位置x,y/爆発位置x,y/範囲の近さによる威力値/extdata/削除ピクセル数
+				// 弾を作ったキャラのスクリプト番号,弾を作ったキャラのObjNo,当たった弾のObjNo,弾の?イプ,当たった弾の位置x,y/爆発位置x,y/範囲の近さによる威力値/extdata/削除ピクセル数
 				luaParams.Number(m_pSelectedStageScrInfo->scr_index).Number(blt_type).Number(blt_chr_no).Number(blt_no).Number(pos_x).Number(pos_y).Number(nRetStageErasePixels);
 				if (!common::scr::CallLuaFunc(g_pLuah, "onErase_Stage", &luaResults, 0, &luaParams, g_pCriticalSection))
 				{
@@ -1638,12 +1638,12 @@ BOOL CGame::BombObject(int scr_id, int blt_type, int blt_chr_no, int blt_no, int
 	}
 
 	// 爆発範囲を得る、爆発イベントを通知する
-	// ステージが作成した弾か
+	// ステ?ジが作成した弾か
 	if (blt_chr_no == STAGE_OBJ_NO)
 	{
 		LuaFuncParam luaParams, luaResults;
 		// 存在しているなら情報取得
-		// script,弾タイプ,弾ObjNo,弾位置x,y/移動x,y/extdata
+		// script,弾?イプ,弾ObjNo,弾位置x,y/移動x,y/extdata
 		if (blt)
 			luaParams.Number(m_pSelectedStageScrInfo->scr_index).Number(blt->bullet_type).Number(blt->obj_no).Number(blt->ax).Number(blt->ay).Number(blt->vx).Number(blt->vy).Number(blt->extdata1).Number(blt->extdata2).Number(pos_x).Number(pos_y).Number(nRetStageErasePixels);
 		else
@@ -1659,7 +1659,7 @@ BOOL CGame::BombObject(int scr_id, int blt_type, int blt_chr_no, int blt_no, int
 	{
 		LuaFuncParam luaParams;
 		LuaFuncParam luaResults;
-		// script,弾タイプ,弾ObjNo,弾を作ったキャラのObjNo,弾位置x,y/移動x,y/extdata
+		// script,弾?イプ,弾ObjNo,弾を作ったキャラのObjNo,弾位置x,y/移動x,y/extdata
 		if (blt_type != DEF_BLT_TYPE_SPELL)
 		{
 			if (blt)
@@ -1731,11 +1731,11 @@ BOOL CGame::BombObject(int scr_id, int blt_type, int blt_chr_no, int blt_no, int
 			luaParams.Clear();
 			luaResults.Clear();
 
-			if (blt_chr_no != STAGE_OBJ_NO)	// ステージ生成の弾ではない
+			if (blt_chr_no != STAGE_OBJ_NO)	// ステ?ジ生成の弾ではない
 			{
 				if (blt_type != DEF_BLT_TYPE_SPELL)
 				{
-					// script,弾タイプ,当たったキャラのObjNo,弾を作ったキャラのObjNo,当たった弾のObjNo,当たった弾の位置x,y/爆発位置x,y/範囲の近さによる威力値
+					// script,弾?イプ,当たったキャラのObjNo,弾を作ったキャラのObjNo,当たった弾のObjNo,当たった弾の位置x,y/爆発位置x,y/範囲の近さによる威力値
 					luaParams.Number(pCharaScrInfo->scr_index).Number(blt_type).Number(hit_chr_no).Number(blt_chr_no).Number(blt_no).Number(pos_x).Number(pos_y).Number(fPower);
 					if (!common::scr::CallLuaFunc(g_pLuah, "onHitChara_CharaBulletBomb", &luaResults, 0, &luaParams, g_pCriticalSection))
 					{
@@ -1760,7 +1760,7 @@ BOOL CGame::BombObject(int scr_id, int blt_type, int blt_chr_no, int blt_no, int
 			}
 			else
 			{
-				// script,弾タイプ,当たったキャラのObjNo,当たった弾の位置x,y/爆発位置x,y/範囲の近さによる威力値
+				// script,弾?イプ,当たったキャラのObjNo,当たった弾の位置x,y/爆発位置x,y/範囲の近さによる威力値
 				luaParams.Number(m_pSelectedStageScrInfo->scr_index).Number(blt_type).Number(hit_chr_no).Number(blt_no).Number(pos_x).Number(pos_y).Number(fPower);
 				if (!common::scr::CallLuaFunc(g_pLuah,"onHitChara_StageBulletBomb", &luaResults, 0, &luaParams, g_pCriticalSection))
 				{
@@ -1797,16 +1797,16 @@ void CGame::UpdateObjectState(int nObjNo, DWORD dwObjState)
 		obj->obj_state = (E_TYPE_OBJ_STATE) (obj->obj_state&(OBJ_STATE_MAIN_MASK^0xFFFFFFFF)|(OBJ_STATE_MAIN_MASK&dwObjState));
 	}
 
-	// 弾の場合、状態が設定されたイベントをスクリプトに伝える
+	// 弾の場合、状態が設定されたイベントをスクリプトに?える
 	if ((*itfind).second->obj_type & OBJ_TYPE_BLT)
 	{
 		ptype_blt blt = (type_blt*)((*itfind).second);
-		// ステージが作成した弾か
+		// ステ?ジが作成した弾か
 		if (nObjNo == STAGE_OBJ_NO)
 		{
 			LuaFuncParam luaParams, luaResults;
 			// 存在しているなら情報取得
-			// script,弾タイプ,弾ObjNo,弾位置x,y/移動x,y/extdata/obj_state
+			// script,弾?イプ,弾ObjNo,弾位置x,y/移動x,y/extdata/obj_state
 			luaParams.Number(m_pSelectedStageScrInfo->scr_index).Number(blt->bullet_type).Number(blt->obj_no).Number(blt->ax).Number(blt->ay).Number(blt->vx).Number(blt->vy).Number(blt->extdata1).Number(blt->extdata2).Number((DWORD)blt->obj_state&OBJ_STATE_MAIN_MASK);
 			if (!common::scr::CallLuaFunc(g_pLuah, "onUpdateState_StageBullet", &luaResults, 0, &luaParams, g_pCriticalSection))
 			{
@@ -1818,7 +1818,7 @@ void CGame::UpdateObjectState(int nObjNo, DWORD dwObjState)
 		{
 			LuaFuncParam luaParams;
 			LuaFuncParam luaResults;
-			// script,弾タイプ,弾ObjNo,弾を作ったキャラのObjNo,弾位置x,y/移動x,y/extdata
+			// script,弾?イプ,弾ObjNo,弾を作ったキャラのObjNo,弾位置x,y/移動x,y/extdata
 			if (blt->bullet_type != DEF_BLT_TYPE_SPELL)
 			{
 				luaParams.Number(blt->scrinfo->scr_index).Number(blt->bullet_type).Number(blt->obj_no).Number(blt->chr_obj_no).Number(blt->ax).Number(blt->ay).Number(blt->vx).Number(blt->vy).Number(blt->extdata1).Number(blt->extdata2).Number((DWORD)blt->obj_state&OBJ_STATE_MAIN_MASK);
@@ -1839,7 +1839,7 @@ void CGame::UpdateObjectState(int nObjNo, DWORD dwObjState)
 			}
 		}
 #if (E0401 == 0)
-		// フォーカスしている弾がWAITに設定されていたら、新しいフォーカスする弾を探す
+		// フォ?カスしている弾がWAITに設定されていたら、新しいフォ?カスする弾を探す
 		if (m_pFocusObject == blt && (blt->obj_state & OBJ_STATE_MAIN_WAIT_FLG))
 		{
 			m_pFocusObject = NULL;
@@ -1849,7 +1849,7 @@ void CGame::UpdateObjectState(int nObjNo, DWORD dwObjState)
 			&& m_vecObjectNo.size() <= BLT_FOCUS_OBJ_RM_TO_ACTIVE_COUNT_MAX
 			)
 			{
-				// 弾ループ
+				// 弾ル?プ
 				std::vector<int> vecList;
 				vecList.assign(m_vecObjectNo.begin(), m_vecObjectNo.end());
 				for (std::vector<int>::iterator itno = vecList.begin();
@@ -1872,12 +1872,12 @@ void CGame::UpdateObjectState(int nObjNo, DWORD dwObjState)
 			}
 		}
 #else
-		// フォーカスしている弾がWAITに設定されていたら、新しいフォーカスする弾を探す
+		// フォ?カスしている弾がWAITに設定されていたら、新しいフォ?カスする弾を探す
 		if (m_bBulletFocus && !m_bPauseBulletFocus
 			&& m_pFocusObject == blt && (blt->obj_state & OBJ_STATE_MAIN_WAIT_FLG))
 		{
 			m_pFocusObject = NULL;
-			// 弾ループ
+			// 弾ル?プ
 			std::vector<int> vecList;
 			vecList.assign(m_vecObjectNo.begin(), m_vecObjectNo.end());
 			for (std::vector<int>::iterator itno = vecList.begin();
@@ -1903,14 +1903,14 @@ void CGame::UpdateObjectState(int nObjNo, DWORD dwObjState)
 	g_pCriticalSection->LeaveCriticalSection_Object();
 }
 
-// ターン終了(nCharaIndex=現状自キャラしかこない)
+// ??ン終了(nCharaIndex=現状自キャラしかこない)
 void CGame::OnTurnEnd(int nCharaIndex)
 {
 	WCHAR wsText[12];
 	m_pStageCharacters[nCharaIndex]->SetMyTurn(false);
 
 	// TURN
-	if (m_nLimitTurn>0)		// 制限ターン数がある場合
+	if (m_nLimitTurn>0)		// 制限??ン数がある場合
 		SafePrintf(wsText, 12, L"%d/%d", ++m_nTurnCounter, m_nLimitTurn);
 	else
 		SafePrintf(wsText, 12, L"%d", ++m_nTurnCounter);
@@ -1918,7 +1918,7 @@ void CGame::OnTurnEnd(int nCharaIndex)
 	
 	NotifyTurnEnd(GetSessionInfo( m_nActiveObjectNo));
 
-	// 自ターン終了
+	// 自??ン終了
 	if (nCharaIndex == m_nUserIndex)
 	{
 		ptype_session sess = GetMySessionInfo();
@@ -1936,7 +1936,7 @@ void CGame::OnTurnEnd(int nCharaIndex)
 
 		g_pCriticalSection->EnterCriticalSection_Object(L'!');
 		BOOL bRemoved = FALSE;
-		// 弾ループ
+		// 弾ル?プ
 		std::vector<int> vecList;
 		vecList.assign(m_vecObjectNo.begin(), m_vecObjectNo.end());
 		for (std::vector<int>::iterator itno = vecList.begin();
@@ -1984,13 +1984,13 @@ void CGame::OnTurnEnd(int nCharaIndex)
 		m_pFocusObject = NULL;
 		g_pCriticalSection->LeaveCriticalSection_Object();
 		
-		// ターン終了後のコントロール表示
+		// ??ン終了後のコントロ?ル?示
 		m_pASpriteTimer->SetVisible(false);
 		SetRect(&p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->GetElement(1)->rcTexture, MAIN_BTN_TURN_PASS_IMG_DISABLE_RECT);
 		p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetUserData((void*)FALSE);
 
 		m_eMainPhase = GAME_MAIN_PHASE_NONE;
-		// ステージを暗転から戻す
+		// ステ?ジを暗?から戻す
 		ShowStage();
 	}
 #if TEST_CAPTION
@@ -2015,7 +2015,7 @@ void CGame::ReqUseItem(int nControlID)
 	
 	// アクティブ時以外は無効
 	if (m_nUserIndex != GetSessionIndex(m_nActiveObjectNo))	return;
-	// 弾の発射パワー動かす前以外は使用不可
+	// 弾の発射パワ?動かす前以外は使用不可
 	if (m_eMainPhase != GAME_MAIN_PHASE_ACT) return;
 	if (m_SessionArray[m_nUserIndex].obj_state != OBJ_STATE_MAIN_ACTIVE)	return;
 
@@ -2025,11 +2025,11 @@ void CGame::ReqUseItem(int nControlID)
 	int nIndex = nControlID- IDC_MAIN_BTN_MY_ITEM_BASE;
 	if (m_SessionArray[m_nUserIndex].items[nIndex] & GAME_ITEM_BULLET_TYPE_FLG)
 	{
-		// アイテム弾装填済みならアイテム使用不可
+		// アイテ?弾装填済みならアイテ?使用不可
 		int nBltType = GetStockItemBullet();
 		if (nBltType != -1)
 		{
-			AddChatMessage(L"既にアイテム弾が装填済みです", PK_USER_CHAT_SERVER_WARNING);
+			AddChatMessage(L"既にアイテ?弾が装填済みです", PK_USER_CHAT_SERVER_WARNING);
 			PlaySysSoundSE(SE_sai_SrvInfo);
 			return;
 		}
@@ -2037,14 +2037,14 @@ void CGame::ReqUseItem(int nControlID)
 	else if ((m_SessionArray[m_nUserIndex].chara_state[CHARA_STATE_SHIELD_INDEX])
 		&& m_SessionArray[m_nUserIndex].items[nIndex] & GAME_ITEM_SHIELD)
 	{
-		AddChatMessage(L"シールドは既に使用済みです", PK_USER_CHAT_SERVER_WARNING);
+		AddChatMessage(L"シ?ルドは既に使用済みです", PK_USER_CHAT_SERVER_WARNING);
 		PlaySysSoundSE(SE_sai_SrvInfo);
 		return;
 	}
 	else if ((m_SessionArray[m_nUserIndex].items[nIndex] & GAME_ITEM_POWER)
 		&& m_SessionArray[m_nUserIndex].chara_state[CHARA_STATE_POWER_INDEX])
 	{
-		AddChatMessage(L"既にパワーアップ状態です", PK_USER_CHAT_SERVER_WARNING);
+		AddChatMessage(L"既にパワ?アップ状態です", PK_USER_CHAT_SERVER_WARNING);
 		PlaySysSoundSE(SE_sai_SrvInfo);
 		return;
 	}
@@ -2058,7 +2058,7 @@ void CGame::ReqUseItem(int nControlID)
 	else if ((m_SessionArray[m_nUserIndex].items[nIndex] & GAME_ITEM_STEAL)
 		&& (m_SessionArray[m_nUserIndex].chara_state[CHARA_STATE_ITEM_STEAL_INDEX]&GAME_ITEM_STEAL_SET))
 	{
-		AddChatMessage(L"既にスティール状態です", PK_USER_CHAT_SERVER_WARNING);
+		AddChatMessage(L"既にスティ?ル状態です", PK_USER_CHAT_SERVER_WARNING);
 		PlaySysSoundSE(SE_sai_SrvInfo);
 		return;
 	}
@@ -2101,7 +2101,7 @@ void CGame::SetCharacterDead(int nSessIndex, E_TYPE_PACKET_MAININFO_HEADER dead_
 
 		// キャラ状態をクリア
 		ZeroMemory(sess->chara_state, sizeof(char)*CHARA_STATE_COUNT);
-		// ステージキャラを死んだ状態に変更
+		// ステ?ジキャラを?んだ状態に変更
 		if (m_pStageCharacters[sess->sess_index] && m_pStageCharacters[sess->sess_index]->IsCreated())
 		{
 			m_pStageCharacters[sess->sess_index]->Update();
@@ -2125,16 +2125,16 @@ void CGame::UpdateObjectType(int obj_no, BYTE type)
 	if (!((*itfind).second->proc_flg & PROC_FLG_OBJ_REMOVE))
 		(*itfind).second->obj_type = type;
 
-	// 弾の場合、状態が設定されたイベントをスクリプトに伝える
+	// 弾の場合、状態が設定されたイベントをスクリプトに?える
 	if ((*itfind).second->obj_type & OBJ_TYPE_BLT)
 	{
 		ptype_blt blt = (type_blt*)((*itfind).second);
-		// ステージが作成した弾か
+		// ステ?ジが作成した弾か
 		if (blt->obj_no == (short)STAGE_OBJ_NO)
 		{
 			LuaFuncParam luaParams, luaResults;
 			// 存在しているなら情報取得
-			// script,弾タイプ,弾ObjNo,弾位置x,y/移動x,y/extdata/obj_state
+			// script,弾?イプ,弾ObjNo,弾位置x,y/移動x,y/extdata/obj_state
 			luaParams.Number(m_pSelectedStageScrInfo->scr_index).Number(blt->bullet_type).Number(blt->obj_no).Number(blt->ax).Number(blt->ay).Number(blt->vx).Number(blt->vy).Number(blt->extdata1).Number(blt->extdata2).Number((BYTE)(OBJ_TYPE_MASK&type));
 			if (!common::scr::CallLuaFunc(g_pLuah, "onUpdateType_StageBullet", &luaResults, 0, &luaParams, g_pCriticalSection))
 			{
@@ -2146,7 +2146,7 @@ void CGame::UpdateObjectType(int obj_no, BYTE type)
 		{
 			LuaFuncParam luaParams;
 			LuaFuncParam luaResults;
-			// script,弾タイプ,弾ObjNo,弾を作ったキャラのObjNo,弾位置x,y/移動x,y/extdata
+			// script,弾?イプ,弾ObjNo,弾を作ったキャラのObjNo,弾位置x,y/移動x,y/extdata
 			if (blt->bullet_type != DEF_BLT_TYPE_SPELL)
 			{
 				luaParams.Number(blt->scrinfo->scr_index).Number(blt->bullet_type).Number(blt->obj_no).Number(blt->chr_obj_no).Number(blt->ax).Number(blt->ay).Number(blt->vx).Number(blt->vy).Number(blt->extdata1).Number(blt->extdata2).Number((BYTE)(OBJ_TYPE_MASK&type));
@@ -2196,7 +2196,7 @@ int CGame::GetLivingCharacters()
 	return nCount;
 }
 
-// ステージにテクスチャ貼り付け
+// ステ?ジにテクス?ャ?り付け
 void CGame::PasteTextureOnStage(int scr_id,int sx,int sy, int tx,int ty,int tw,int th)
 {
 	int stage_top = max(sy,0);
@@ -2234,18 +2234,18 @@ void CGame::PasteTextureOnStage(int scr_id,int sx,int sy, int tx,int ty,int tw,i
 
 	g_pCriticalSection->EnterCriticalSection_StageTexture(L'#');
 	
-	// 画像貼り付け
+	// 画像?り付け
 //	if (!m_pMainStage->PasteImage(g_pFiler, pCharaScrInfo->tex_path, &rcPasteImage, sx,sy))
 	if (!m_pMainStage->PasteImage(m_pDev, &rcPasteImage, sx,sy, pPasteTexture))
 	{
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();
-		AddMessageLog(L"ステージ画像の操作に失敗しました");
+		AddMessageLog(L"ステ?ジ画像の?作に失敗しました");
 		return;
 	}
 	SetRect(&rcPasteImage, sx,sy,sx+rcPasteImage.right-rcPasteImage.left, sy+rcPasteImage.bottom-rcPasteImage.top);
 	PngLoader::CopyToTexture(m_pDev, &rcPasteImage, sx,sy, m_pMainStage->GetImage(), m_pStageTexture);
 /*
-	// サーフェースロック
+	// サ?フェ?スロック
 	D3DLOCKED_RECT LockedRect;
 	HRESULT hr = m_pStageTexture->LockRect(0, &LockedRect, &rcLock,0);
 	if (hr != D3D_OK)
@@ -2253,7 +2253,7 @@ void CGame::PasteTextureOnStage(int scr_id,int sx,int sy, int tx,int ty,int tw,i
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();
 		if (hr == D3DERR_WASSTILLDRAWING)
 			return;
-		AddMessageLog(L"ステージ画像の操作に失敗しました");
+		AddMessageLog(L"ステ?ジ画像の?作に失敗しました");
 		return;
 	}
 	DWORD* p = (DWORD*)LockedRect.pBits;
@@ -2263,10 +2263,10 @@ void CGame::PasteTextureOnStage(int scr_id,int sx,int sy, int tx,int ty,int tw,i
 	int stage_height = stage_bottom-stage_top;
 	for (int y=0;y<stage_height;y++)
 	{
-		// 転送先
+		// ?送先
 		DWORD* p1 = (DWORD*)((char*)LockedRect.pBits
 							+ ((LockedRect.Pitch) * (y)));
-		// 転送元
+		// ?送元
 		DWORD* src_line = pStagePngImage->lines[y+stage_top];
 		src_line += stage_left;
 		memcpy(p1, src_line, sizePasteLine);
@@ -2276,7 +2276,7 @@ void CGame::PasteTextureOnStage(int scr_id,int sx,int sy, int tx,int ty,int tw,i
 	g_pCriticalSection->LeaveCriticalSection_StageTexture();
 }
 
-// 弾の表示
+// 弾の?示
 void CGame::SetVisibleBulletSelectButtons(bool value)
 {
 	TCHARA_SCR_INFO* scrinfo = (TCHARA_SCR_INFO*)m_SessionArray[m_nUserIndex].scrinfo;	
@@ -2297,7 +2297,7 @@ void CGame::SetVisibleBulletSelectButtons(bool value)
 			0, 3);
 	}
 
-	// 弾選択ボタン
+	// 弾選択??ン
 	for (int i=0;i<MAX_CHARA_BULLET_TYPE;i++)
 	{
 /*
@@ -2557,7 +2557,7 @@ bool CGame::SetEffectTexture(int nEffectNo, RECT* rcTexture, BOOL bStageEffect)
 
 void CGame::SetVisibleStageCharacterInfo(bool bVisible)
 {
-	// 各キャラの情報表示設定
+	// 各キャラの情報?示設定
 	if (m_eGameState & GAME_STATE_MAIN)
 	{
 		for (int i=0;i<GetMaxLoginNum();i++)
@@ -2621,12 +2621,12 @@ void CGame::PlayScrSoundSE(char* rc_name, int loop, int fade)
 	if (!m_bytSEVolume)	return;
 
 	g_pCriticalSection->EnterCriticalSection_Sound(L'8');
-	// リソース名からID検索
+	// リ??ス名からID検索
 	std::map<std::string, int>::iterator itfind = m_mapScrSoundIDHash.find(rc_name);
 	if (itfind == m_mapScrSoundIDHash.end())
 	{
 		g_pCriticalSection->LeaveCriticalSection_Sound();
-//		MessageBox(g_hWnd, pRcName, L"未登録のサウンド:PlayScrSoundSE1()", MB_OK);
+//		MessageBox(g_hWnd, pRcName, L"未登?のサウンド:PlayScrSoundSE1()", MB_OK);
 		WCHAR pRcName[_MAX_PATH*2+1];
 		ZeroMemory(pRcName,sizeof(pRcName));
 		CStringToWString(pRcName, rc_name,_MAX_PATH*2);
@@ -2639,7 +2639,7 @@ void CGame::PlayScrSoundSE(char* rc_name, int loop, int fade)
 	if (!pSoundBuffer)
 	{
 		g_pCriticalSection->LeaveCriticalSection_Sound();
-//		MessageBox(g_hWnd, pRcName, L"未登録のサウンド:PlayScrSoundSE2()", MB_OK);
+//		MessageBox(g_hWnd, pRcName, L"未登?のサウンド:PlayScrSoundSE2()", MB_OK);
 		WCHAR pRcName[_MAX_PATH*2+1];
 		ZeroMemory(pRcName,sizeof(pRcName));
 		CStringToWString(pRcName, rc_name,_MAX_PATH*2);
@@ -2650,7 +2650,7 @@ void CGame::PlayScrSoundSE(char* rc_name, int loop, int fade)
 //	WCHAR sndlog[64];
 //	SafePrintf(sndlog,64, L"PlayScrSoundSE:%x", (DWORD)pSoundBuffer->GetDirectSoundBuffer8());
 //	AddMessageLog(sndlog);
-	// 無限ループ確認
+	// 無限ル?プ確認
 	if (loop == -1)
 	{
 		if (pSoundBuffer)
@@ -2864,7 +2864,7 @@ void CGame::UseItem(int nItemIndex, DWORD dwItemFlg, BOOL bSteal)
 			PlaySysSoundSE(SE_sgi_Double);
 			break;
 		case GAME_ITEM_STEALTH:
-			AddChatMessage(L"ステルス状態になりました(残り3ターン)", PK_USER_CHAT_SERVER_INFO);
+			AddChatMessage(L"ステルス状態になりました(残り3??ン)", PK_USER_CHAT_SERVER_INFO);
 			PlaySysSoundSE(SE_sgi_Stealth);
 			break;
 		case GAME_ITEM_SHIELD:
@@ -2954,7 +2954,7 @@ void CGame::UpdateControlPanelHPInfo()
 {
 	ptype_session sess = GetMySessionInfo();
 	if (!sess) return;
-	// HPメータ
+	// HPメ??
 	m_pMeterHP->SetMaxValue( sess->HP_m );
 	m_pMeterHP->SetValue( sess->HP_c );
 
@@ -3046,7 +3046,7 @@ void CGame::OnTurnPassButtonDown(int nControlID)
 		return;
 	}
 
-	// 自ターンパス無効表示テクスチャ設定
+	// 自??ンパス無効?示テクス?ャ設定
 	SetRect( &p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->GetElement(1)->rcTexture, MAIN_BTN_TURN_PASS_IMG_DISABLE_RECT);
 	p_pUI->GetControl(IDC_MAIN_BTN_TURN_PASS)->SetUserData((void*)FALSE);
 
@@ -3062,9 +3062,9 @@ void CGame::OnCharaDisconnect(int nCharaIndex)
 {
 	ptype_session sess = GetSessionInfo(nCharaIndex);
 	if (!sess) return;
-	// 表示を戻すため異常状態をクリアしておく
+	// ?示を戻すため異常状態をクリアしておく
 	ZeroMemory(sess->chara_state, sizeof(char)*CHARA_STATE_COUNT);
-	m_pStageCharacters[nCharaIndex]->SetDead();	// 切断したキャラは死んでおく
+	m_pStageCharacters[nCharaIndex]->SetDead();	// 切断したキャラは?んでおく
 
 }
 
@@ -3098,7 +3098,7 @@ void CGame::UpdateNotifyMyTurn()
 
 void CGame::FrameStageCharacter()
 {
-	// ゲーム状態がメイン以外は処理しない
+	// ゲ??状態がメイン以外は処理しない
 	if (m_eGameState != eGameMain)
 		return;
 	g_pCriticalSection->EnterCriticalSection_Session(L'0');
@@ -3261,7 +3261,7 @@ void CGame::UpdateSCExp()
 		if (!m_pMeterSCExp->GetVisible())
 		{
 			m_pMeterSCExp->SetVisible(true);
-			// チェックされている場合、別弾にチェックを移す
+			// ?ェックされている場合、別弾に?ェックを移す
 			if (m_pRbSC->GetChecked())
 			{
 				m_pBulletSelectButtons[0]->SetChecked(true);
@@ -3276,10 +3276,10 @@ void CGame::SetSelectBulletInfo()
 {
 	m_nTriggerType = m_nSelectBulletNo;
 	m_nShootingProcType = BLT_PROC_TYPE_SCR_CHARA;
-	// スペルカード選択
+	// スペルカ?ド選択
 	if (m_nSelectBulletNo == MAX_CHARA_BULLET_TYPE)
 		m_nShootingProcType = BLT_PROC_TYPE_SCR_SPELL;
-	// 装填済みのアイテム弾取得
+	// 装填済みのアイテ?弾取得
 	m_nShootingBltType = GetStockItemBullet();	
 	if (m_nShootingBltType != -1)
 		m_nShootingProcType = BLT_PROC_TYPE_ITEM;

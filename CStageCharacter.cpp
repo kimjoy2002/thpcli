@@ -3,8 +3,8 @@
 
 CStageCharacter::CStageCharacter()
 {
-	m_pControlName = NULL;					// 名前表示用コントロール	
-	m_pHPBar = NULL;							// HPバー
+	m_pControlName = NULL;					// 名前?示用コントロ?ル	
+	m_pHPBar = NULL;							// HPバ?
 	m_pMyTurn = NULL;
 	p_pDialog = NULL;
 	m_pStatusInfo = NULL;
@@ -17,21 +17,21 @@ CStageCharacter::CStageCharacter()
 void CStageCharacter::Destroy()
 {
 	p_pSession = NULL;							// オブジェクト情報	
-	m_nAnimationIndex = 0;					// ｱﾆﾒｰｼｮﾝ描画範囲インデックス
-	m_nAnimationCount = 0;					// ｱﾆﾒｰｼｮﾝ描画範囲数
+	m_nAnimationIndex = 0;					// ｱﾆﾒｰｼｮ?`画範囲インデックス
+	m_nAnimationCount = 0;					// ｱﾆﾒｰｼｮ?`画範囲数
 
 	m_nAnimationTimeCounter = 0;			// ｱﾆﾒｰｼｮﾝｲﾝﾃﾞｯｸｽの数値を増やす時間
 	m_nAnimationTime = 0;					// ｱﾆﾒｰｼｮﾝｲﾝﾃﾞｯｸｽの数値を増やす時間
 	
-	m_nTextureWidth = CHARA_TEXTURE_WIDTH;						// テクスチャ横幅
-	m_nTextureHeight = CHARA_TEXTURE_HEIGHT;						//	テクスチャ縦幅
-	p_pTexture = NULL;							// テクスチャ
+	m_nTextureWidth = CHARA_TEXTURE_WIDTH;						// テクス?ャ横幅
+	m_nTextureHeight = CHARA_TEXTURE_HEIGHT;						//	テクス?ャ縦幅
+	p_pTexture = NULL;							// テクス?ャ
 	m_nControlNameWidth = 0;				// 
 	m_nControlNameHeight = 0;
 
 	m_bCreated = FALSE;						// 生成済み
-	SetRectEmpty(&m_recDraw);				// 描画範囲	
-	m_bVisible = FALSE;							// 表示状態
+	SetRectEmpty(&m_recDraw);				// ?画範囲	
+	m_bVisible = FALSE;							// ?示状態
 	m_nBodyRange = 0;							// 当たり判定用半径
 	m_vecDrawCharaPos = D3DXVECTOR3(0,0,0);
 	m_vecDrawCharaCenter = D3DXVECTOR3(0,0,0);
@@ -51,9 +51,9 @@ void CStageCharacter::Destroy()
 
 // 生成
 // pDev			: D3Dデバイス
-// pTexture	: テクスチャ
-// nGUIResourceIndex : 基本のGUIリソース番号
-// pStatic		: スタティック(キャラ名用)
+// pTexture	: テクス?ャ
+// nGUIResourceIndex : 基?のGUIリ??ス番号
+// pStatic		: ス?ティック(キャラ名用)
 // pSess		: オブジェクト情報
 HRESULT CStageCharacter::Create(std::map < int, TCHARA_SCR_INFO > *mapScrInfo, int nGUIResourceIndex, CDXUTDialog* pDialog, type_session* pSess, int nStageWidth, int nStageHeight)
 {
@@ -73,8 +73,8 @@ HRESULT CStageCharacter::Create(std::map < int, TCHARA_SCR_INFO > *mapScrInfo, i
 	std::map < int, TCHARA_SCR_INFO >::iterator itfind = mapScrInfo->find(nObjID); 
 	if (itfind == mapScrInfo->end())
 	{
-		AddMessageLog(L"スクリプトロードエラー\nCStageCharacter::Create: m_MapScrInfo.find(nObjID) not find");
-//		DXTRACE_MSG(L"スクリプトロードエラー\nCStageCharacter::Create: m_MapScrInfo.find(nObjID) not find");
+		AddMessageLog(L"スクリプトロ?ドエラ?\nCStageCharacter::Create: m_MapScrInfo.find(nObjID) not find");
+//		DXTRACE_MSG(L"スクリプトロ?ドエラ?\nCStageCharacter::Create: m_MapScrInfo.find(nObjID) not find");
 		return FALSE;
 	}
 	m_pScrInfo = &((*itfind).second);
@@ -86,7 +86,7 @@ HRESULT CStageCharacter::Create(std::map < int, TCHARA_SCR_INFO > *mapScrInfo, i
 
 	D3DSURFACE_DESC SurfaceDesc;
 	LPDIRECT3DSURFACE9	d_psf;
-	// 転送先のサーフェース
+	// ?送先のサ?フェ?ス
 	if (p_pTexture->GetSurfaceLevel(0, &d_psf ) == D3D_OK)
 	{
 		// 画像情報取得
@@ -161,9 +161,9 @@ HRESULT CStageCharacter::Create(std::map < int, TCHARA_SCR_INFO > *mapScrInfo, i
 	m_pHPBar->GetElement(1)->TextureColor.Init(0xFF00FF00, 0xFF00FF00);
 	m_pHPBar->GetElement(2)->TextureColor.Init(0,0,0);
 	RECT rcTexture;
-	SetRect( &rcTexture, STAGE_CHARA_HPBAR_RECT);	// 描画範囲
-	m_pHPBar->GetElement(0)->SetTexture( nGUIResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
-	m_pHPBar->GetElement(1)->SetTexture( nGUIResourceIndex, &rcTexture,0xFF00FF00);	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, STAGE_CHARA_HPBAR_RECT);	// ?画範囲
+	m_pHPBar->GetElement(0)->SetTexture( nGUIResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
+	m_pHPBar->GetElement(1)->SetTexture( nGUIResourceIndex, &rcTexture,0xFF00FF00);	// 追加した管理テクス?ャ番号を指定
 	m_pHPBar->SetMargin(1,1);
 
 	// MyTurn
@@ -173,9 +173,9 @@ HRESULT CStageCharacter::Create(std::map < int, TCHARA_SCR_INFO > *mapScrInfo, i
 
 	m_bVisibleInfo = true;
 
-	// 表示範囲計算 //
+	// ?示範囲計算 //
 	CopyRect(&m_recDraw, &m_pScrInfo->rec_tex_chr);
-	// 表示テクスチャサイズの半分
+	// ?示テクス?ャサイズの半分
 	float fSizeHalfW = ((float)m_recDraw.right/2.0f);
 	float fSizeHalfH = ((float)m_recDraw.bottom/2.0f);
 	m_vecDrawCharaCenter = D3DXVECTOR3(fSizeHalfW, fSizeHalfH, 0.0f);
@@ -249,7 +249,7 @@ void CStageCharacter::SetTexture(RECT* prcTexture)
 	CopyRect(&m_recDraw, prcTexture);
 }
 
-// 描画範囲再計算
+// ?画範囲再計算
 void CStageCharacter::CalcDrawRect()
 {
 	int nAnimationIndex = m_nAnimationIndex;
@@ -275,7 +275,7 @@ void CStageCharacter::CalcDrawRect()
 */
 }
 
-// 位置変更による描画位置計算
+// 位置変更による?画位置計算
 void CStageCharacter::CalcDrawPos()
 {
 	m_vecDrawCharaPos = D3DXVECTOR3(
@@ -301,9 +301,9 @@ void CStageCharacter::CalcDrawPos()
 	// 傾きD3DXMATRIX matR, matT, matT2;
 	// 変換行列初期化
 //	::D3DXMatrixIdentity(&mat);
-	// 1. 一度スプライトの中心点をウィンドウの原点(0,0)にあわせる
+	// 1. 一度スプライトの中心?をウィンドウの原?(0,0)にあわせる
 	::D3DXMatrixTranslation(&matT, -m_vecDrawCharaPos.x, -m_vecDrawCharaPos.y-CHARA_BODY_RANGE, 0.0f);
-	// 2. スプライトを回転させる
+	// 2. スプライトを回?させる
 	::D3DXMatrixRotationZ(&matR, D3DXToRadian(nAngle));
 	// 3. 1でずらした分を元に戻す
 	::D3DXMatrixTranslation(&matT2,m_vecDrawCharaPos.x, m_vecDrawCharaPos.y+CHARA_BODY_RANGE, 0.0f);
@@ -325,7 +325,7 @@ void CStageCharacter::UpdateState()
 	}
 }
 
-// ターン状態更新
+// ??ン状態更新
 void CStageCharacter::SetMyTurn(bool bTurn)
 {
 	if (m_pMyTurn)
@@ -360,28 +360,28 @@ void CStageCharacter::UpdateMyTurnTexture()
 	m_pMyTurn->GetElement(0)->SetTexture(m_nGUIResourceIndex, &rcTexture, 0xFFFFFFFF);
 }
 
-// 描画
+// ?画
 // pDev	: D3Dデバイス
 // fElapsedTime : 経過時間
 void CStageCharacter::Render(LPDIRECT3DDEVICE9 pDev, float fElapsedTime, D3DXMATRIX* matChara, D3DXMATRIX* matStage, D3DCOLOR color)
 {
 	if (!m_bCreated || !m_bVisible)	return;
-	//> 20110201 暗転中に死んだキャラが、暗転から戻ったとき立った表示になっていた
-	// 落下死は表示しない
+	//> 20110201 暗?中に?んだキャラが、暗?から戻ったとき立った?示になっていた
+	// 落下?は?示しない
 //	if (p_pSession && p_pSession->obj_state & OBJ_STATE_MAIN_DROP_FLG)	return;
-	//> 20110201 暗転中に死んだキャラが、暗転から戻ったとき立った表示になっていた
+	//> 20110201 暗?中に?んだキャラが、暗?から戻ったとき立った?示になっていた
 
-	// 描画イベント通知
+	// ?画イベント通知
 	LuaFuncParam luaResults, luaParams;
 	// script,chr_no,state,angle,vx,vy,frame
 	luaParams.Number(p_pSession->scrinfo->scr_index).Number(p_pSession->obj_no).Number(((DWORD)p_pSession->obj_state&OBJ_STATE_MAIN_MASK)).Number(p_pSession->angle).Number(p_pSession->vx).Number(p_pSession->vy).Number(p_pSession->frame_count);
 	if (!common::scr::CallLuaFunc(g_pLuah, "onDraw_Chara", &luaResults, 0, &luaParams, g_pCriticalSection))
 		return;
 
-	//> 20110201 暗転中に死んだキャラが、暗転から戻ったとき立った表示になっていた
-	// 落下死は表示しない
+	//> 20110201 暗?中に?んだキャラが、暗?から戻ったとき立った?示になっていた
+	// 落下?は?示しない
 	if (p_pSession && p_pSession->obj_state & OBJ_STATE_MAIN_DROP_FLG)	return;
-	//> 20110201 暗転中に死んだキャラが、暗転から戻ったとき立った表示になっていた
+	//> 20110201 暗?中に?んだキャラが、暗?から戻ったとき立った?示になっていた
 
 	D3DXMATRIX mat;	
 	D3DXMatrixIdentity(&mat);	
@@ -402,7 +402,7 @@ void CStageCharacter::Render(LPDIRECT3DDEVICE9 pDev, float fElapsedTime, D3DXMAT
 		m_pControlName->Render(g_pSprite, pDev, p_pDialog, fElapsedTime, matChara);
 		// HP
 		m_pHPBar->Render(g_pSprite, pDev, p_pDialog, fElapsedTime, matChara);
-		// ■▲×
+		// ■▲?
 		m_pMyTurn->Render(g_pSprite, pDev, p_pDialog, fElapsedTime, matChara);
 		if (m_pStatusInfo)
 			m_pStatusInfo->Render(g_pSprite, pDev, p_pDialog, fElapsedTime, matChara);
@@ -411,29 +411,29 @@ void CStageCharacter::Render(LPDIRECT3DDEVICE9 pDev, float fElapsedTime, D3DXMAT
 	g_pSprite->SetTransform(matStage);
 }
 
-// 死んだ
+// ?んだ
 void CStageCharacter::SetDead()
 {
-	// 死んだらターンがこないので×印をつけておく
+	// ?んだら??ンがこないので?印をつけておく
 	if (p_pSession)
 	{
-		//> 20101205死んだらHP0にする
+		//> 20101205?んだらHP0にする
 		p_pSession->HP_c = 0;
 		UpdateState();
-		//< 20101205死んだらHP0にする
+		//< 20101205?んだらHP0にする
 		UpdateMyTurnTexture();
 	}
 }
 
 void CStageCharacter::OnLost()
 {
-	// テクスチャをNULLにする
+	// テクス?ャをNULLにする
 	p_pTexture = NULL;
 }
 
 void CStageCharacter::OnReset()
 {
-	// テクスチャの再設定
+	// テクス?ャの再設定
 	m_pScrInfo = (TCHARA_SCR_INFO*)p_pSession->scrinfo;
 	p_pTexture = m_pScrInfo->pTexture;
 }

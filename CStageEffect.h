@@ -2,13 +2,11 @@
 #define H_STAGE_EFFECT_CLASS___
 // ===================================================================
 // CStageEffect.h
-//	ステージエフェクトクラス・ヘッダー
+//	ステ?ジエフェクトクラス・ヘッ??
 // ===================================================================
 
 #include <windows.h>
 #include <TCHAR.h>
-#include "../include/types.h"
-#include "../include/define.h"
 #include "util.h"
 #include <map>
 #include <math.h>
@@ -16,8 +14,8 @@
 #include <d3dx9.h>
 #include <dxerr9.h>
 
-#include "../lib/DXUT/dxstdafx.h"
-#include "../lib/DXUT/DXUT.h"
+#include "../thplib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/DXUT.h"
 #include "resource.h"
 
 #include "TextureLoader.h"
@@ -25,10 +23,10 @@
 
 /*
 エフェクト
-　・アニメーションする
-　・消えてく
-　・座標、拡大、縮小、回転する
-　X 後ろの画面を暗くする状態を作る（カットイン用？）
+?・アニメ?ションする
+?・消えてく
+?・座標、拡大、縮小、回?する
+?X 後ろの画面を暗くする状態を作る（カットイン用？）
 */
 class CStageEffect
 {
@@ -100,30 +98,30 @@ protected:
 	BOOL				m_bReady;
 	int						m_nEffectNo;			// 管理番号
 
-	LPDIRECT3DTEXTURE9	p_pTexture;	// 使用するテクスチャ
-	RECT					m_rcTexture;				// 描画サイズ
+	LPDIRECT3DTEXTURE9	p_pTexture;	// 使用するテクス?ャ
+	RECT					m_rcTexture;				// ?画サイズ
 	D3DXVECTOR3	m_vecPosition;			// 位置
 	D3DXVECTOR3	m_vecVector;			// 移動値
 	D3DXVECTOR3	m_vecAddVec;			// 加速値
 
 	D3DXVECTOR3	m_vecScalling;			// 拡大縮小
 
-	int						m_nAnimationTime;	// 次アニメーションインデックスへ移る時間
-	int						m_nAnimationTimeCounter;	// 時間のカウンタ
+	int						m_nAnimationTime;	// 次アニメ?ションインデックスへ移る時間
+	int						m_nAnimationTimeCounter;	// 時間のカウン?
 
-	int						m_nAnimationCount;	// アニメーション数
-	int						m_nAnimationIndex;	// アニメーションインデックス
+	int						m_nAnimationCount;	// アニメ?ション数
+	int						m_nAnimationIndex;	// アニメ?ションインデックス
 	BOOL				m_bAnimationLoop;
 
-	int						m_nFade;					// フェード
-	int						m_nFadeInOut;			// フェードインアウト時間
+	int						m_nFade;					// フェ?ド
+	int						m_nFadeInOut;			// フェ?ドインアウト時間
 	
-	RECT					m_rcDraw;				// 描画範囲
-	D3DXVECTOR3	m_vecCenter;			// 回転の中心
-	D3DCOLOR		m_clrDraw;				// 描画色
-	BYTE					m_bytAlpha;				// アルファ
-	FLOAT				m_fRotateDraw;		// 回転値
-	FLOAT				m_fRotation;				// 自転値
+	RECT					m_rcDraw;				// ?画範囲
+	D3DXVECTOR3	m_vecCenter;			// 回?の中心
+	D3DCOLOR		m_clrDraw;				// ?画色
+	BYTE					m_bytAlpha;				// アルフ?
+	FLOAT				m_fRotateDraw;		// 回?値
+	FLOAT				m_fRotation;				// 自?値
 
 	D3DXVECTOR3	m_vecScallingDraw;	// 拡大縮小
 	
@@ -132,8 +130,8 @@ protected:
 	int						m_nScallingTimeCounter;
 	int						m_nRotationTimeCounter;
 	int						m_nRotationEffectTime;
-	int						m_nFadeEffectTime;			// フェード効果時間
-	int						m_nAnimationEffectTime;	// アニメーション効果時間
+	int						m_nFadeEffectTime;			// フェ?ド効果時間
+	int						m_nAnimationEffectTime;	// アニメ?ション効果時間
 	int						m_nScallingEffectTime;		// 拡大縮小効果時間
 	int						m_nVectorEffectTime;		// 移動効果時間
 #ifdef HOGE

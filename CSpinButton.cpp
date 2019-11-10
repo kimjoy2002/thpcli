@@ -40,8 +40,8 @@ BOOL CSpinButton::Create(CDXUTDialog* pDialog, int nBaseID,int nResourceIndex, i
 	m_pIncrement->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 	m_pIncrement->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 
-	SetRect( &rcTexture, ROOM_BTN_INC_IMG_RECT);	// 描画範囲
-	m_pIncrement->GetElement(1)->SetTexture( nResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_INC_IMG_RECT);	// ?画範囲
+	m_pIncrement->GetElement(1)->SetTexture( nResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	m_pIncrement->SetStateMouserOverOffset(0,0);
 	m_pIncrement->SetStatePressedOverOffset(0,-1);
 	m_pIncrement->SetVisible(false);
@@ -53,8 +53,8 @@ BOOL CSpinButton::Create(CDXUTDialog* pDialog, int nBaseID,int nResourceIndex, i
 	m_pDecrement->GetElement(1)->TextureColor.States[ DXUT_STATE_MOUSEOVER ] = D3DCOLOR_ARGB(255, 255, 255, 255);
 	m_pDecrement->GetElement(1)->FontColor.States[ DXUT_STATE_NORMAL ]=D3DCOLOR_ARGB(255,255,255,255);
 	
-	SetRect( &rcTexture, ROOM_BTN_DEC_IMG_RECT);	// 描画範囲
-	m_pDecrement->GetElement(1)->SetTexture( nResourceIndex, &rcTexture );	// 追加した管理テクスチャ番号を指定
+	SetRect( &rcTexture, ROOM_BTN_DEC_IMG_RECT);	// ?画範囲
+	m_pDecrement->GetElement(1)->SetTexture( nResourceIndex, &rcTexture );	// 追加した管理テクス?ャ番号を指定
 	m_pDecrement->SetStateMouserOverOffset(0,0);
 	m_pDecrement->SetStatePressedOverOffset(0,1);
 	m_pDecrement->SetVisible(false);

@@ -10,8 +10,8 @@
 
 #include "util.h"
 
-#include "../lib/DXUT/dxstdafx.h"
-#include "../lib/DXUT/DXUT.h"
+#include "../thplib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/DXUT.h"
 #include "resource.h"
 
 #define SHOT_ANGLE_MAX	(360)

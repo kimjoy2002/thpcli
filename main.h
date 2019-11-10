@@ -12,13 +12,11 @@
 #include <mmsystem.h>
 #include <io.h>
 #include <errno.h>
-#include "../include/define.h"
-#include "../include/types.h"
 #include "util.h"
 
-#include "../lib/DXUT/DXUT.h"
-#include "../common/CPacketQueue.h"
-#include "../common/CCriticalSection.h"
+#include "../thplib/DXUT/DXUT.h"
+#include "../thpcommon/CPacketQueue.h"
+#include "../thpcommon/CCriticalSection.h"
 
 #include <png.h>
 #include <lua.hpp>
@@ -26,8 +24,8 @@
 #include "tolua_glue/thg_glue.h"
 #include "LuaHelper.h"
 
-#include "../common/CPacketQueue.h"
-#include "../common/CCriticalSection.h"
+#include "../thpcommon/CPacketQueue.h"
+#include "../thpcommon/CCriticalSection.h"
 
 
 #include "Game.h"
@@ -37,7 +35,7 @@
 //#include "CLinkageList.h"
 #include "CFiler.h"
 #include "TextureLoader.h"
-#include "../lib/DXUT/dxstdafx.h"
+#include "../thplib/DXUT/dxstdafx.h"
 
 #include "resource.h"
 

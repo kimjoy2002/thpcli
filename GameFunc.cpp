@@ -49,7 +49,7 @@ BOOL CGame::AddPacket(BYTE* data, WORD size)
 //#if ADD_LOG_PACKET_INFO
 	if (!g_pPacketQueue->EnqueueRaw(ppkt))
 	{
-		AddMessageLog(L"パケットキュー追加失敗");
+		AddMessageLog(L"パケットキュ?追加失敗");
 		switch (data[2])
 		{
 		case PK_SYN:
@@ -111,7 +111,7 @@ BOOL CGame::AddPacket(BYTE* data, WORD size)
 }
 //< セッションへ送るパケット作成
 
-// チャットにメッセージ追加
+// ?ャットにメッセ?ジ追加
 void CGame::AddChatMessage(WCHAR *msg, E_TYPE_PACKET_CHAT_HEADER chat)
 {
 	HRESULT hr;
@@ -123,14 +123,14 @@ void CGame::AddChatMessage(WCHAR *msg, E_TYPE_PACKET_CHAT_HEADER chat)
 	BYTE bytColorElement = 1;
 	switch (chat)
 	{
-	case PK_USER_CHAT_TEAM:					// チームへ
+	case PK_USER_CHAT_TEAM:					// ???へ
 		bytColorElement = 3;
 		break;
-	case PK_USER_CHAT_SERVER_INFO:			// サーバから情報
+	case PK_USER_CHAT_SERVER_INFO:			// サ?バから情報
 		bytColorElement = 4;
 		AddMessageLog(msg);
 		break;
-	case PK_USER_CHAT_SERVER_WARNING:	// サーバから注意
+	case PK_USER_CHAT_SERVER_WARNING:	// サ?バから注意
 		bytColorElement = 5;
 		AddMessageLog(msg);
 		break;
@@ -150,7 +150,7 @@ int CGame::AddResourceTexture(WCHAR* path)
 {
 	LPDIRECT3DTEXTURE9 pTex = NULL;
 	int nImageWidth,nImageHeight;
-	// リソースマネージャとダイアログにテクスチャを追加
+	// リ??ス?ネ?ジャと?イアログにテクス?ャを追加
 	int nNewTextureNodeIndex = g_DialogResourceManager.AddTexture(L"");
 	p_pUI->SetTexture(nNewTextureNodeIndex, L"");
 	if (FAILED(LoadTextureFromFiler(path, &pTex, &nImageWidth, &nImageHeight)))
@@ -188,14 +188,14 @@ BYTE CGame::GetChatMessageRange()
 	if (!pItem)	return (BYTE)PK_USER_CHAT_NONE;
 	DWORD pb = (DWORD)pItem->pData;
 
-	// CTRLキー押下しているならチームチャットにする
+	// CTRLキ?押下しているなら????ャットにする
 	if (GetAsyncKeyState(VK_CONTROL)&0x8000)
 		return (BYTE)PK_USER_CHAT_TEAM;
-	// ALTキー押下しているなら全体チャットにする
+	// ALTキ?押下しているなら全体?ャットにする
 	if (GetAsyncKeyState(VK_MENU)&0x8000)
 		return (BYTE)PK_USER_CHAT_ALL;
 
-	// 発言範囲コンボボックスの選択
+	// 発言範囲コン??ックスの選択
 	switch ((E_TYPE_PACKET_CHAT_HEADER)pb )
 	{
 	case PK_USER_CHAT_ALL:
@@ -203,7 +203,7 @@ BYTE CGame::GetChatMessageRange()
 	case PK_USER_CHAT_TEAM:
 		return (BYTE)PK_USER_CHAT_TEAM;
 	default:
-		return (BYTE)pb;	// pDataのユーザIDを返す
+		return (BYTE)pb;	// pDataのユ?ザIDを返す
 //		break;
 	}
 	return (BYTE)PK_USER_CHAT_NONE;
@@ -215,13 +215,13 @@ void CGame::OnDisconnectUser(int nCharaIndex)
 	WCHAR wsName[MAX_USER_NAME+1];
 	WCHAR wsMessage[MAX_CHAT_MSG+1];
 
-	//> チャットログに切断メッセージ追加
+	//> ?ャットログに切断メッセ?ジ追加
 	common::session::GetSessionName(&m_SessionArray[nCharaIndex], wsName);
 	SafePrintf(wsMessage, MAX_CHAT_MSG, L"%sさんが切断しました", wsName);
 	CDXUTListBox* pListBox = (CDXUTListBox*)p_pUI->GetControl(IDC_ROOM_LB_CHATLOG);
 	AddChatMessage(wsMessage, PK_USER_CHAT_SERVER_WARNING);
 	AddMessageLog(wsMessage);
-	//< チャットログに切断メッセージ追加
+	//< ?ャットログに切断メッセ?ジ追加
 
 	////////////////////////////
 	m_SessionArray[nCharaIndex].connect_state = CONN_STATE_EMPTY;
@@ -236,11 +236,11 @@ void CGame::OnDisconnectUser(int nCharaIndex)
 		m_SessionArray[nCharaIndex].frame_count = 0;
 		m_SessionArray[nCharaIndex].live_count = 0;
 
-		// アバターキャラ削除
+		// アバ??キャラ削除
 		m_pRoomCharacters[nCharaIndex]->Destroy();
-		// ユーザーリスト更新
+		// ユ?ザ?リスト更新
 		UpdateUserList(nCharaIndex);
-		// 個人チャットコンボボックス更新
+		// 個人?ャットコン??ックス更新
 		UpdateWisperList(nCharaIndex);
 		m_pTeamRulePropertyManager->Update((GetMySessionInfo()->master!=0), m_nTeamCount);
 
@@ -249,65 +249,65 @@ void CGame::OnDisconnectUser(int nCharaIndex)
 	case eGameLoad:
 	case eGameLoadInit:
 	case eGameLoadRelease:
-		// 既に死んでいる場合は設定しないようにチェック
+		// 既に?んでいる場合は設定しないように?ェック
 		if (!(m_SessionArray[nCharaIndex].obj_state & OBJ_STATE_MAIN_NOLIVE_FLG))
 		{
 			m_SessionArray[nCharaIndex].obj_state = OBJ_STATE_EMPTY;
 			OnCharaDisconnect(nCharaIndex);		// キャラを横たわらせる
 		}
-		//> 20110201 部屋に切断したユーザの何かが残っている
-		// アバターキャラ削除
+		//> 20110201 部屋に切断したユ?ザの何かが残っている
+		// アバ??キャラ削除
 		m_pRoomCharacters[nCharaIndex]->Destroy();
-		//< 20110201 部屋に切断したユーザの何かが残っている
-		// ユーザーリスト更新
+		//< 20110201 部屋に切断したユ?ザの何かが残っている
+		// ユ?ザ?リスト更新
 		UpdateUserList(nCharaIndex);
-		// 個人チャットコンボボックス更新
+		// 個人?ャットコン??ックス更新
 		UpdateWisperList(nCharaIndex);
 		EraseDisconnectCharacter(nCharaIndex);
 		break;
 	case eGameMainInit:
 	case eGameMain:
 	case eGameMainRelease:
-		// 既に死んでいる場合は設定しないようにチェック
+		// 既に?んでいる場合は設定しないように?ェック
 		if (!(m_SessionArray[nCharaIndex].obj_state & OBJ_STATE_MAIN_NOLIVE_FLG))
 		{
 			m_SessionArray[nCharaIndex].obj_state = OBJ_STATE_MAIN_DEAD;
 			OnCharaDisconnect(nCharaIndex);		// キャラを横たわらせる
 		}
-		//> 20110201 部屋に切断したユーザの何かが残っている
-		// アバターキャラ削除
+		//> 20110201 部屋に切断したユ?ザの何かが残っている
+		// アバ??キャラ削除
 		m_pRoomCharacters[nCharaIndex]->Destroy();
-		//< 20110201 部屋に切断したユーザの何かが残っている
-		// ユーザーリスト更新
+		//< 20110201 部屋に切断したユ?ザの何かが残っている
+		// ユ?ザ?リスト更新
 		UpdateUserList(nCharaIndex);
-		// 個人チャットコンボボックス更新
+		// 個人?ャットコン??ックス更新
 		UpdateWisperList(nCharaIndex);
 		EraseDisconnectCharacter(nCharaIndex);
 		break;
 	case eGameResult:
 	case eGameResultRelease:
-		//> 20110201 部屋に切断したユーザの何かが残っている
-		// アバターキャラ削除
+		//> 20110201 部屋に切断したユ?ザの何かが残っている
+		// アバ??キャラ削除
 		m_pRoomCharacters[nCharaIndex]->Destroy();
-		//< 20110201 部屋に切断したユーザの何かが残っている
+		//< 20110201 部屋に切断したユ?ザの何かが残っている
 		m_SessionArray[nCharaIndex].entity = 0;
 		m_SessionArray[nCharaIndex].game_ready = 0;
 		m_SessionArray[nCharaIndex].frame_count = 0;
 		m_SessionArray[nCharaIndex].live_count = 0;
-		// 個人チャットコンボボックス更新
+		// 個人?ャットコン??ックス更新
 		UpdateWisperList(nCharaIndex);
-		// ユーザーリスト更新
+		// ユ?ザ?リスト更新
 		UpdateUserList(nCharaIndex);
 		break;
 	case eGameResultInit:
 	default:
-		//> 20110201 部屋に切断したユーザの何かが残っている
-		// アバターキャラ削除
+		//> 20110201 部屋に切断したユ?ザの何かが残っている
+		// アバ??キャラ削除
 		m_pRoomCharacters[nCharaIndex]->Destroy();
-		//< 20110201 部屋に切断したユーザの何かが残っている
-		// 個人チャットコンボボックス更新
+		//< 20110201 部屋に切断したユ?ザの何かが残っている
+		// 個人?ャットコン??ックス更新
 		UpdateWisperList(nCharaIndex);
-		// ユーザーリスト更新
+		// ユ?ザ?リスト更新
 		UpdateUserList(nCharaIndex);
 		break;
 	}
@@ -419,11 +419,11 @@ void CGame::OnResetCharacterScriptTexture()
 		it++)
 	{
 /*
-		// テクスチャをリソースに登録
+		// テクス?ャをリ??スに登?
 		int nScrTextureNodeIndex = AddResourceTexture((*it).second.tex_path);
 		if (nScrTextureNodeIndex == -1)
 		{
-			MessageBox(NULL, L"スクリプトに定義された画像のリセットに失敗しました", L"script or image error", MB_OK);
+			MessageBox(NULL, L"スクリプトに定?された画像のリセットに失敗しました", L"script or image error", MB_OK);
 			return;
 		}
 		(*it).second.res_index = nScrTextureNodeIndex;
@@ -491,7 +491,7 @@ void CGame::OnResetCharacterScriptSound()
 	}
 }
 
-// ステージロードスレッド
+// ステ?ジロ?ドスレッド
 DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 {
 	TLoadingParam* pParam = (TLoadingParam*)param;
@@ -508,7 +508,7 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 	if (!pStageBuf)
 	{
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();
-		MessageBox(g_hWnd, L"ステージ用ファイルロード失敗", L"error", MB_OK);
+		MessageBox(g_hWnd, L"ステ?ジ用フ?イルロ?ド失敗", L"error", MB_OK);
 		g_bCloseSocket = TRUE;
 		return 0;
 	}
@@ -516,14 +516,14 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 	{
 		SafeDeleteArray(pStageBuf);
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();
-		AddMessageLog(L"!ステージ用画像ロード前にDeviceLost");
+		AddMessageLog(L"!ステ?ジ用画像ロ?ド前にDeviceLost");
 		return 0;
 	}
 	if (!pParam->pMainStage->Init(pStageBuf, nStageBufSize, &pParam->pStageScrInfo->stage.size))
 	{
 		SafeDeleteArray(pStageBuf);
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();
-		MessageBox(g_hWnd, L"ステージ用画像ロード失敗", L"error", MB_OK);
+		MessageBox(g_hWnd, L"ステ?ジ用画像ロ?ド失敗", L"error", MB_OK);
 		g_bCloseSocket = TRUE;
 		return 0;
 	}
@@ -533,7 +533,7 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 	{
 		SafeDeleteArray(pBGBuf);
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();
-		AddMessageLog(L"!ステージ用ファイルロード前にDeviceLost");
+		AddMessageLog(L"!ステ?ジ用フ?イルロ?ド前にDeviceLost");
 		return 0;
 	}
 	g_pFiler->GetFileMemory(pParam->pStageScrInfo->bg.path, &pBGBuf, &nBGBufSize);
@@ -542,7 +542,7 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 	{
 		SafeDeleteArray(pStageBuf);
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();
-		MessageBox(g_hWnd, L"ステージ用ファイルロード失敗", L"error", MB_OK);
+		MessageBox(g_hWnd, L"ステ?ジ用フ?イルロ?ド失敗", L"error", MB_OK);
 		DestroyWindow(g_hWnd);
 		return 0;
 	}
@@ -550,26 +550,26 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 	if (g_bKillLoadingThread)
 	{
 		SafeDeleteArray(pBGBuf);
-		AddMessageLog(L"!背景ファイルロード後にDeviceLost");
+		AddMessageLog(L"!背景フ?イルロ?ド後にDeviceLost");
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();
 		return 0;
 	}
 
-	AddMessageLog(L">ステージロード");
+	AddMessageLog(L">ステ?ジロ?ド");
 	if (g_nStageLoadType == 1)
 	{
 		if (FAILED(D3DXCreateTextureFromFileEx(g_pDevice, pParam->pStageScrInfo->stage.path, 0,0, 1, 0, D3DDEFAULT_FORMAT, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, pParam->ppStageTexture)))
 		{
-			MessageBox(NULL, L"ステージテクスチャ作成失敗",L"ステージテクスチャ作成", MB_OK);
+			MessageBox(NULL, L"ステ?ジテクス?ャ作成失敗",L"ステ?ジテクス?ャ作成", MB_OK);
 			Sleep(1);
 			if (g_bKillLoadingThread)
 			{
-				AddMessageLog(L"!ステージロード中にDeviceLost");
+				AddMessageLog(L"!ステ?ジロ?ド中にDeviceLost");
 				g_pCriticalSection->LeaveCriticalSection_StageTexture();
 				return 0;
 			}
 			else
-				AddMessageLog(L"!ステージテクスチャ作成失敗");
+				AddMessageLog(L"!ステ?ジテクス?ャ作成失敗");
 		}
 	}
 	else
@@ -579,39 +579,39 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 	//		while (!TextureLoader::LoadTextureFromFileInMemory(pParam->ppStageTexture, g_pDevice, pBuf, nBufSize, NULL, NULL, 0, D3DUSAGE_DYNAMIC, D3DPOOL_DEFAULT))
 			while (!pParam->pMainStage->CreateTexture(g_pDevice, pParam->ppStageTexture))
 			{
-				AddMessageLog(L"(ステージテクスチャ作成失敗)");
+				AddMessageLog(L"(ステ?ジテクス?ャ作成失敗)");
 				Sleep(1);
 				if (g_bKillLoadingThread)
 				{
-					AddMessageLog(L"!ステージロード中にDeviceLost");
+					AddMessageLog(L"!ステ?ジロ?ド中にDeviceLost");
 					g_pCriticalSection->LeaveCriticalSection_StageTexture();
 					return 0;
 				}
 				else
-					AddMessageLog(L"!ステージテクスチャ作成失敗");
+					AddMessageLog(L"!ステ?ジテクス?ャ作成失敗");
 			}
 		}
 	}
-	AddMessageLog(L"<ステージロード");
+	AddMessageLog(L"<ステ?ジロ?ド");
 
 	if (g_bKillLoadingThread)
 	{
 		SafeDeleteArray(pStageBuf);
 		SafeDeleteArray(pBGBuf);
-		AddMessageLog(L"!背景ロード前にDeviceLost");
+		AddMessageLog(L"!背景ロ?ド前にDeviceLost");
 		g_pCriticalSection->LeaveCriticalSection_StageTexture();
 		return 0;
 	}
-	// ステージ背景ロード
-	// ステージロード
+	// ステ?ジ背景ロ?ド
+	// ステ?ジロ?ド
 	if (!(*pParam->ppStageBGTexture))
 	{
-		AddMessageLog(L">背景ロード");
+		AddMessageLog(L">背景ロ?ド");
 		BOOL ret = FALSE;
 		while (!TextureLoader::LoadTextureFromFileInMemory(pParam->ppStageBGTexture, g_pDevice, pBGBuf, nBGBufSize, NULL, NULL, 0, 1))
 //		while (!PngLoader::CreateTextureFromFileInMemory(g_pDevice, pBGBuf, nBGBufSize, NULL, NULL, pParam->ppStageBGTexture, D3DPOOL_DEFAULT))
 		{
-			AddMessageLog(L">背景ロード失敗");
+			AddMessageLog(L">背景ロ?ド失敗");
 			Sleep(1);
 			if (g_bKillLoadingThread)
 				break;
@@ -619,12 +619,12 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 		SafeDeleteArray(pBGBuf);
 	}
 	g_pCriticalSection->LeaveCriticalSection_StageTexture();
-	AddMessageLog(L"<背景ロード");
+	AddMessageLog(L"<背景ロ?ド");
 
 	g_pCriticalSection->EnterCriticalSection_Session(L'7');
 	g_pCriticalSection->EnterCriticalSection_Sound(L'4');
 	
-	AddMessageLog(L">キャラスクリプト音声ロード");
+	AddMessageLog(L">キャラスクリプト音声ロ?ド");
 
 	if (pParam->pVecCharacters->empty())
 		AddMessageLog(L"!Empty:LoadChara");
@@ -636,7 +636,7 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 	{
 		if (g_bKillLoadingThread)
 		{
-			AddMessageLog(L"!キャラスクリプト音声ロード中1:DeviceLost");
+			AddMessageLog(L"!キャラスクリプト音声ロ?ド中1:DeviceLost");
 			g_pCriticalSection->LeaveCriticalSection_Sound();
 			g_pCriticalSection->LeaveCriticalSection_Session();
 			return 0;
@@ -661,7 +661,7 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 		{
 			if (g_bKillLoadingThread)
 			{
-				AddMessageLog(L"!キャラスクリプト音声ロード中2:DeviceLost");
+				AddMessageLog(L"!キャラスクリプト音声ロ?ド中2:DeviceLost");
 				g_pCriticalSection->LeaveCriticalSection_Sound();
 				g_pCriticalSection->LeaveCriticalSection_Session();
 				return 0;
@@ -698,7 +698,7 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 		mapLoadedCharacters.insert(std::map<int, TBASE_SCR_INFO* >::value_type( (*it)->scrinfo->ID, (*it)->scrinfo ));
 	}
 
-	AddMessageLog(L"<キャラスクリプト音声ロード>ステージ");
+	AddMessageLog(L"<キャラスクリプト音声ロ?ド>ステ?ジ");
 	{
 		int nScrIndex = pParam->pStageScrInfo->scr_index;
 		LuaFuncParam luaParams,luaResults;
@@ -716,7 +716,7 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 		{
 			if (g_bKillLoadingThread)
 			{
-				AddMessageLog(L"!ステージスクリプト音声ロード中2:DeviceLost");
+				AddMessageLog(L"!ステ?ジスクリプト音声ロ?ド中2:DeviceLost");
 				g_pCriticalSection->LeaveCriticalSection_Sound();
 				g_pCriticalSection->LeaveCriticalSection_Session();
 				return 0;
@@ -751,20 +751,20 @@ DWORD __stdcall CGame::Thread_Loading(LPVOID param)
 			SafeDeleteArray(wsSEPath);
 		}
 	}
-	AddMessageLog(L"<ステージスクリプト音声ロード>BGMロード");
+	AddMessageLog(L"<ステ?ジスクリプト音声ロ?ド>BGMロ?ド");
 	// BGM
 	*pParam->pBgmSoundID = pParam->pSoundLibs->AddFromFile(pParam->pStageScrInfo->bgm);
 	if (*pParam->pBgmSoundID == -1)
 	{
 		WCHAR log[64];
-		SafePrintf(log, 64, L"ステージBGMロードエラー:%s", pParam->pStageScrInfo->bgm);
+		SafePrintf(log, 64, L"ステ?ジBGMロ?ドエラ?:%s", pParam->pStageScrInfo->bgm);
 		AddMessageLog(log);
 	}
 
 	g_pCriticalSection->LeaveCriticalSection_Sound();
 	g_pCriticalSection->LeaveCriticalSection_Session();
 
-	AddMessageLog(L"<ロード完了");
+	AddMessageLog(L"<ロ?ド完了");
 	return 0;
 }
 
@@ -797,7 +797,7 @@ void CGame::UpdateRankView()
 			pIconControl->Refresh();
 			pNameControl->SetVisible(bVisible);
 			pNameControl->Refresh();
-			// チーム番号
+			// ???番号
 			if (pTeamControl)
 			{
 				pNameControl->SetVisible(bVisible);
@@ -932,13 +932,13 @@ BOOL CGame::ReqPacketHash(BYTE* data)
 		if (itfind == m_mapCharaScrInfo.end())
 		{
 			WCHAR alog[128];
-			SafePrintf(alog, 128, L"キャラデータ不足しています。\nキャラスクリプトID[%d]が見つかりませんでした。", wID);
+			SafePrintf(alog, 128, L"キャラデ??不足しています。\nキャラスクリプトID[%d]が見つかりませんでした。", wID);
 			g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
 			AddMessageLog(alog);
 			MessageBox(g_hWnd, alog, L"認証結果", MB_OK);
 			if (g_bCloseSocket) return FALSE;
-			SafePrintf(alog, 128, L"サーバが使用しているキャラスクリプトID[%d]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", wID);
-			if (MessageBox(g_hWnd, alog, L"データ不足", MB_YESNO) == IDYES)
+			SafePrintf(alog, 128, L"サ?バが使用しているキャラスクリプトID[%d]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", wID);
+			if (MessageBox(g_hWnd, alog, L"デ??不足", MB_YESNO) == IDYES)
 			{
 				if (g_bCloseSocket) return FALSE;
 				BYTE pkt[MAX_PACKET_SIZE];
@@ -964,13 +964,13 @@ BOOL CGame::ReqPacketHash(BYTE* data)
 		if (itfind == m_mapStageScrInfo.end())
 		{
 			WCHAR alog[128];
-			SafePrintf(alog, 128, L"ステージデータ不足しています。\nステージスクリプトID[%d]が見つかりませんでした。", wID);
+			SafePrintf(alog, 128, L"ステ?ジデ??不足しています。\nステ?ジスクリプトID[%d]が見つかりませんでした。", wID);
 			g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
 			AddMessageLog(alog);
 			MessageBox(g_hWnd, alog, L"認証結果", MB_OK);
 			if (g_bCloseSocket) return FALSE;
-			SafePrintf(alog, 128, L"サーバが使用しているステージスクリプトID[%d]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", wID);
-			if (MessageBox(g_hWnd, alog, L"データ不足", MB_YESNO) == IDYES)
+			SafePrintf(alog, 128, L"サ?バが使用しているステ?ジスクリプトID[%d]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", wID);
+			if (MessageBox(g_hWnd, alog, L"デ??不足", MB_YESNO) == IDYES)
 			{
 				if (g_bCloseSocket) return FALSE;
 				BYTE pkt[MAX_PACKET_SIZE];
@@ -997,14 +997,14 @@ BOOL CGame::ReqPacketHash(BYTE* data)
 		if (itfind == m_mapStageScrInfo.end())
 		{
 			WCHAR alog[128];
-			SafePrintf(alog, 128, L"スクリプトデータ不足しています。\nステージスクリプトID[%d]が見つかりませんでした。", hash_id);
+			SafePrintf(alog, 128, L"スクリプトデ??不足しています。\nステ?ジスクリプトID[%d]が見つかりませんでした。", hash_id);
 			g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
 			AddMessageLog(alog);
 			MessageBox(g_hWnd, alog, L"認証結果", MB_OK);
 #if TRIAL==0
 			if (g_bCloseSocket) return FALSE;
-			SafePrintf(alog, 128, L"サーバが使用しているステージスクリプトID[%d]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", hash_id);
-			if (/*hash_id>=100 && */MessageBox(g_hWnd, alog, L"データ不足", MB_YESNO) == IDYES)
+			SafePrintf(alog, 128, L"サ?バが使用しているステ?ジスクリプトID[%d]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", hash_id);
+			if (/*hash_id>=100 && */MessageBox(g_hWnd, alog, L"デ??不足", MB_YESNO) == IDYES)
 			{
 				if (g_bCloseSocket) return FALSE;
 				BYTE pkt[MAX_PACKET_SIZE];
@@ -1025,13 +1025,13 @@ BOOL CGame::ReqPacketHash(BYTE* data)
 		if (itfind == m_mapCharaScrInfo.end())
 		{
 			WCHAR alog[128];
-			SafePrintf(alog, 128, L"スクリプトデータ不足しています。\nキャラスクリプトID[%d]が見つかりませんでした。", hash_id);
+			SafePrintf(alog, 128, L"スクリプトデ??不足しています。\nキャラスクリプトID[%d]が見つかりませんでした。", hash_id);
 			g_pGame->PlaySysSoundSE(SE_sai_SrvInfo);
 			AddMessageLog(alog);
 			MessageBox(g_hWnd, alog, L"認証結果", MB_OK);
 //#if (TRIAL==0)
-			SafePrintf(alog, 128, L"サーバが使用しているキャラスクリプトID[%d]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", hash_id);
-			if (/*hash_id>=100 && */MessageBox(g_hWnd, alog, L"データ不足", MB_YESNO) == IDYES)
+			SafePrintf(alog, 128, L"サ?バが使用しているキャラスクリプトID[%d]を要求しますか？\n(「はい」を押すと受信完了まで応答が無くなります)", hash_id);
+			if (/*hash_id>=100 && */MessageBox(g_hWnd, alog, L"デ??不足", MB_YESNO) == IDYES)
 			{
 				BYTE pkt[MAX_PACKET_SIZE];
 				INT pktsize = PacketMaker::MakePacketData_ReqFileHash(TRUE, hash_id, 0, pkt);
@@ -1054,7 +1054,7 @@ BOOL CGame::ReqPacketHash(BYTE* data)
 BOOL CGame::InitControl()
 {
 //#if SCR_HASH_CHECK
-	// 使用しないスクリプトの登録削除
+	// 使用しないスクリプトの登?削除
 	for (std::map <int, TSTAGE_SCR_INFO>::iterator it = m_mapStageScrInfo.begin();
 		it != m_mapStageScrInfo.end();
 		)
@@ -1085,11 +1085,11 @@ BOOL CGame::InitControl()
 		it != m_mapStageScrInfo.end();
 		it++)
 	{
-		// テクスチャをリソースに登録
+		// テクス?ャをリ??スに登?
 		int nScrTextureNodeIndex = AddResourceTexture((*it).second.thumnail.path);
 		if (nScrTextureNodeIndex == -1)
 		{
-			MessageBox(g_hWnd, L"ステージスクリプトに定義された画像のロードに失敗しました", L"script or image error", MB_OK);
+			MessageBox(g_hWnd, L"ステ?ジスクリプトに定?された画像のロ?ドに失敗しました", L"script or image error", MB_OK);
 			return FALSE;
 		}
 		(*it).second.res_index = nScrTextureNodeIndex;
@@ -1099,11 +1099,11 @@ BOOL CGame::InitControl()
 		it != m_mapCharaScrInfo.end();
 		it++)
 	{
-		// テクスチャをリソースに登録
+		// テクス?ャをリ??スに登?
 		int nScrTextureNodeIndex = AddResourceTexture((*it).second.tex_path);
 		if (nScrTextureNodeIndex == -1)
 		{
-			MessageBox(g_hWnd, L"キャラスクリプトに定義された画像のロードに失敗しました", L"script or image error", MB_OK);
+			MessageBox(g_hWnd, L"キャラスクリプトに定?された画像のロ?ドに失敗しました", L"script or image error", MB_OK);
 			return FALSE;
 		}
 		(*it).second.res_index = nScrTextureNodeIndex;
@@ -1113,7 +1113,7 @@ BOOL CGame::InitControl()
 	if (m_mapCharaScrInfo.empty())
 		return FALSE;
 
-	// ユーザーリスト //
+	// ユ?ザ?リスト //
 	SetUserList();
 	// キャラ用アイコンを設定する
 	SetCharacterIconButtonList();
@@ -1125,7 +1125,7 @@ BOOL CGame::InitControl()
 BOOL CGame::PlayBGM(const WCHAR* wsResouceName, int nFade)
 {
 #if BGM_ON
-	// 再生中のBGMがあった場合停止しておく
+	// 再生中のBGMがあった場合停?しておく
 	if (m_nBGMPlayingID != -1)	StopBGM(FALSE);
 
 	m_nBGMSoundID = m_pSysSoundLibs->AddFromFile(wsResouceName);
@@ -1166,7 +1166,7 @@ void CGame::StopBGM(BOOL bRemoveFromLib, int nFade)
 	CSoundLibraries* pSoundLibs = m_pSysSoundLibs;
 	if (((DWORD)m_eGameState&GAME_STATE_PHASE_MASK) == GAME_STATE_MAIN)
 		pSoundLibs = m_pScrSoundLibs;
-	// プレイヤーから再生停止
+	// プレイヤ?から再生停?
 	CSoundBuffer* pSoundBuffer = m_pSoundPlayer->GetSoundBufferFromID(m_nBGMPlayingID);
 	if (pSoundBuffer)
 		m_pSoundPlayer->StopSoundBuffer(pSoundBuffer);
@@ -1195,7 +1195,7 @@ void CGame::ClearScrSound()
 
 BOOL CGame::LoadLoadingImage()
 {
-	//ファイルの検索
+	//フ?イルの検索
 	_wfinddata_t	fileinfo;
 	WCHAR filetype[] = LOAD_IMG_FIND_WC;
 	long handle= _wfindfirst(filetype,&fileinfo);
@@ -1216,7 +1216,7 @@ BOOL CGame::LoadLoadingImage()
 		}
 		_findclose(handle);
 
-		// ランダムのインデックス取得
+		// ラン??のインデックス取得
 		if (vecPath.size() > 0)
 		{
 			int nIndex = genrand_int32()%vecPath.size();
@@ -1228,7 +1228,7 @@ BOOL CGame::LoadLoadingImage()
 			if (!g_pFiler->GetFileMemory(m_pBGTexturePath, &pBuf, &nBufSize))
 			{
 				AddMessageLog(L"LoadError BG image");
-				MessageBox(g_hWnd, L"ロード画像の読み込みに失敗しました", L"loading error", MB_OK);
+				MessageBox(g_hWnd, L"ロ?ド画像の読み込みに失敗しました", L"loading error", MB_OK);
 			}
 			else
 			{
@@ -1237,7 +1237,7 @@ BOOL CGame::LoadLoadingImage()
 				{
 					m_pBGTexture = NULL;
 					AddMessageLog(L"LoadError BG texture");
-					MessageBox(g_hWnd, L"ロード画像の作成に失敗しました", L"loading error", MB_OK);
+					MessageBox(g_hWnd, L"ロ?ド画像の作成に失敗しました", L"loading error", MB_OK);
 				}
 				SafeDeleteArray(pBuf);
 			}
@@ -1278,7 +1278,7 @@ BOOL CGame::ConnectServer()
 		p_pUI->GetControl(IDC_TITLE_BTN_CONNECT)->SetEnabled(true);
 		return FALSE;
 	}
-	/* ソケット生成 */
+	/* ?ケット生成 */
 	if ((m_nTcpSock = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP)) < 0)
 	{
 		AddMessageLog(L"Client : Can't open stream socket.");
@@ -1334,21 +1334,21 @@ BOOL CGame::ConnectServer()
 	if (connect(m_nTcpSock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
 	{
 #ifndef _DEBUG
-		MessageBox(g_hWnd, L"サーバに接続できませんでした", L"connect", MB_OK);
+		MessageBox(g_hWnd, L"サ?バに接続できませんでした", L"connect", MB_OK);
 #endif
-		AddMessageLog(L"Client : サーバに接続できませんでした");
+		AddMessageLog(L"Client : サ?バに接続できませんでした");
 		p_pUI->GetControl(IDC_TITLE_BTN_CONNECT)->SetEnabled(true);
 		return FALSE;
 	}
 	else
-		AddMessageLog(L"サーバに接続しました");
+		AddMessageLog(L"サ?バに接続しました");
 
-	// 0:ブロッキングモード(デフォルト)  1:非ブロッキングモード
+	// 0:ブロッキングモ?ド(デフォルト)  1:非ブロッキングモ?ド
 	if(0!=ioctlsocket(m_nTcpSock,FIONBIO,&arg))
 	{
 		AddMessageLog(L"Client : Can't change FIONBIO.");
 		p_pUI->GetControl(IDC_TITLE_BTN_CONNECT)->SetEnabled(true);
-		return FALSE; // エラー
+		return FALSE; // エラ?
 	}
 	// IP保存
 	WCHAR wsIP[64];
@@ -1368,7 +1368,7 @@ BOOL CGame::LoginServer()
 	WORD	packetSize = 0;
 	BYTE		packetData[MAX_PACKET_SIZE];
 
-	// 二度押し禁止
+	// 二度押し禁?
 	p_pUI->GetControl(IDC_LOGIN_BTN_LOGIN)->SetEnabled(false);
 //			ZeroMemory(wsName, MAX_USER_NAME*sizeof(WCHAR));
 //			ZeroMemory(wsPass, MAX_SRV_PASS*sizeof(WCHAR));
@@ -1384,11 +1384,11 @@ BOOL CGame::LoginServer()
 		MAX_USER_NAME*sizeof(WCHAR)
 	);
 	wsName[nLen] = NULL;
-	// 空白チェック
+	// 空白?ェック
 	if (wsName[0] == L' ' || wsName[nLen-1] == L' ')
 	{
 		PlaySysSoundSE(SE_sai_SrvInfo);
-		MessageBox(g_hWnd, L"半角スペースが前後にあるユーザー名は使用できません", L"error", MB_OK);
+		MessageBox(g_hWnd, L"半角スペ?スが前後にあるユ?ザ?名は使用できません", L"error", MB_OK);
 		return FALSE;
 	}
 
@@ -1405,7 +1405,7 @@ BOOL CGame::LoginServer()
 	if (bCntrl)
 	{
 		PlaySysSoundSE(SE_sai_SrvInfo);
-		MessageBox(g_hWnd, L"ユーザー名に不正な文字が含まれています。", L"error", MB_OK);
+		MessageBox(g_hWnd, L"ユ?ザ?名に不正な文字が含まれています。", L"error", MB_OK);
 		return FALSE;
 	}
 
@@ -1432,7 +1432,7 @@ BOOL CGame::LoginServer()
 	if (bCntrl)
 	{
 		PlaySysSoundSE(SE_sai_SrvInfo);
-		MessageBox(g_hWnd, L"パスワードに不正な文字が含まれています。", L"error", MB_OK);
+		MessageBox(g_hWnd, L"パスワ?ドに不正な文字が含まれています。", L"error", MB_OK);
 		return FALSE;
 	}
 	if (g_bDebug)
