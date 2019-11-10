@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{79BC60B3-A1A5-4843-89F2-D26853231F43}</ProjectGuid>
+    <RootNamespace>thpcli</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.28916.169</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkKeyFile>$(SolutionDir)thpcli.snk</LinkKeyFile>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Common;D:\lib\lua5.1\include;D:\lib\tolua++-1.0.93\include;D:\lib\tolua++-1.0.93\src\lib;D:\prg\VS\thp\lib\BaseVector;D:\prg\VS\thp\lib\bitlib;D:\prg\VS\thp\lib\CStrTexture;D:\prg\VS\thp\lib\DXUT;D:\prg\VS\thp\lib\Filer;D:\prg\VS\thp\lib\Graphic;D:\prg\VS\thp\lib\IniFile;D:\prg\VS\thp\lib\Input;D:\prg\VS\thp\lib\LinkageList;D:\prg\VS\thp\lib\LuaHelper;D:\prg\VS\thp\lib\PacketHelper;D:\prg\VS\thp\lib\PngLoader;D:\prg\VS\thp\lib\SoundLib;D:\prg\VS\thp\lib\TextTexture;D:\prg\VS\thp\lib\TextureLoader;D:\prg\VS\thp\lib\TextureSplitter;D:\prg\VS\thp\lib\util;D:\prg\VS\thp\lib\Window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderFile>dxstdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>lua5.1.lib;lua5.1.exp;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\lib\lua5.1\lib\static;D:\prg\VS\thp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>libcd.lib;libc.lib;msvcrtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\Common;D:\lib\lua5.1\include;D:\lib\tolua++-1.0.93\include;D:\lib\tolua++-1.0.93\src\lib;D:\prg\VS\thp\lib\BaseVector;D:\prg\VS\thp\lib\bitlib;D:\prg\VS\thp\lib\CStrTexture;D:\prg\VS\thp\lib\DXUT;D:\prg\VS\thp\lib\Filer;D:\prg\VS\thp\lib\Graphic;D:\prg\VS\thp\lib\IniFile;D:\prg\VS\thp\lib\Input;D:\prg\VS\thp\lib\LinkageList;D:\prg\VS\thp\lib\LuaHelper;D:\prg\VS\thp\lib\PacketHelper;D:\prg\VS\thp\lib\PngLoader;D:\prg\VS\thp\lib\SoundLib;D:\prg\VS\thp\lib\TextTexture;D:\prg\VS\thp\lib\TextureLoader;D:\prg\VS\thp\lib\TextureSplitter;D:\prg\VS\thp\lib\util;D:\prg\VS\thp\lib\Window;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_NDEBUG;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>lua5.1.lib;lua5.1.exp;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\lib\lua5.1\lib\static;D:\prg\VS\thp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>libc.lib;LIBCMTD.lib;Soundlib_d.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\lib\bitlib\lbitlib.c" />
+    <ClCompile Include="..\..\..\..\lib\zlib\contrib\minizip\ioapi.c" />
+    <ClCompile Include="..\..\..\..\lib\zlib\contrib\minizip\unzip.c" />
+    <ClCompile Include="..\common\CMainStage.cpp" />
+    <ClCompile Include="..\common\common.cpp" />
+    <ClCompile Include="..\common\CPacketQueue.cpp" />
+    <ClCompile Include="CDXUTButtonList.cpp" />
+    <ClCompile Include="cli.cpp" />
+    <ClCompile Include="CRoomCharacter.cpp" />
+    <ClCompile Include="CShotAngle.cpp" />
+    <ClCompile Include="CShotAngleIndicator.cpp" />
+    <ClCompile Include="CShotPowerIndicator.cpp" />
+    <ClCompile Include="CSpinButton.cpp" />
+    <ClCompile Include="CStageCharacter.cpp" />
+    <ClCompile Include="CStageEffect.cpp" />
+    <ClCompile Include="CTeamRulePropertyControlManager.cpp" />
+    <ClCompile Include="CTeamSeparater.cpp" />
+    <ClCompile Include="ext.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameCreateGUI.cpp" />
+    <ClCompile Include="GameDraw.cpp" />
+    <ClCompile Include="GameFunc.cpp" />
+    <ClCompile Include="GameFuncMain.cpp" />
+    <ClCompile Include="GameFuncRoom.cpp" />
+    <ClCompile Include="GameGui.cpp" />
+    <ClCompile Include="GameRun.cpp" />
+    <ClCompile Include="lua.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PacketMaker.cpp" />
+    <ClCompile Include="PacketRcvProcFile.cpp" />
+    <ClCompile Include="PacketRcvProcMain.cpp" />
+    <ClCompile Include="PacketRcvProcRoom.cpp" />
+    <ClCompile Include="PacketReceiver.cpp" />
+    <ClCompile Include="PacketSender.cpp" />
+    <ClCompile Include="tolua_glue\thg_glue.cpp" />
+    <ClCompile Include="tolua_glue\tolua_event.c" />
+    <ClCompile Include="tolua_glue\tolua_is.c" />
+    <ClCompile Include="tolua_glue\tolua_map.c" />
+    <ClCompile Include="tolua_glue\tolua_push.c" />
+    <ClCompile Include="tolua_glue\tolua_to.c" />
+    <ClCompile Include="uzip.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\CCriticalSection.h" />
+    <ClInclude Include="..\common\CMainStage.h" />
+    <ClInclude Include="..\common\common.h" />
+    <ClInclude Include="..\common\CPacketQueue.h" />
+    <ClInclude Include="..\common\hash.h" />
+    <ClInclude Include="..\common\itemcost.h" />
+    <ClInclude Include="..\include\define.h" />
+    <ClInclude Include="..\include\types.h" />
+    <ClInclude Include="CDXUTButtonList.h" />
+    <ClInclude Include="CRoomCharacter.h" />
+    <ClInclude Include="CShotAngle.h" />
+    <ClInclude Include="CShotAngleIndicator.h" />
+    <ClInclude Include="CShotPowerIndicator.h" />
+    <ClInclude Include="CSpinButton.h" />
+    <ClInclude Include="CStageCharacter.h" />
+    <ClInclude Include="CStageEffect.h" />
+    <ClInclude Include="CTeamRulePropertyControlManager.h" />
+    <ClInclude Include="CTeamSeparater.h" />
+    <ClInclude Include="ext.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="PacketMaker.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="tolua_glue\thg_glue.h" />
+    <ClInclude Include="uzip.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tolua_glue\thg.pkg" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
