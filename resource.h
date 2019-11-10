@@ -2,7 +2,7 @@
 // Microsoft Visual C++ generated include file.
 // Used by CustomUI.rc
 //
-#include "../include/define.h"
+#include "../thpcommon/define.h"
 
 // image
 #define IDC_STAGE_SELECT_IMAGE	L"data/img/room/stgsel.png"
@@ -15,16 +15,16 @@
 // sys sound
 #define SE_sub_Login				L"data/se/sub_Login.wav"					// ログイン
 #define SE_sub_Arrow				L"data/se/sub_Arrow.wav"					// ←、→
-#define SE_sub_StageSel			L"data/se/sub_StageSel.wav"				// ステージセレクト
-#define SE_sub_ChangeView		L"data/se/sub_ChangeView.wav"		// アイテム、キャラ、ルール表示変更
+#define SE_sub_StageSel			L"data/se/sub_StageSel.wav"				// ステ?ジセレクト
+#define SE_sub_ChangeView		L"data/se/sub_ChangeView.wav"		// アイテ?、キャラ、ル?ル?示変更
 #define SE_sur_ListSel				L"data/se/sur_ListSel.wav"					// リストから選択
 #define SE_suc_OFF					L"data/se/suc_OFF.wav"					// OFF
 #define SE_suc_ON					L"data/se/suc_ON.wav"						// ON
-#define SE_sai_SrvInfo				L"data/se/sai_SrvInfo.wav"				// サーバメッセージ
-#define SE_sgi_MyTurn				L"data/se/sgi_MyTurn.wav"				// 自ターン
+#define SE_sai_SrvInfo				L"data/se/sai_SrvInfo.wav"				// サ?バメッセ?ジ
+#define SE_sgi_MyTurn				L"data/se/sgi_MyTurn.wav"				// 自??ン
 #define SE_sgr_BltSel				L"data/se/sgr_BltSel.wav"					// 弾選択
 #define SE_sgr_Pass					L"data/se/sgr_Pass.wav"					// パス
-#define SE_sai_Chat					L"data/se/sai_Chat.wav"					// チャットメッセージ
+#define SE_sai_Chat					L"data/se/sai_Chat.wav"					// ?ャットメッセ?ジ
 #define SE_sai_Count				L"data/se/sai_Count.wav"					// 残り５秒
 
 #define SE_sri_ClapA					L"data/se/sri_clap_a.wav"				// 結果A
@@ -37,10 +37,10 @@
 #define SE_sgi_Stealth				L"data/se/sgi_Stealth.wav"				// ステルス
 #define SE_sgi_Blind					L"data/se/sgi_Blind.wav"					// BLIND
 #define SE_sgi_Pain					L"data/se/sgi_Pain.wav"					// 毒
-#define SE_sgi_Shield				L"data/se/sgi_Shield.wav"					// シールド
+#define SE_sgi_Shield				L"data/se/sgi_Shield.wav"					// シ?ルド
 #define SE_sgi_NoMove				L"data/se/sgi_NoMove.wav"				// 移動不可
-#define SE_sgi_ItemUse			L"data/se/sgi_ItemUse.wav"				// アイテム使用
-#define SE_sgi_Shot					L"data/se/sgi_Shot.wav"					// アイテム発射
+#define SE_sgi_ItemUse			L"data/se/sgi_ItemUse.wav"				// アイテ?使用
+#define SE_sgi_Shot					L"data/se/sgi_Shot.wav"					// アイテ?発射
 
 #define IDC_DLG_FRAME					9
 #define IDC_FPS					            10
@@ -60,34 +60,34 @@
 #define IDC_LOGIN_BTN_CONFIG		2005
 #define IDC_LOGIN_CHK_SAVE_PASS	2006
 
-#define IDC_ROOM_BTN_DISC			3000		// 退室ボタン
-#define IDC_ROOM_CMB_CHAT			3010		// チャットバーコンボボックス
-#define IDC_ROOM_LB_CHATLOG		3011		// チャットログ
-#define IDC_ROOM_LB_USERLIST		3012		// ユーザーリスト
+#define IDC_ROOM_BTN_DISC			3000		// 退室??ン
+#define IDC_ROOM_CMB_CHAT			3010		// ?ャットバ?コン??ックス
+#define IDC_ROOM_LB_CHATLOG		3011		// ?ャットログ
+#define IDC_ROOM_LB_USERLIST		3012		// ユ?ザ?リスト
 #define IDC_ROOM_STATIC_CHARA_NAME		3013		// キャラ情報(名前)
 #define IDC_ROOM_STATIC_CHARA_INFO		3014		// キャラ情報(速度、防御)
 #define IDC_ROOM_LIST_CHARA_BLT_INFO	3015	// キャラ弾情報
-#define IDC_ROOM_BTN_READY		3016		// 準備OKボタン
+#define IDC_ROOM_BTN_READY		3016		// ?備OK??ン
 #define IDC_ROOM_BTN_VIEW_BUTTON_GROUP IDC_ROOM_BTN_VIEW_CHARA
-#define IDC_ROOM_BTN_VIEW_CHARA	3017	// キャラ選択画面表示ボタン
-#define IDC_ROOM_BTN_VIEW_ITEM		3018	// アイテム選択画面表示ボタン
-#define IDC_ROOM_BTN_VIEW_RULE		3019	// ルール選択画面表示ボタン
-#define IDC_ROOM_STATIC_ITEM_INFO		3020	// アイテム詳細情報テキスト
-#define IDC_ROOM_BTN_ITEM_SEL_ICON	3021	// 選択してるアイテムアイコン
+#define IDC_ROOM_BTN_VIEW_CHARA	3017	// キャラ選択画面?示??ン
+#define IDC_ROOM_BTN_VIEW_ITEM		3018	// アイテ?選択画面?示??ン
+#define IDC_ROOM_BTN_VIEW_RULE		3019	// ル?ル選択画面?示??ン
+#define IDC_ROOM_STATIC_ITEM_INFO		3020	// アイテ?詳細情報テキスト
+#define IDC_ROOM_BTN_ITEM_SEL_ICON	3021	// 選択してるアイテ?アイコン
 
-#define IDC_ROOM_STATIC_MY_TEAMNO			3022	//	選択してるチーム番号
+#define IDC_ROOM_STATIC_MY_TEAMNO			3022	//	選択してる???番号
 #define IDC_ROOM_STATIC_MY_NAME	3023	//	選択してる自キャラアイコン
-#define IDC_ROOM_BTN_CHARA_SEL_RANDOM	3024	// キャラセレのランダム
+#define IDC_ROOM_BTN_CHARA_SEL_RANDOM	3024	// キャラセレのラン??
 /*
 #define IDC_ROOM_BTN_MY_ITEM_BASE	IDC_ROOM_BTN_MY_ITEM_1
 #define IDC_MAIN_BTN_MY_ITEM_BASE	IDC_ROOM_BTN_MY_ITEM_BASE
-#define IDC_ROOM_BTN_MY_ITEM_1		3024	// 使用アイテム1
+#define IDC_ROOM_BTN_MY_ITEM_1		3024	// 使用アイテ?1
 #define IDC_MAIN_BTN_MY_ITEM_1		IDC_ROOM_BTN_MY_ITEM_1
-#define IDC_ROOM_BTN_MY_ITEM_2		3025	// 使用アイテム2
+#define IDC_ROOM_BTN_MY_ITEM_2		3025	// 使用アイテ?2
 #define IDC_MAIN_BTN_MY_ITEM_2		IDC_ROOM_BTN_MY_ITEM_2
-#define IDC_ROOM_BTN_MY_ITEM_3		3026	// 使用アイテム3
+#define IDC_ROOM_BTN_MY_ITEM_3		3026	// 使用アイテ?3
 #define IDC_MAIN_BTN_MY_ITEM_3		IDC_ROOM_BTN_MY_ITEM_3
-#define IDC_ROOM_BTN_MY_ITEM_4		3027	// 使用アイテム4
+#define IDC_ROOM_BTN_MY_ITEM_4		3027	// 使用アイテ?4
 #define IDC_MAIN_BTN_MY_ITEM_4		IDC_ROOM_BTN_MY_ITEM_4
 */
 #define IDC_ROOM_BTN_MY_ITEM_SEL_L	3062
@@ -97,29 +97,29 @@
 #define IDC_ROOM_BTN_MY_ITEM_BASE	3064
 #define IDC_MAIN_BTN_MY_ITEM_BASE	IDC_ROOM_BTN_MY_ITEM_BASE
 
-#define IDC_ROOM_BTN_ITEM_DETAIL	3028	// アイテムの説明文
+#define IDC_ROOM_BTN_ITEM_DETAIL	3028	// アイテ?の説明文
 
-#define IDC_ROOM_BTN_ADD_ITEM		3030	// 使用アイテム追加ボタン
+#define IDC_ROOM_BTN_ADD_ITEM		3030	// 使用アイテ?追加??ン
 
 #define IDC_ROOM_CHK_RULE_BASE		IDC_ROOM_CHK_RULE_1
-#define IDC_ROOM_CHK_RULE_1			3040	// ルール１
-#define IDC_ROOM_CHK_RULE_2			3041	// ルール２
-#define IDC_ROOM_CHK_RULE_3			3042 // ルール３
-#define IDC_ROOM_CHK_RULE_4			3043 // ルール４
-#define IDC_ROOM_STATIC_RULE_TEAM	3051	// チームわけ
-#define IDC_ROOM_BTN_RULE_TEAM_L		3052	// チームわけLボタン
-#define IDC_ROOM_BTN_RULE_TEAM_R		3053	// チームわけRボタン
+#define IDC_ROOM_CHK_RULE_1			3040	// ル?ル１
+#define IDC_ROOM_CHK_RULE_2			3041	// ル?ル２
+#define IDC_ROOM_CHK_RULE_3			3042 // ル?ル３
+#define IDC_ROOM_CHK_RULE_4			3043 // ル?ル４
+#define IDC_ROOM_STATIC_RULE_TEAM	3051	// ???わけ
+#define IDC_ROOM_BTN_RULE_TEAM_L		3052	// ???わけL??ン
+#define IDC_ROOM_BTN_RULE_TEAM_R		3053	// ???わけR??ン
 
-#define IDC_ROOM_STATIC_STAGE_TITLE	3057	// ステージタイトル
-#define IDC_ROOM_BTN_STAGE_L				3058	// ステージ
-#define IDC_ROOM_BTN_STAGE_R				3059	// ステージ
-#define IDC_ROOM_BTN_STAGE_BASE		3060	// ステージ
+#define IDC_ROOM_STATIC_STAGE_TITLE	3057	// ステ?ジ?イトル
+#define IDC_ROOM_BTN_STAGE_L				3058	// ステ?ジ
+#define IDC_ROOM_BTN_STAGE_R				3059	// ステ?ジ
+#define IDC_ROOM_BTN_STAGE_BASE		3060	// ステ?ジ
 #define IDC_ROOM_BTN_CONFIG				3061	// コンフィグ
 
-#define IDC_ROOM_STATIC_NAME_BASE	3250		// 名前の表示用テキスト
-#define IDC_ROOM_STATIC_WORD_BASE	3200		// 発言の表示用テキスト
-#define IDC_ROOM_STATIC_WORD_W		120		// 発言の表示用テキスト横幅
-#define IDC_ROOM_STATIC_WORD_H		24			// 発言の表示用テキスト縦幅
+#define IDC_ROOM_STATIC_NAME_BASE	3250		// 名前の?示用テキスト
+#define IDC_ROOM_STATIC_WORD_BASE	3200		// 発言の?示用テキスト
+#define IDC_ROOM_STATIC_WORD_W		120		// 発言の?示用テキスト横幅
+#define IDC_ROOM_STATIC_WORD_H		24			// 発言の?示用テキスト縦幅
 
 #define IDC_ROOM_BTN_CHARA_SEL_FONT				(1)
 #define IDC_ROOM_BTN_CHARA_SEL_BTN_GROUP		(3300)
@@ -132,59 +132,59 @@
 #define IDC_ROOM_BTN_CHARA_SEL_LIST_R		3299		// 
 #define IDC_ROOM_BTN_CHARA_SEL_LIST_BASE	3300		// 
 
-#define IDC_ROOM_RB_ITEM_L						3800		//	アイテム選択ボタン←
-#define IDC_ROOM_RB_ITEM_R						3801		//	アイテム選択ボタン→
-#define IDC_ROOM_RB_ITEM_BASE_INDEX	3802		//	アイテム選択ボタンコントロールID
-#define IDC_ROOM_SPRITE_SC						3850		// スペルカードスプライト
-#define IDC_ROOM_STATIC_SC_NAME			3970		// スペルカード名
-#define IDC_ROOM_STATIC_SC_TEXT			3971		// [スペルカード]
-#define IDC_ROOM_BTN_STAGE_RND			3972 // ステージ
+#define IDC_ROOM_RB_ITEM_L						3800		//	アイテ?選択??ン←
+#define IDC_ROOM_RB_ITEM_R						3801		//	アイテ?選択??ン→
+#define IDC_ROOM_RB_ITEM_BASE_INDEX	3802		//	アイテ?選択??ンコントロ?ルID
+#define IDC_ROOM_SPRITE_SC						3850		// スペルカ?ドスプライト
+#define IDC_ROOM_STATIC_SC_NAME			3970		// スペルカ?ド名
+#define IDC_ROOM_STATIC_SC_TEXT			3971		// [スペルカ?ド]
+#define IDC_ROOM_BTN_STAGE_RND			3972 // ステ?ジ
 
-#define IDC_ROOM_SPIN_LIMIT_TURN_001	(3975)	// 制限ターン1の位
-#define IDC_ROOM_SPIN_LIMIT_TURN_010	(3978)	// 制限ターン10の位
-#define IDC_ROOM_SPIN_LIMIT_TURN_100	(3981)	// 制限ターン100の位
-#define IDC_STATIC_SPIN_LIMIT_TURN_TEXT	(3985)	// 制限ターン数
+#define IDC_ROOM_SPIN_LIMIT_TURN_001	(3975)	// 制限??ン1の位
+#define IDC_ROOM_SPIN_LIMIT_TURN_010	(3978)	// 制限??ン10の位
+#define IDC_ROOM_SPIN_LIMIT_TURN_100	(3981)	// 制限??ン100の位
+#define IDC_STATIC_SPIN_LIMIT_TURN_TEXT	(3985)	// 制限??ン数
 
 #define IDC_ROOM_STATIC_ACT_TIME_LIMIT_TEXT		(3991)	// 制限時間テキスト
 #define IDC_ROOM_STATIC_ACT_TIME_LIMIT_VALUE	(3992)	// 制限時間数字
 #define IDC_ROOM_BTN_ACT_TIME_LIMIT_L			(3993)	// 制限時間減
 #define IDC_ROOM_BTN_ACT_TIME_LIMIT_R			(3994)	// 制限時間増
-#define IDC_ROOM_STATIC_ITEM_REST_COST		(3995)	// アイテムコスト値
+#define IDC_ROOM_STATIC_ITEM_REST_COST		(3995)	// アイテ?コスト値
 
 #define IDC_LOAD_SPRITE_TEXT					3999		// LOADING
 
-#define IDC_MAIN_STATIC_CHARA_NAME_BASE		(4000)	// キャラ用の名前表示
-#define IDC_MAIN_AL_SHOT_ANGLE_BASE			(4100)	// 発射角コントロール
-#define IDC_MAIN_METER_HP_BASE						(4200)	// HPメータ
-#define IDC_MAIN_STATIC_MY_TURN_BASE			(4250)	// ターン表示コントロール
+#define IDC_MAIN_STATIC_CHARA_NAME_BASE		(4000)	// キャラ用の名前?示
+#define IDC_MAIN_AL_SHOT_ANGLE_BASE			(4100)	// 発射角コントロ?ル
+#define IDC_MAIN_METER_HP_BASE						(4200)	// HPメ??
+#define IDC_MAIN_STATIC_MY_TURN_BASE			(4250)	// ??ン?示コントロ?ル
 #define IDC_MAIN_CONTROLPANEL						(4300)	// 下パネル
-#define IDC_MAIN_METER_SHOTPOWER				(4301)	// 弾撃つパワー
+#define IDC_MAIN_METER_SHOTPOWER				(4301)	// 弾撃つパワ?
 #define IDC_MAIN_METER_MOVABLE						(4302)	// 移動値
-#define IDC_MAIN_ASPRITE_TIMER_BG					(4303)	// 制限時間用タイマーの後ろ
-#define IDC_MAIN_METER_WIND_L						(4304)	// 風用メータL表示
-#define IDC_MAIN_METER_WIND_R						(4305)	// 風用メータR表示
-#define IDC_MAIN_METER_HP								(4306)	// HPメータ
-#define IDC_MAIN_STATIC_NAME							(IDC_ROOM_STATIC_MY_NAME)	// ユーザー名
+#define IDC_MAIN_ASPRITE_TIMER_BG					(4303)	// 制限時間用?イ??の後ろ
+#define IDC_MAIN_METER_WIND_L						(4304)	// 風用メ??L?示
+#define IDC_MAIN_METER_WIND_R						(4305)	// 風用メ??R?示
+#define IDC_MAIN_METER_HP								(4306)	// HPメ??
+#define IDC_MAIN_STATIC_NAME							(IDC_ROOM_STATIC_MY_NAME)	// ユ?ザ?名
 #define IDC_MAIN_STATIC_DELAY							(4308)	// DELAY
 #define IDC_MAIN_STATIC_TURN							(4309)	// TURN
 #define IDC_MAIN_SPRITE_FACE							(4310)	// FACE
 #define IDC_MAIN_BTN_CONFIG							IDC_ROOM_BTN_CONFIG	// コンフィグ
-#define IDC_MAIN_BTN_TURN_PASS						(4311)	// 自ターンパス
+#define IDC_MAIN_BTN_TURN_PASS						(4311)	// 自??ンパス
 #define IDC_MAIN_SPRITE_SPI								(4312)	// ShotPowerIndicator
-#define IDC_MAIN_STATIC_NOTIFY_TURN				(4313)	// 自ターンを知らせる
-#define IDC_MAIN_STATIC_NOTIFY_TURN_TEXT	(4314)	// 自ターンを知らせる
-#define IDC_MAIN_METER_SPELL_EXP					(4315)	// スペル用ポイント
-#define IDC_MAIN_SPRITE_CHATLOG_BG				(4316)	// チャットログ用背景
+#define IDC_MAIN_STATIC_NOTIFY_TURN				(4313)	// 自??ンを知らせる
+#define IDC_MAIN_STATIC_NOTIFY_TURN_TEXT	(4314)	// 自??ンを知らせる
+#define IDC_MAIN_METER_SPELL_EXP					(4315)	// スペル用?イント
+#define IDC_MAIN_SPRITE_CHATLOG_BG				(4316)	// ?ャットログ用背景
 #define IDC_MAIN_AL_SHOT_ANGLE_INDICATOR	(4317)	// 発射角度メモリ
-#define IDC_MAIN_SPRITE_PREV_WIND_INDICATOR	(4318)	// 前ターンの風向き目盛り
-#define IDC_MAIN_ASPRITE_TIMER						(4319)	// 制限時間用タイマー表示
+#define IDC_MAIN_SPRITE_PREV_WIND_INDICATOR	(4318)	// 前??ンの風向き目盛り
+#define IDC_MAIN_ASPRITE_TIMER						(4319)	// 制限時間用?イ???示
 
-#define IDC_MAIN_RB_SEL_BULLET_L					(4398)	// 弾選択ボタンL
-#define IDC_MAIN_RB_SEL_BULLET_R					(4399)	// 弾選択ボタンR
-#define IDC_MAIN_BTN_SEL_BULLET_BASE				(4400)	// 弾選択ボタン
-#define IDC_MAIN_RB_SEL_SPELL							(IDC_MAIN_BTN_SEL_BULLET_BASE+MAX_CHARA_BULLET_TYPE)	// スペル用ボタン
+#define IDC_MAIN_RB_SEL_BULLET_L					(4398)	// 弾選択??ンL
+#define IDC_MAIN_RB_SEL_BULLET_R					(4399)	// 弾選択??ンR
+#define IDC_MAIN_BTN_SEL_BULLET_BASE				(4400)	// 弾選択??ン
+#define IDC_MAIN_RB_SEL_SPELL							(IDC_MAIN_BTN_SEL_BULLET_BASE+MAX_CHARA_BULLET_TYPE)	// スペル用??ン
 
-#define IDC_RESULT_BTN_CONFIRM						(5400)	// 確認OKボタン
+#define IDC_RESULT_BTN_CONFIRM						(5400)	// 確認OK??ン
 #define IDC_RESULT_SB_RANK								(5401)	// ランキング
 #define IDC_RESULT_SPRITE_BG_SCREEN				(5402)	// ランキングの後ろ
 #define IDC_RESULT_SPRITE_RANK_TITLE			(5403)	// ランキング左上
@@ -193,7 +193,7 @@
 #define IDC_RESULT_SPRITE_FACE_BG					(5405)	// 顔の背景
 #define IDC_RESULT_SPRITE_FACE						(5406)	// 顔
 #define IDC_RESULT_STATIC_TEXT						(5407)	// テキスト
-#define IDC_RESULT_STATIC_NAME						(IDC_MAIN_STATIC_NAME)	// ユーザー名
+#define IDC_RESULT_STATIC_NAME						(IDC_MAIN_STATIC_NAME)	// ユ?ザ?名
 
 #define IDC_RESULT_BTN_DISC							IDC_ROOM_BTN_DISC	// 退室
 #define IDC_RESULT_SPRITE_NO_BASE					(5500)	// ランキング
@@ -302,7 +302,7 @@
 #define IDC_CHECK_BTN_ON						288,0,352,32
 #define IDC_CHECK_BTN_OFF					352,0,416,32
 
-// キャラ、アイテム、ルール選択画面
+// キャラ、アイテ?、ル?ル選択画面
 #define IDC_ROOM_BTN_VIEW_CHARA_RECT		IDC_CHECK_BTN_ON
 #define IDC_ROOM_BTN_VIEW_ITEM_RECT		IDC_CHECK_BTN_ON
 #define IDC_ROOM_BTN_VIEW_RULE_RECT		IDC_CHECK_BTN_ON
@@ -357,7 +357,7 @@
 #define ROOM_BTN_CONFIG_IMG_RECT			BTN_W48_RECT
 
 
-// アイテム画像範囲
+// アイテ?画像範囲
 #define IDC_ROOM_BTN_ITEM_SEL_BTN_GROUP		(3400)
 #define GAME_ITEM_W							(32)
 #define GAME_ITEM_H							(32)
@@ -385,72 +385,72 @@
 #define GAME_ITEM_19_RECT				928,426,928+32,426+32
 #define GAME_ITEM_20_RECT				96,232,128,264
 
-#define GAME_STATE_INFO_SHIELD_OFF			L"シールドが解けました"
+#define GAME_STATE_INFO_SHIELD_OFF			L"シ?ルドが解けました"
 #define GAME_STATE_INFO_STEALTH		GAME_STATE_MSG_STEALTH
 #define GAME_STATE_INFO_STEALTH_OFF	L"ステルス状態が解けました"
 #define GAME_STATE_INFO_POWERUP		GAME_STATE_MSG_POWERUP
-#define GAME_STATE_INFO_POWERUP_OFF		L"パワーアップ状態が解けました"
+#define GAME_STATE_INFO_POWERUP_OFF		L"パワ?アップ状態が解けました"
 #define GAME_STATE_INFO_DOUBLE		GAME_STATE_MSG_DOUBLE
 #define GAME_STATE_INFO_DOUBLE_OFF		L"連射状態が解けました"
-#define GAME_STATE_INFO_BLIND		L"暗転状態になりました"
-#define GAME_STATE_INFO_BLIND_SELF		L"暗転状態になりました(残り%dターン)"
-#define GAME_STATE_INFO_BLIND_OFF		L"暗転状態が解けました"
+#define GAME_STATE_INFO_BLIND		L"暗?状態になりました"
+#define GAME_STATE_INFO_BLIND_SELF		L"暗?状態になりました(残り%d??ン)"
+#define GAME_STATE_INFO_BLIND_OFF		L"暗?状態が解けました"
 #define GAME_STATE_INFO_NOMOVE		L"移動不可になりました"
-#define GAME_STATE_INFO_NOMOVE_SELF		L"移動不可になりました(残り%dターン)"
-#define GAME_STATE_INFO_NOMOVE_OFF		L"移動可能になりました"
+#define GAME_STATE_INFO_NOMOVE_SELF		L"移動不可になりました(残り%d??ン)"
+#define GAME_STATE_INFO_NOMOVE_OFF		L"移動可?になりました"
 #define GAME_STATE_INFO_NOANGLE	L"角度変更不可になりました"
-#define GAME_STATE_INFO_NOANGLE_SELF	L"角度変更不可になりました(残り%dターン)"
-#define GAME_STATE_INFO_NOANGLE_OFF	L"角度変更可能になりました"
-#define GAME_STATE_INFO_REVERSE	L"上下反転状態になりました"
-#define GAME_STATE_INFO_REVERSE_SELF L"上下反転状態になりました(残り%dターン)"
-#define GAME_STATE_INFO_REVERSE_OFF	L"上下反転状態が解けました"
+#define GAME_STATE_INFO_NOANGLE_SELF	L"角度変更不可になりました(残り%d??ン)"
+#define GAME_STATE_INFO_NOANGLE_OFF	L"角度変更可?になりました"
+#define GAME_STATE_INFO_REVERSE	L"上下反?状態になりました"
+#define GAME_STATE_INFO_REVERSE_SELF L"上下反?状態になりました(残り%d??ン)"
+#define GAME_STATE_INFO_REVERSE_OFF	L"上下反?状態が解けました"
 #define GAME_STATE_INFO_PAIN			L"毒にかかりました"
-#define GAME_STATE_INFO_PAIN_SELF			L"毒にかかりました(残り%dターン)"
+#define GAME_STATE_INFO_PAIN_SELF			L"毒にかかりました(残り%d??ン)"
 #define GAME_STATE_INFO_PAIN_OFF			L"毒が治りました"
-#define GAME_STATE_INFO_STEAL_OFF		L"スティール状態が解除されました"
+#define GAME_STATE_INFO_STEAL_OFF		L"スティ?ル状態が解除されました"
 
 
-#define GAME_STATE_MSG_POWERUP		L"パワーアップ状態になりました"
+#define GAME_STATE_MSG_POWERUP		L"パワ?アップ状態になりました"
 #define GAME_STATE_MSG_DOUBLE		L"連射状態になりました"
 #define GAME_STATE_MSG_STEALTH		L"ステルス状態になりました"
-#define GAME_STATE_MSG_SHIELD		L"シールドを纏いました"
+#define GAME_STATE_MSG_SHIELD		L"シ?ルドを纏いました"
 #define GAME_STATE_MSG_MOVE_UP	L"移動値が増加しました"
 #define GAME_STATE_MSG_TELEPORT	L"移動弾を装填しました"
 #define GAME_STATE_MSG_NOMOVE		L"移動不可弾を装填しました"
 #define GAME_STATE_MSG_NOANGLE	L"角度変更不可弾を装填しました"
-#define GAME_STATE_MSG_REVERSE		L"上下反転弾を装填しました"
-#define GAME_STATE_MSG_BLIND			L"暗転弾を装填しました"
+#define GAME_STATE_MSG_REVERSE		L"上下反?弾を装填しました"
+#define GAME_STATE_MSG_BLIND			L"暗?弾を装填しました"
 #define GAME_STATE_MSG_REPAIR_BULLET	L"回復弾を装填しました"
 #define GAME_STATE_MSG_DRAIN			L"HP吸収弾を装填しました"
 #define GAME_STATE_MSG_FETCH		L"引き寄せ弾を装填しました"
 #define GAME_STATE_MSG_EXCHANGE	L"位置入れ替え弾を装填しました"
 #define GAME_STATE_MSG_REPAIR		L"HPを小回復しました"
-#define GAME_STATE_MSG_REPAIR_TEAM		L"自チームのHPを回復しました"
+#define GAME_STATE_MSG_REPAIR_TEAM		L"自???のHPを回復しました"
 #define GAME_STATE_MSG_REPAIR_BIG	L"HPを大回復しました"
 #define GAME_STATE_MSG_WIND_CHANGE	L"風向きが変更されました"
-#define GAME_STATE_MSG_STEAL			L"スティール状態になりました"
-#define GAME_STATE_MSG_STOLEN		L"アイテムスティールされました"
-#define GAME_STATE_MSG_STOLE			L"アイテムスティールしました"
+#define GAME_STATE_MSG_STEAL			L"スティ?ル状態になりました"
+#define GAME_STATE_MSG_STOLEN		L"アイテ?スティ?ルされました"
+#define GAME_STATE_MSG_STOLE			L"アイテ?スティ?ルしました"
 
-#define GAME_ITEM_01_TEXT				L"残り移動可能値が増加します"
-#define GAME_ITEM_02_TEXT				L"弾の連射が可能になります"
-#define GAME_ITEM_03_TEXT				L"３ターンの間ステルス状態になります"
-#define GAME_ITEM_04_TEXT				L"弾に当たると3ターン画面が逆になります"
-#define GAME_ITEM_05_TEXT				L"弾に当たると3ターン画面が暗くなり、他キャラが見えなくなります"
+#define GAME_ITEM_01_TEXT				L"残り移動可?値が増加します"
+#define GAME_ITEM_02_TEXT				L"弾の連射が可?になります"
+#define GAME_ITEM_03_TEXT				L"３??ンの間ステルス状態になります"
+#define GAME_ITEM_04_TEXT				L"弾に当たると3??ン画面が逆になります"
+#define GAME_ITEM_05_TEXT				L"弾に当たると3??ン画面が暗くなり、他キャラが見えなくなります"
 #define GAME_ITEM_06_TEXT				L"弾が当たったとき、１度無効化できます"
 #define GAME_ITEM_07_TEXT				L"次に発射する弾、符の威力が昇します"
-#define GAME_ITEM_08_TEXT				L"当たると３ターン発射角度が変更できなくなる弾を発射します"
-#define GAME_ITEM_09_TEXT				L"当たると３ターン移動ができなくなる弾を発射します"
-#define GAME_ITEM_10_TEXT				L"使用するとHPを少し回復します（使用後ターン終了しない）"
+#define GAME_ITEM_08_TEXT				L"当たると３??ン発射角度が変更できなくなる弾を発射します"
+#define GAME_ITEM_09_TEXT				L"当たると３??ン移動ができなくなる弾を発射します"
+#define GAME_ITEM_10_TEXT				L"使用するとHPを少し回復します（使用後??ン終了しない）"
 #define GAME_ITEM_11_TEXT				L"当たるとHPが回復する弾を発射します"
-#define GAME_ITEM_12_TEXT				L"着弾地点に移動する弾を発射します"
-#define GAME_ITEM_13_TEXT				L"使用するとHPを大幅に回復します（使用後ターン終了）"
-#define GAME_ITEM_14_TEXT				L"同チームのHPを回復させます（使用後ターン終了）"
+#define GAME_ITEM_12_TEXT				L"着弾地?に移動する弾を発射します"
+#define GAME_ITEM_13_TEXT				L"使用するとHPを大幅に回復します（使用後??ン終了）"
+#define GAME_ITEM_14_TEXT				L"同???のHPを回復させます（使用後??ン終了）"
 #define GAME_ITEM_15_TEXT				L"当たった相手のHPを吸収する弾を発射します"
 #define GAME_ITEM_16_TEXT				L"弾に当たった相手を自分の位置に引き寄せます"
 #define GAME_ITEM_17_TEXT				L"弾に当たった相手と自分の位置を入れ替えます"
 #define GAME_ITEM_18_TEXT				L"風向きを逆方向に変えます"
-#define GAME_ITEM_19_TEXT				L"次ターンのキャラがアイテムを使った時、そのアイテムを盗ります"
+#define GAME_ITEM_19_TEXT				L"次??ンのキャラがアイテ?を使った時、そのアイテ?を盗ります"
 #define GAME_ITEM_20_TEXT				L"GAME_ITEM_20"
 
 #define ROOM_BTN_ADD_ITEM_IMG_RECT		448,0,512,32
@@ -460,7 +460,7 @@
 #define ROOM_STATIC_ITEM_INFO_CNT_RECT	560,140,200,200
 
 #define ROOM_CHK_RULE_DISABLE_COLOR		0xFFFFFFFF
-#define ROOM_CHK_RULE_1_DETAIL			L"アイテム使用/不使用"
+#define ROOM_CHK_RULE_1_DETAIL			L"アイテ?使用/不使用"
 #define ROOM_CHK_RULE_1_IMG_RECT				120,24,144,48
 #define ROOM_CHK_RULE_1_CHK_IMG_RECT		144,24,168,48
 #define ROOM_CHK_RULE_1_CNT_RECT				560,50,280,18
@@ -470,12 +470,12 @@
 #define ROOM_CHK_RULE_2_CHK_IMG_RECT		144,24,168,48
 #define ROOM_CHK_RULE_2_CNT_RECT				560,75,280,18
 
-#define ROOM_CHK_RULE_3_DETAIL			L"チームダメージあり/なし"
+#define ROOM_CHK_RULE_3_DETAIL			L"????メ?ジあり/なし"
 #define ROOM_CHK_RULE_3_IMG_RECT				120,24,144,48
 #define ROOM_CHK_RULE_3_CHK_IMG_RECT		144,24,168,48
 #define ROOM_CHK_RULE_3_CNT_RECT				560,100,280,18
 
-#define ROOM_CHK_RULE_4_DETAIL			L"未行動キャラの落下死防止あり/なし"
+#define ROOM_CHK_RULE_4_DETAIL			L"未行動キャラの落下?防?あり/なし"
 #define ROOM_CHK_RULE_4_IMG_RECT				120,24,144,48
 #define ROOM_CHK_RULE_4_CHK_IMG_RECT		144,24,168,48
 #define ROOM_CHK_RULE_4_CNT_RECT				560,125,280,18
@@ -506,7 +506,7 @@
 
 #define ROOM_STATIC_SPIN_LIMIT_TURN_TEXT_CNT_RECT		560,196,250,24
 #define ROOM_STATIC_SPIN_LIMIT_TURN_TEXT_FONT	(1)	
-#define ROOM_STATIC_SPIN_LIMIT_TURN_TEXT_MSG	L"制限ターン数"
+#define ROOM_STATIC_SPIN_LIMIT_TURN_TEXT_MSG	L"制限??ン数"
 
 #define ROOM_STATIC_ACT_TIME_LIMIT_TEXT_CNT_RECT		560,155,180,24
 #define ROOM_STATIC_ACT_TIME_LIMIT_TEXT_MSG					L"制限時間"
@@ -784,7 +784,7 @@
 
 #define MAIN_STATIC_NOTIFY_TURN_TEXT_CNT_RECT		0,MAIN_STATIC_NOTIFY_TURN_CNT_Y+56,800,20
 #define MAIN_STATIC_NOTIFY_TURN_TEXT_FONT			1
-#define MAIN_STATIC_NOTIFY_TURN_TEXT					L"(あなたのターンです)"
+#define MAIN_STATIC_NOTIFY_TURN_TEXT					L"(あなたの??ンです)"
 
 #define MAIN_SPRITE_CHARA_ANGLE_IMG_RECT	64,329,96,345
 
@@ -911,17 +911,17 @@
 #define CONFIG_STATIC_SE_TEXT_CNT_RECT		260,327,80,24
 
 #define CONFIG_CHK_EFFECT_CNT_RECT			270,356,280,16
-#define CONFIG_CHK_EFFECT_TEXT					L"エフェクトＯＮ／ＯＦＦ"
+#define CONFIG_CHK_EFFECT_TEXT					L"エフェクトＯＮ?ＯＦＦ"
 #define CONFIG_CHK_EFFECT_IMG_ON_RECT	120,24,144,48
 #define CONFIG_CHK_EFFECT_IMG_OFF_RECT	144,24,168,48
 
 #define CONFIG_CHK_BLT_FOCUS_CNT_RECT	270,376,280,16
-#define CONFIG_CHK_BLT_FOCUS_TEXT					L"発射された弾にフォーカスする"
+#define CONFIG_CHK_BLT_FOCUS_TEXT					L"発射された弾にフォ?カスする"
 #define CONFIG_CHK_BLT_FOCUS_IMG_ON_RECT	120,24,144,48
 #define CONFIG_CHK_BLT_FOCUS_IMG_OFF_RECT	144,24,168,48
 
 #define CONFIG_CHK_ACT_FOCUS_CNT_RECT	270,396,320,16
-#define CONFIG_CHK_ACT_FOCUS_TEXT					L"アクティブキャラにフォーカスする"
+#define CONFIG_CHK_ACT_FOCUS_TEXT					L"アクティブキャラにフォ?カスする"
 #define CONFIG_CHK_ACT_FOCUS_IMG_ON_RECT	120,24,144,48
 #define CONFIG_CHK_ACT_FOCUS_IMG_OFF_RECT	144,24,168,48
 

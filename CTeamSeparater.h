@@ -18,7 +18,7 @@
 
 #include "../thplib/DXUT/dxstdafx.h"
 #include "../thplib/DXUT/DXUT.h"
-#include "define.h"
+#include "../thpcommon/define.h"
 
 // ???番号（?②③…）の位置取り
 // ???の区切り線の?示
